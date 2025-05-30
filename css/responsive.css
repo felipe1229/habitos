@@ -1,4 +1,4 @@
-/* css/responsive.css - Todos os estilos para telas menores (max-width: 768px) */
+/* css/responsive.css - Estilos para telas menores (max-width: 768px) */
 
 @media (max-width: 768px) {
     /* --- Responsividade da Navegação (Menu Hambúrguer) --- */
@@ -52,34 +52,24 @@
  
     /* --- Responsividade do Formulário de Adicionar Hábito --- */
     #add-habit-form .input-wrapper { 
-        flex-basis: 100%; /* Garante que o input e o botão (+) ocupem a linha */
-        /* margin-bottom: 10px;  Removido, o gap do form principal pode cuidar disso ou o margin-top do error-message */
+        flex-basis: 100%; 
+        margin-bottom: 10px; 
     }
-     /* O input e o botão dentro do wrapper já devem se ajustar com flex-grow e flex-shrink */
-    
     #add-habit-form .error-message { 
         margin-left: 0; 
         margin-right: 0;
-        margin-top: 10px; /* Garante espaço se o input-wrapper estiver na mesma "linha" visual antes do wrap */
+        margin-top: 0; 
     }
 
     /* --- Responsividade dos Controles de Ordenação de Hábitos (Dashboard) --- */
+    /* Mantendo a versão menos agressiva que você preferiu: */
     .sort-controls-habitos {
-        flex-direction: column; /* Empilha o label e o select verticalmente */
-        align-items: stretch;   /* Faz o label e o select ocuparem a largura total */
-        gap: 8px;               /* Espaço entre label e select quando empilhados */
-        padding: 0.8rem;        /* Ajusta padding para melhor encaixe */
+        /* O Flexbox base tentará manter lado a lado; pode precisar de flex-wrap se o container ficar muito estreito. */
+        /* Se ainda precisar de ajustes, podemos revisitar. */
     }
-
-    .sort-controls-habitos label {
-        margin-bottom: 0; /* Se já tem gap, não precisa de margin */
-        text-align: left; /* Alinha o texto do label à esquerda */
-    }
-
     #sort-habitos-select {
-        width: 100%; /* Faz o select ocupar toda a largura disponível */
-        min-width: 0; /* Remove qualquer min-width que possa estar atrapalhando */
-        font-size: 0.9rem; 
+         min-width: 150px; /* Um min-width menor para ajudar em telas pequenas */
+         /* Se ficar muito largo, pode-se adicionar width: auto; ou um max-width específico aqui */
     }
 
     /* --- Responsividade do Calendário --- */
@@ -107,59 +97,52 @@
     /* --- Responsividade da Lista de Progresso (Sequências) --- */
     .lista-progresso li {
         font-size: 0.9rem; 
-        /* O flex-wrap: wrap já deve ajudar aqui */
+        /* flex-wrap: wrap; já está no estilo base do .lista-progresso li */
     }
-    .habit-info-principal {
-        flex-basis: 100%; /* Permite que o nome do hábito e a taxa ocupem a linha toda */
-        margin-bottom: 5px; /* Espaço antes da contagem de streak se quebrar linha */
+     .habit-info-principal {
+        /* Comportamento flex padrão, pode quebrar linha se necessário */
     }
     .lista-progresso .streak-count {
-        margin-left: 0; /* Remove margem se quebrar linha */
-        width: 100%;    /* Ocupa a largura toda */
-        text-align: right; /* Alinha a contagem à direita */
+        /* Comportamento flex padrão, pode quebrar linha se necessário */
     }
-
 
     /* --- Responsividade do Gráfico de Barras --- */
     .grafico-barras-simples .barra {
-        width: 20px; /* Barras ainda mais finas */
+        width: 20px; 
     }
     .grafico-legendas-dias .legenda-dia {
-        width: 20px;
+        width: 20px; 
         font-size: 0.65rem; 
     }
     
-    /* --- Responsividade dos Botões de Ação nas Metas (Cards) --- */
-    .meta-actions {
-        flex-direction: column; /* Empilha os botões verticalmente */
-        align-items: stretch;  /* Faz os botões ocuparem a largura total */
-        gap: 8px; 
-    }
-
+    /* --- Responsividade dos Botões de Ação nos Cards de Metas --- */
+    /* Mantendo a versão menos agressiva que você preferiu (apenas tamanho) */
     .meta-actions .btn { 
-        width: 100%; /* Botões ocupam 100% da largura do container .meta-actions */
-        margin-left: 0; /* Remove margem esquerda se houver */
-        font-size: 0.8rem; /* Mantém fonte um pouco menor */
-        padding: 0.5rem 0.8rem; /* Padding um pouco maior para botões de largura total */
+        font-size: 0.75rem; 
+        padding: 0.4rem 0.7rem; 
     }
+    /* Se ainda ficarem ruins, podemos tentar .meta-actions { flex-wrap: wrap; justify-content: flex-end; }
+       para permitir que quebrem linha mas continuem à direita. */
     
-    /* --- Responsividade dos Botões no Modal de Edição de Metas --- */
-    .modal-content {
-        padding: 1.5rem; /* Diminui padding do modal em telas menores */
+    /* --- Responsividade dos Botões NO MODAL de Edição de Metas --- */
+    .modal-content { /* Ajusta o padding do conteúdo do modal */
+        padding: 1.5rem; 
     }
-    .modal-content h2 {
-        font-size: 1.5rem; /* Título do modal menor */
-    }
-    .modal-actions { /* Reutiliza a lógica de empilhar do .meta-actions */
-        flex-direction: column;
-        align-items: stretch; 
-        gap: 10px; 
-    }
-    .modal-actions .btn {
-        width: 100%;
-        margin-left: 0;
-        font-size: 0.9rem; /* Fonte um pouco maior para botões de ação principais do modal */
-        padding: 0.7rem 1rem;
+    .modal-content h2 { /* Ajusta o título do modal */
+        font-size: 1.5rem; 
     }
 
+    .modal-actions { /* Container dos botões Salvar/Cancelar no modal */
+        flex-direction: column; /* Empilha os botões verticalmente */
+        align-items: stretch;   /* Faz os botões esticarem para ocupar a largura */
+        gap: 10px;              /* Espaço vertical entre os botões empilhados */
+    }
+
+    .modal-actions .btn {
+        width: 100%;         /* Botões ocupam 100% da largura do modal-actions */
+        margin-left: 0;      /* Remove qualquer margem lateral se houver da base .btn */
+        margin-right: 0;     /* Remove qualquer margem lateral se houver da base .btn */
+        font-size: 0.9rem;   /* Tamanho de fonte para os botões do modal */
+        padding: 0.7rem 1rem;/* Padding para os botões do modal */
+    }
 }
