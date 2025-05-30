@@ -52,20 +52,28 @@
  
     /* --- Responsividade do Formulário de Adicionar Hábito --- */
     #add-habit-form .input-wrapper { 
-        flex-basis: 100%; 
-        margin-bottom: 10px; 
+        flex-basis: 100%; /* Garante que o input e o botão (+) ocupem a linha */
+        /* margin-bottom: 10px;  Removido, o gap do form principal pode cuidar disso ou o margin-top do error-message */
     }
+     /* O input e o botão dentro do wrapper já devem se ajustar com flex-grow e flex-shrink */
+    
     #add-habit-form .error-message { 
         margin-left: 0; 
         margin-right: 0;
-        margin-top: 0; 
+        margin-top: 10px; /* Garante espaço se o input-wrapper estiver na mesma "linha" visual antes do wrap */
     }
 
     /* --- Responsividade dos Controles de Ordenação de Hábitos (Dashboard) --- */
     .sort-controls-habitos {
         flex-direction: column; /* Empilha o label e o select verticalmente */
-        align-items: flex-start; /* Alinha os itens à esquerda no layout de coluna */
-        gap: 5px; /* Espaço menor entre label e select quando empilhados */
+        align-items: stretch;   /* Faz o label e o select ocuparem a largura total */
+        gap: 8px;               /* Espaço entre label e select quando empilhados */
+        padding: 0.8rem;        /* Ajusta padding para melhor encaixe */
+    }
+
+    .sort-controls-habitos label {
+        margin-bottom: 0; /* Se já tem gap, não precisa de margin */
+        text-align: left; /* Alinha o texto do label à esquerda */
     }
 
     #sort-habitos-select {
@@ -99,42 +107,59 @@
     /* --- Responsividade da Lista de Progresso (Sequências) --- */
     .lista-progresso li {
         font-size: 0.9rem; 
+        /* O flex-wrap: wrap já deve ajudar aqui */
+    }
+    .habit-info-principal {
+        flex-basis: 100%; /* Permite que o nome do hábito e a taxa ocupem a linha toda */
+        margin-bottom: 5px; /* Espaço antes da contagem de streak se quebrar linha */
     }
     .lista-progresso .streak-count {
-        margin-left: 0.5rem; 
+        margin-left: 0; /* Remove margem se quebrar linha */
+        width: 100%;    /* Ocupa a largura toda */
+        text-align: right; /* Alinha a contagem à direita */
     }
+
 
     /* --- Responsividade do Gráfico de Barras --- */
     .grafico-barras-simples .barra {
-        width: 25px; 
+        width: 20px; /* Barras ainda mais finas */
     }
     .grafico-legendas-dias .legenda-dia {
-        width: 25px;
-        font-size: 0.7rem; 
+        width: 20px;
+        font-size: 0.65rem; 
     }
     
-    /* --- Responsividade das Notificações (Estilos removidos, mas se voltarem, ajustar aqui) --- */
-    /* .notification-item {
-        font-size: 0.85rem; 
-    }
-    */
-
-    /* --- Responsividade dos Botões de Ação nas Metas --- */
+    /* --- Responsividade dos Botões de Ação nas Metas (Cards) --- */
     .meta-actions {
-        /* Para empilhar os botões em telas pequenas, descomente as linhas abaixo: */
-        /* flex-direction: column; */
-        /* align-items: flex-end; */ /* Ou flex-start, ou stretch se quiserem largura total */
-        /* gap: 8px; */ /* Ajusta o espaço vertical entre botões se empilhados */
+        flex-direction: column; /* Empilha os botões verticalmente */
+        align-items: stretch;  /* Faz os botões ocuparem a largura total */
+        gap: 8px; 
     }
 
-    .meta-actions .btn { /* Aplica a todos os botões dentro de .meta-actions */
-        font-size: 0.75rem; /* Diminui um pouco a fonte dos botões */
-        padding: 0.4rem 0.7rem; /* Diminui um pouco o padding (ajustei o horizontal) */
-        
-        /* Se optar por empilhar e quiser que ocupem a largura: */
-        /* width: 100%; */
-        /* margin-bottom: 5px; */ /* Adiciona espaço abaixo de cada botão se empilhados */
+    .meta-actions .btn { 
+        width: 100%; /* Botões ocupam 100% da largura do container .meta-actions */
+        margin-left: 0; /* Remove margem esquerda se houver */
+        font-size: 0.8rem; /* Mantém fonte um pouco menor */
+        padding: 0.5rem 0.8rem; /* Padding um pouco maior para botões de largura total */
     }
-    /* Se empilhar, pode querer remover a margem do último: */
-    /* .meta-actions .btn:last-child { margin-bottom: 0; } */
+    
+    /* --- Responsividade dos Botões no Modal de Edição de Metas --- */
+    .modal-content {
+        padding: 1.5rem; /* Diminui padding do modal em telas menores */
+    }
+    .modal-content h2 {
+        font-size: 1.5rem; /* Título do modal menor */
+    }
+    .modal-actions { /* Reutiliza a lógica de empilhar do .meta-actions */
+        flex-direction: column;
+        align-items: stretch; 
+        gap: 10px; 
+    }
+    .modal-actions .btn {
+        width: 100%;
+        margin-left: 0;
+        font-size: 0.9rem; /* Fonte um pouco maior para botões de ação principais do modal */
+        padding: 0.7rem 1rem;
+    }
+
 }
