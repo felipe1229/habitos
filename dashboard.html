@@ -36,7 +36,7 @@
         <h1 class="dashboard-title">Seu Painel de Controle Futurista</h1>
 
         <div class="dashboard-grid">
-            <section class="dashboard-module calendar-module" id="tirarbaixo">
+            <section class="dashboard-module calendar-module">
                 <h2>Calendário de Atividades</h2>
                 <div id="calendario-container">
                     <div class="calendario-header">
@@ -61,6 +61,16 @@
                     </div>
                     <span id="add-habit-error" class="error-message" style="display: none;" role="alert"></span> 
                 </form>
+
+                <div class="sort-controls-habitos">
+                    <label for="sort-habitos-select">Ordenar por:</label>
+                    <select id="sort-habitos-select" class="futuristic-input">
+                        <option value="padrao">Padrão (Ordem de Adição)</option>
+                        <option value="nome-az">Nome (A-Z)</option>
+                        <option value="nome-za">Nome (Z-A)</option>
+                    </select>
+                </div>
+
                 <ul id="daily-checklist" class="checklist">
                     </ul>
             </section>
@@ -87,13 +97,13 @@
                         <p>Hábitos concluídos semana passada: <strong id="habitos-semana-passada" class="dado-comparacao">0</strong></p>
                         <p>Diferença: <strong id="diferenca-semanal" class="dado-comparacao neutro">--</strong></p>
                     </div>
-                </div>
-            </section>
 
-            <section class="dashboard-module notifications-module" id="tirarespaco">
-                <h2>Notificações</h2>
-                <div class="notifications-placeholder">
-                    <p class="empty-list-message">Nenhuma notificação nova.</p>
+                    <h4 class="titulo-secao-progresso">Resumo Mensal de Hábitos:</h4>
+                    <div id="comparacao-mensal-container" class="comparacao-container"> 
+                        <p>Hábitos concluídos este mês: <strong id="habitos-este-mes" class="dado-comparacao">0</strong></p>
+                        <p>Hábitos concluídos mês passado: <strong id="habitos-mes-passado" class="dado-comparacao">0</strong></p>
+                        <p>Diferença: <strong id="diferenca-mensal" class="dado-comparacao neutro">--</strong></p>
+                    </div>
                 </div>
             </section>
         </div>

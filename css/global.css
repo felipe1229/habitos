@@ -40,6 +40,5 @@ img { max-width: 100%; height: auto; }
 .btn-secondary { background-color: transparent; color: var(--cor-destaque-vermelho); border: 1px solid var(--cor-destaque-vermelho); }
 .btn-secondary:hover { background-color: var(--cor-destaque-vermelho-hover); color: var(--cor-fundo-principal); box-shadow: 0 0 10px var(--cor-destaque-vermelho-hover); }
 .empty-list-message { color: #777; text-align: center; padding: 1rem; font-style: italic; }
-.notifications-placeholder .empty-list-message { padding: 0; margin: 0; font-style: normal; color: #777; }
 @keyframes fadeInSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 .animate-fadeInUp { animation: fadeInSlideUp 0.5s ease-out forwards; }

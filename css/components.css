@@ -1,7 +1,7 @@
 /* css/components.css - Estilos para Componentes Reutilizáveis e Complexos */
 
-/* Estilo Base para Módulos/Cards do Dashboard (usado em várias seções) */
-.dashboard-module { 
+/* Estilo Base para Módulos/Cards do Dashboard */
+.dashboard-module {
     background-color: var(--cor-fundo-secundario);
     padding: 1.5rem;
     border-radius: 8px;
@@ -15,7 +15,6 @@
     box-shadow: var(--sombra-suave);
 }
 
-/* Título dentro de um .dashboard-module */
 .dashboard-module h2 {
     margin-bottom: 1rem;
     border-bottom: 1px solid var(--cor-borda-neon);
@@ -24,7 +23,7 @@
 }
 
 /* --- Estilos Comuns de Formulário --- */
-.form-group { 
+.form-group {
     margin-bottom: 1.5rem;
 }
 
@@ -35,125 +34,158 @@
     font-family: var(--fonte-titulo);
 }
 
-.futuristic-input { 
-    background-color: rgba(26, 26, 26, 0.8); 
+.futuristic-input {
+    background-color: rgba(26, 26, 26, 0.8);
     color: var(--cor-texto-principal);
     border: 1px solid var(--cor-borda-neon);
-    padding: 0.8rem 1rem; 
+    padding: 0.8rem 1rem;
     border-radius: 4px;
     font-family: var(--fonte-principal);
     font-size: 1rem;
-    width: 100%; 
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; 
+    width: 100%;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.futuristic-input:focus { 
+.futuristic-input:focus {
     outline: none;
-    border-color: var(--cor-destaque-vermelho-hover); 
-    box-shadow: 0 0 15px var(--cor-destaque-vermelho), 
-                0 0 25px rgba(255, 0, 60, 0.5), 
-                inset 0 0 5px rgba(255, 0, 60, 0.3); 
+    border-color: var(--cor-destaque-vermelho-hover);
+    box-shadow: 0 0 15px var(--cor-destaque-vermelho),
+        0 0 25px rgba(255, 0, 60, 0.5),
+        inset 0 0 5px rgba(255, 0, 60, 0.3);
 }
 
 .futuristic-input[type="date"],
 select.futuristic-input {
-    appearance: none; 
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FF003C%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); 
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FF003C%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 0.8em;
-    padding-right: 2.5rem; 
+    padding-right: 2.5rem;
 }
+
 .futuristic-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1) sepia(1) saturate(5) hue-rotate(320deg); 
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(320deg);
     cursor: pointer;
 }
 
-textarea.futuristic-input { 
+textarea.futuristic-input {
     min-height: 100px;
-    resize: vertical; 
+    resize: vertical;
 }
 
 .error-message {
-    display: block; 
-    width: 100%;    
+    display: block;
+    width: 100%;
     color: var(--cor-destaque-vermelho);
-    background-color: rgba(255, 0, 60, 0.1); 
+    background-color: rgba(255, 0, 60, 0.1);
     border: 1px solid var(--cor-destaque-vermelho);
     border-radius: 4px;
     padding: 0.5rem 0.8rem;
-    margin-top: 10px; 
+    margin-top: 10px;
     font-size: 0.85rem;
-    text-align: center; 
-    flex-basis: 100%; 
-    order: 3; 
+    text-align: center;
+    flex-basis: 100%;
+    order: 3;
 }
 
 /* --- Componentes Específicos do Dashboard --- */
 
 /* Checklist Diário */
-#add-habit-form { 
+#add-habit-form {
     display: flex;
-    flex-wrap: wrap; 
-    align-items: stretch; 
+    flex-wrap: wrap;
+    align-items: stretch;
     margin-bottom: 1rem;
 }
 
-#add-habit-form .input-wrapper { 
+#add-habit-form .input-wrapper {
     display: flex;
-    flex-grow: 1; 
-    align-items: stretch; 
-    margin-bottom: 10px; 
+    flex-grow: 1;
+    align-items: stretch;
+    margin-bottom: 10px;
 }
 
-#add-habit-form .futuristic-input { 
-    flex-grow: 1; 
-    margin-right: 10px; 
-    min-width: 0; 
+#add-habit-form .futuristic-input {
+    flex-grow: 1;
+    margin-right: 10px;
+    min-width: 0;
 }
 
-.btn-add-habit { 
+.btn-add-habit {
     width: 40px;
-    min-width: 40px; 
-    font-size: 1.2rem; 
+    min-width: 40px;
+    font-size: 1.2rem;
     background-color: var(--cor-destaque-vermelho);
     color: var(--cor-fundo-principal);
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    display: flex; 
+    display: flex;
     align-items: center;
     justify-content: center;
-    line-height: 1; 
+    line-height: 1;
 }
-#add-habit-form .btn-add-habit { 
-    flex-shrink: 0; 
-    padding: 0.8rem; 
+
+#add-habit-form .btn-add-habit {
+    flex-shrink: 0;
+    padding: 0.8rem;
 }
+
 .btn-add-habit:hover {
     background-color: var(--cor-destaque-vermelho-hover);
+}
+
+/* Estilos para Controles de Ordenação (Checklist de Hábitos) */
+.sort-controls-habitos {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.sort-controls-habitos label {
+    margin-bottom: 0;
+    font-family: var(--fonte-titulo);
+    color: var(--cor-texto-principal);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+#sort-habitos-select {
+    width: auto;
+    min-width: 220px;
+    font-size: 0.9rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .checklist {
     list-style: none;
     padding: 0;
 }
+
 .checklist-item {
     display: flex;
     align-items: center;
     padding: 0.8rem 0.5rem;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 0, 0, 0.2);
     border-bottom: 1px solid var(--cor-borda-neon);
     margin-bottom: 0.5rem;
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
+
 .checklist-item:hover {
     background-color: rgba(255, 0, 60, 0.1);
 }
+
 .checklist-item input[type="checkbox"] {
     margin-right: 10px;
     appearance: none;
@@ -165,15 +197,17 @@ textarea.futuristic-input {
     border-radius: 3px;
     cursor: pointer;
     position: relative;
-    margin-top: 2px; 
-    flex-shrink: 0; 
+    margin-top: 2px;
+    flex-shrink: 0;
 }
+
 .checklist-item input[type="checkbox"]:checked {
     background-color: var(--cor-destaque-vermelho);
     box-shadow: 0 0 5px var(--cor-destaque-vermelho);
 }
+
 .checklist-item input[type="checkbox"]:checked::after {
-    content: '✓'; 
+    content: '✓';
     color: var(--cor-fundo-principal);
     position: absolute;
     left: 50%;
@@ -182,16 +216,19 @@ textarea.futuristic-input {
     font-size: 14px;
     font-weight: bold;
 }
+
 .checklist-item label {
     flex-grow: 1;
     cursor: pointer;
-    word-break: break-word; 
+    word-break: break-word;
 }
+
 .checklist-item.completed label {
     text-decoration: line-through;
-    color: #777; 
+    color: #777;
 }
-.btn-remove-habit { 
+
+.btn-remove-habit {
     background: none;
     border: none;
     color: #888;
@@ -201,39 +238,96 @@ textarea.futuristic-input {
     padding: 0.2rem 0.5rem;
     border-radius: 3px;
     transition: color 0.3s ease, background-color 0.3s ease;
+    margin-left: 8px;
 }
+
 .btn-remove-habit:hover {
     color: var(--cor-destaque-vermelho);
-    background-color: rgba(255,0,60,0.1);
+    background-color: rgba(255, 0, 60, 0.1);
 }
+
+/* Estilos para Edição Inline de Hábitos */
+.btn-edit-habit.btn-secondary-inline,
+.checklist-item .edit-actions .btn {
+    background-color: transparent;
+    color: var(--cor-texto-principal);
+    border: 1px solid #555;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    text-transform: none;
+    margin-left: 8px;
+    opacity: 0.8;
+    transition: opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-edit-habit.btn-secondary-inline:hover,
+.checklist-item .edit-actions .btn:hover {
+    opacity: 1;
+    background-color: var(--cor-fundo-secundario);
+    color: var(--cor-destaque-vermelho-hover);
+    border-color: var(--cor-destaque-vermelho-hover);
+}
+
+.checklist-item .edit-actions .btn-primary {
+    color: var(--cor-fundo-principal);
+    background-color: var(--cor-destaque-vermelho);
+    border-color: var(--cor-destaque-vermelho);
+    opacity: 1;
+}
+
+.checklist-item .edit-actions .btn-primary:hover {
+    background-color: var(--cor-destaque-vermelho-hover);
+    border-color: var(--cor-destaque-vermelho-hover);
+}
+
+.checklist-item .edit-habit-input {
+    flex-grow: 1;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.95rem;
+    margin-right: 8px;
+    border-color: var(--cor-destaque-vermelho-hover);
+    box-shadow: 0 0 8px var(--cor-destaque-vermelho-hover);
+}
+
+.checklist-item .edit-actions {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
 
 /* Calendário no Dashboard */
 #calendario-container {
     padding: 1rem 0;
 }
+
 .calendario-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
 }
-.calendario-header h3 { 
+
+.calendario-header h3 {
     font-family: var(--fonte-titulo);
     color: var(--cor-destaque-vermelho);
-    margin: 0; 
+    margin: 0;
     font-size: 1.4rem;
 }
-.calendario-header .btn-secondary { 
-    padding: 0.4rem 0.8rem; 
+
+.calendario-header .btn-secondary {
+    padding: 0.4rem 0.8rem;
     font-size: 1rem;
 }
+
 .calendario-grid-dias-semana,
 .calendario-grid-dias {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); 
-    gap: 5px; 
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
     text-align: center;
 }
+
 .calendario-grid-dias-semana div {
     font-family: var(--fonte-titulo);
     font-weight: bold;
@@ -241,43 +335,51 @@ textarea.futuristic-input {
     color: var(--cor-destaque-vermelho-hover);
     font-size: 0.9rem;
 }
+
 .calendario-grid-dias .dia-do-calendario {
-    background-color: rgba(255, 255, 255, 0.05); 
+    background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--cor-borda-neon);
     padding: 0.8rem 0.5rem;
-    min-height: 60px; 
+    min-height: 60px;
     border-radius: 3px;
     font-size: 0.9rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     transition: background-color 0.3s ease;
-    cursor: pointer; 
+    cursor: pointer;
 }
+
 .calendario-grid-dias .dia-do-calendario:hover {
     background-color: rgba(255, 0, 60, 0.1);
 }
-.calendario-grid-dias .dia-vazio { 
+
+.calendario-grid-dias .dia-vazio {
     background-color: transparent;
     border: 1px solid transparent;
-    cursor: default; 
+    cursor: default;
 }
+
 .calendario-grid-dias .dia-vazio:hover {
-    background-color: transparent; 
+    background-color: transparent;
 }
-.calendario-grid-dias .dia-atual { 
+
+.calendario-grid-dias .dia-atual {
     background-color: var(--cor-destaque-vermelho);
     color: var(--cor-fundo-principal);
     font-weight: bold;
     box-shadow: 0 0 10px var(--cor-destaque-vermelho);
 }
+
 .calendario-grid-dias .dia-atual:hover {
     background-color: var(--cor-destaque-vermelho-hover);
 }
+
 .calendario-grid-dias .dia-com-atividade {
     position: relative;
 }
+
 .calendario-grid-dias .dia-com-atividade::after {
     content: '';
     position: absolute;
@@ -286,38 +388,42 @@ textarea.futuristic-input {
     transform: translateX(-50%);
     width: 6px;
     height: 6px;
-    background-color: var(--cor-destaque-vermelho-hover); 
+    background-color: var(--cor-destaque-vermelho-hover);
     border-radius: 50%;
     box-shadow: 0 0 5px var(--cor-destaque-vermelho-hover);
 }
+
 .calendario-grid-dias .dia-atual.dia-com-atividade::after {
     background-color: var(--cor-fundo-principal);
     box-shadow: none;
 }
 
 /* Módulo de Progresso (Dashboard) */
-#progresso-container h4 { 
-    font-family: var(--fonte-titulo);
-    color: var(--cor-texto-principal); 
-    margin-bottom: 0.8rem;
-    font-size: 1.1rem;
-    border-bottom: 1px dashed var(--cor-borda-neon); 
-    padding-bottom: 0.5rem;
-}
-.titulo-secao-progresso { 
+#progresso-container h4 {
     font-family: var(--fonte-titulo);
     color: var(--cor-texto-principal);
-    margin-top: 2rem; 
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    border-bottom: 1px dashed var(--cor-borda-neon);
+    padding-bottom: 0.5rem;
+}
+
+.titulo-secao-progresso {
+    font-family: var(--fonte-titulo);
+    color: var(--cor-texto-principal);
+    margin-top: 2rem;
     margin-bottom: 1rem;
     font-size: 1.1rem;
     border-bottom: 1px dashed var(--cor-borda-neon);
     padding-bottom: 0.5rem;
 }
-.lista-progresso { 
+
+.lista-progresso {
     list-style: none;
     padding: 0;
-    margin-top: 1rem; 
+    margin-top: 1rem;
 }
+
 .lista-progresso li {
     background-color: rgba(255, 255, 255, 0.05);
     padding: 0.6rem 1rem;
@@ -325,68 +431,76 @@ textarea.futuristic-input {
     border-radius: 4px;
     border-left: 3px solid var(--cor-destaque-vermelho);
     font-size: 0.95rem;
-    display: flex; 
-    justify-content: space-between; 
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
-.habit-info-principal { 
-    margin-right: 10px; 
-    flex-grow: 1; 
-    flex-basis: 70%; 
+
+.habit-info-principal {
+    margin-right: 10px;
+    flex-grow: 1;
+    flex-basis: 70%;
 }
-.habit-completion-rate { 
-    font-size: 0.8em; 
-    color: #aaa; 
+
+.habit-completion-rate {
+    font-size: 0.8em;
+    color: #aaa;
     margin-left: 8px;
     font-style: italic;
     white-space: nowrap;
 }
+
 .lista-progresso .streak-count {
     font-weight: bold;
     color: var(--cor-destaque-vermelho-hover);
-    white-space: nowrap; 
-    flex-shrink: 0; 
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
-.grafico-barras-simples-container { 
+.grafico-barras-simples-container {
     margin-top: 1rem;
-    background-color: rgba(0,0,0,0.2); 
+    background-color: rgba(0, 0, 0, 0.2);
     padding: 1rem;
     border-radius: 4px;
     border: 1px solid var(--cor-borda-neon);
-    min-height: 180px; 
+    min-height: 180px;
     display: flex;
-    flex-direction: column; 
-    justify-content: center; 
+    flex-direction: column;
+    justify-content: center;
 }
-.grafico-barras-simples { 
+
+.grafico-barras-simples {
     display: flex;
-    justify-content: space-around; 
-    align-items: flex-end; 
-    height: 150px; 
-    border-bottom: 1px solid var(--cor-borda-neon); 
-    padding-bottom: 5px; 
-    position: relative; 
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 150px;
+    border-bottom: 1px solid var(--cor-borda-neon);
+    padding-bottom: 5px;
+    position: relative;
 }
-.grafico-barras-simples .empty-list-message { 
-    align-self: center; 
+
+.grafico-barras-simples .empty-list-message {
+    align-self: center;
     width: 100%;
 }
+
 .grafico-barras-simples .barra {
-    width: 30px; 
+    width: 30px;
     background-color: var(--cor-destaque-vermelho);
-    border-radius: 3px 3px 0 0; 
-    transition: height 0.5s ease-out; 
+    border-radius: 3px 3px 0 0;
+    transition: height 0.5s ease-out;
     box-shadow: 0 0 8px rgba(255, 0, 60, 0.5);
-    position: relative; 
+    position: relative;
 }
+
 .grafico-barras-simples .barra:hover {
     background-color: var(--cor-destaque-vermelho-hover);
 }
+
 .grafico-barras-simples .barra .contagem-tooltip {
     position: absolute;
-    top: -25px; 
+    top: -25px;
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--cor-fundo-secundario);
@@ -395,150 +509,261 @@ textarea.futuristic-input {
     border-radius: 3px;
     font-size: 0.8rem;
     white-space: nowrap;
-    opacity: 0; 
+    opacity: 0;
     transition: opacity 0.2s ease;
-    pointer-events: none; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    pointer-events: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
+
 .grafico-barras-simples .barra:hover .contagem-tooltip {
-    opacity: 1; 
+    opacity: 1;
 }
-.grafico-legendas-dias { 
+
+.grafico-legendas-dias {
     display: flex;
     justify-content: space-around;
     margin-top: 0.5rem;
 }
+
 .grafico-legendas-dias .legenda-dia {
-    width: 30px; 
+    width: 30px;
     text-align: center;
     font-size: 0.8rem;
     color: var(--cor-texto-principal);
     font-family: var(--fonte-principal);
 }
 
-/* Notificações no Dashboard */
-.notifications-module { 
-    margin-top: -8rem; 
-}
-.notification-item {
-    background-color: rgba(0, 255, 106, 0.1); 
-    border-left: 4px solid var(--cor-sucesso-verde); 
-    padding: 0.8rem 1rem;
-    margin-bottom: 0.8rem;
+.comparacao-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    margin-top: 1rem;
     border-radius: 4px;
-    font-size: 0.9rem;
-    color: var(--cor-texto-principal);
+    border-left: 3px solid var(--cor-sucesso-verde);
 }
-.notification-item:last-child {
-    margin-bottom: 0; 
+
+.comparacao-container p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
 }
-.notification-item strong { 
-    color: var(--cor-sucesso-verde);
+
+.comparacao-container p:last-child {
+    margin-bottom: 0;
+}
+
+.comparacao-container .dado-comparacao {
     font-family: var(--fonte-titulo);
+    color: var(--cor-sucesso-verde);
+    font-size: 1.1em;
+}
+
+#diferenca-semanal.positivo,
+#diferenca-mensal.positivo {
+    color: var(--cor-sucesso-verde);
+}
+
+#diferenca-semanal.negativo,
+#diferenca-mensal.negativo {
+    color: var(--cor-destaque-vermelho);
+}
+
+#diferenca-semanal.neutro,
+#diferenca-mensal.neutro {
+    color: var(--cor-texto-principal);
 }
    
 /* --- Componentes da Página de Metas --- */
-.metas-grid { 
+.metas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 1.5rem;
 }
-.meta-card { 
-    padding: 1.5rem; 
+
+.meta-card {
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
+    justify-content: space-between;
+    /* Herda .dashboard-module como base */
 }
+
 .meta-card h3 {
     font-size: 1.4rem;
     color: var(--cor-destaque-vermelho);
     margin-bottom: 0.8rem;
     word-break: break-word;
 }
-.meta-card .meta-field { 
+
+.meta-card .meta-field {
     font-size: 0.9em;
     color: var(--cor-texto-principal);
     margin-bottom: 0.5rem;
-    opacity: 0.8; 
+    opacity: 0.8;
 }
+
 .meta-card .meta-field strong {
     font-family: var(--fonte-titulo);
     color: var(--cor-destaque-vermelho-hover);
 }
-.meta-card p { 
+
+.meta-card p { /* Descrição principal */
     font-size: 1rem;
-    line-height: 1.7; 
+    line-height: 1.7;
     color: var(--cor-texto-principal);
     margin-bottom: 1rem;
-    flex-grow: 1; 
-    white-space: pre-wrap; 
+    flex-grow: 1;
+    white-space: pre-wrap;
     word-break: break-word;
 }
+
 .meta-card .meta-status {
     font-size: 0.85em;
     font-style: italic;
     color: #aaa;
     margin-top: 0.8rem;
-    margin-bottom: 0.8rem; 
+    margin-bottom: 0.8rem;
     text-align: right;
 }
+
 .meta-card.completed-meta h3,
 .meta-card.completed-meta p,
-.meta-card.completed-meta .meta-field { 
+.meta-card.completed-meta .meta-field {
     text-decoration: line-through;
-    color: #777 !important; 
+    color: #777 !important;
     opacity: 0.6;
 }
+
 .meta-card.completed-meta .meta-field strong {
-    color: #777 !important; 
+    color: #777 !important;
 }
+
 .meta-card.completed-meta {
-    border-left: 5px solid var(--cor-sucesso-verde); 
+    border-left: 5px solid var(--cor-sucesso-verde);
     box-shadow: 0 0 15px rgba(0, 255, 106, 0.3);
 }
-.meta-actions { 
+
+.meta-actions {
     margin-top: 1rem;
     display: flex;
-    gap: 0.5rem; 
-    justify-content: flex-end; 
+    gap: 0.5rem;
+    justify-content: flex-end;
 }
-.meta-actions .btn-remove { 
+
+.meta-actions .btn-remove {
     background-color: #444;
     color: var(--cor-texto-principal);
     border: 1px solid #555;
 }
+
 .meta-actions .btn-remove:hover {
     background-color: #555;
     color: var(--cor-destaque-vermelho);
     border-color: var(--cor-destaque-vermelho);
 }
 
-/* --- NOVOS ESTILOS PARA O SELETOR DE COR (Página de Configurações) --- */
+/* Estilos para o Seletor de Cor (Página de Configurações) */
 .color-picker-wrapper {
     display: flex;
     align-items: center;
-    gap: 10px; 
+    gap: 10px;
 }
 
-#color-picker-destaque { /* Input do tipo color */
-    width: 50px; 
+#color-picker-destaque {
+    width: 50px;
     height: 35px;
-    padding: 0; 
-    border: 1px solid var(--cor-borda-neon); 
+    padding: 0;
+    border: 1px solid var(--cor-borda-neon);
     border-radius: 4px;
     cursor: pointer;
-    background-color: transparent; 
+    background-color: transparent;
 }
 
-#color-picker-value { /* Span para mostrar o valor hexadecimal */
+#color-picker-value {
     font-family: var(--fonte-titulo);
     font-size: 0.9rem;
     color: var(--cor-texto-principal);
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
     padding: 0.3rem 0.6rem;
     border-radius: 3px;
 }
 
-#reset-color-button { 
-    margin-top: 0.5rem; 
+#reset-color-button {
+    margin-top: 0.5rem;
+}
+
+/* --- ESTILOS PARA MODAIS (USADO NA EDIÇÃO DE METAS) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 10, 10, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+}
+
+.modal-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background-color: var(--cor-fundo-secundario);
+    color: var(--cor-texto-principal);
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--cor-borda-neon);
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.7), 0 0 25px var(--sombra-suave);
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    transform: scale(0.95);
+    transition: transform 0.3s ease-out;
+}
+
+.modal-overlay.visible .modal-content {
+    transform: scale(1);
+}
+
+.modal-content h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--cor-destaque-vermelho);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--cor-texto-principal);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    opacity: 1;
+    color: var(--cor-destaque-vermelho);
+}
+
+.modal-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }

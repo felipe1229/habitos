@@ -4,8 +4,8 @@ const addHabitFormDashboard = document.getElementById('add-habit-form');
 const calendarioContainerDashboard = document.getElementById('calendario-container');
 const listaSequenciaHabitosElDashboard = document.getElementById('lista-sequencia-habitos');
 const grafico7DiasContainerElDashboard = document.getElementById('grafico-ultimos-7dias-wrapper'); 
-const notificationsPlaceholderElDashboard = document.querySelector('.notifications-module .notifications-placeholder');
-const comparacaoSemanalContainerElDashboard = document.getElementById('comparacao-semanal-container'); // Novo elemento
+const comparacaoSemanalContainerElDashboard = document.getElementById('comparacao-semanal-container'); 
+const comparacaoMensalContainerElDashboard = document.getElementById('comparacao-mensal-container');
 
 if (addHabitFormDashboard || calendarioContainerDashboard) { 
     // --- VARIÁVEIS GLOBAIS DO DASHBOARD ---
@@ -13,8 +13,9 @@ if (addHabitFormDashboard || calendarioContainerDashboard) {
     let dataAtualExibidaNoCalendario = new Date(); 
     let habitsListaDefinicoes = JSON.parse(localStorage.getItem('meusHabitos')) || []; 
     const chaveLocalStorageNomePerfil = 'meuNomeDePerfil'; 
-    let milestonesAtingidosNotificados = JSON.parse(localStorage.getItem('meusMilestonesNotificados')) || {};
-    const metasDeSequenciaParaNotificar = [3, 7, 14, 30, 60, 90, 100, 180, 365];
+    
+    let currentHabitSortOrder = 'padrao'; 
+    const localStorageKeySortHabitos = 'habitSortOrderPreference'; 
 
     // --- FUNÇÕES AUXILIARES GERAIS DO DASHBOARD ---
     function getDataAtualFormatadaParaHistorico() {
@@ -33,18 +34,16 @@ if (addHabitFormDashboard || calendarioContainerDashboard) {
         localStorage.setItem('meusHabitos', JSON.stringify(habitsListaDefinicoes));
     }
 
-    function salvarMilestonesNotificadosNoStorage() {
-        localStorage.setItem('meusMilestonesNotificados', JSON.stringify(milestonesAtingidosNotificados));
-    }
-
     // --- DECLARAÇÕES ANTECIPADAS DE FUNÇÕES DE RENDERIZAÇÃO DO DASHBOARD ---
     let renderizarCalendarioNaTela;
     let renderizarSequenciasDeHabitos;
     let renderizarGraficoUltimos7DiasNaTela;
     let exibirNomeDoPerfilNoTituloDashboard;
-    let exibirNotificacoesDashboard;
     let calcularTaxaConclusaoHabito; 
-    let renderizarComparacaoSemanal; // Nova função
+    let renderizarComparacaoSemanal; 
+    let renderizarComparacaoMensal; 
+    let renderizarHabitosNaChecklist; 
+    let entrarModoEdicaoHabito; // Nova função para edição
 
     // --- PERSONALIZAÇÃO: NOME DO PERFIL ---
     exibirNomeDoPerfilNoTituloDashboard = function() {
@@ -54,25 +53,6 @@ if (addHabitFormDashboard || calendarioContainerDashboard) {
             dashboardTitleEl.textContent = `${nomeSalvo}, seu Painel de Controle Futurista`;
         } else if (dashboardTitleEl) {
             dashboardTitleEl.textContent = "Seu Painel de Controle Futurista";
-        }
-    }
-
-    // --- LÓGICA DE NOTIFICAÇÕES ---
-    if (notificationsPlaceholderElDashboard) {
-        exibirNotificacoesDashboard = function(mensagens) {
-            if (!notificationsPlaceholderElDashboard) return;
-            if (mensagens && mensagens.length > 0) {
-                notificationsPlaceholderElDashboard.innerHTML = ''; 
-                mensagens.forEach((msg, index) => { 
-                    const notificacaoDiv = document.createElement('div');
-                    notificacaoDiv.classList.add('notification-item', 'animate-fadeInUp'); 
-                    notificacaoDiv.style.animationDelay = `${index * 0.1}s`; 
-                    notificacaoDiv.innerHTML = msg; 
-                    notificationsPlaceholderElDashboard.appendChild(notificacaoDiv);
-                });
-            } else {
-                notificationsPlaceholderElDashboard.innerHTML = '<p class="empty-list-message">Nenhuma notificação nova.</p>';
-            }
         }
     }
 
@@ -167,10 +147,9 @@ if (addHabitFormDashboard || calendarioContainerDashboard) {
 
         renderizarSequenciasDeHabitos = function() { 
             if (!listaSequenciaHabitosElDashboard) return;
-            let novasNotificacoesParaExibir = [];
+            // Lógica de notificações foi removida daqui
             if (!habitsListaDefinicoes || habitsListaDefinicoes.length === 0) {
                 listaSequenciaHabitosElDashboard.innerHTML = '<p class="empty-list-message">Adicione hábitos para ver suas sequências.</p>';
-                if (typeof exibirNotificacoesDashboard === 'function') exibirNotificacoesDashboard(novasNotificacoesParaExibir);
                 return;
             }
             listaSequenciaHabitosElDashboard.innerHTML = ''; 
@@ -179,50 +158,26 @@ if (addHabitFormDashboard || calendarioContainerDashboard) {
             habitsListaDefinicoes.forEach((habit, index) => { 
                 const sequencia = calcularSequenciaHabito(habit.text);
                 const taxaConclusao30Dias = calcularTaxaConclusaoHabito(habit.text, 30); 
-
                 const itemLista = document.createElement('li');
                 itemLista.classList.add('animate-fadeInUp'); 
                 itemLista.style.animationDelay = `${index * 0.07}s`; 
-
                 const nomeHabitoSpan = document.createElement('span');
                 nomeHabitoSpan.classList.add('habit-info-principal'); 
                 nomeHabitoSpan.textContent = `${habit.text}: `;
-                
                 const taxaSpan = document.createElement('span');
                 taxaSpan.classList.add('habit-completion-rate');
                 taxaSpan.textContent = `(${taxaConclusao30Dias}% últimos 30d)`;
                 nomeHabitoSpan.appendChild(taxaSpan); 
-
                 const contagemStreakSpan = document.createElement('span');
                 contagemStreakSpan.classList.add('streak-count');
                 contagemStreakSpan.textContent = `${sequencia} dia${sequencia !== 1 ? 's' : ''}`;
-                
                 itemLista.appendChild(nomeHabitoSpan);
                 itemLista.appendChild(contagemStreakSpan);
                 listaSequenciaHabitosElDashboard.appendChild(itemLista);
                 algumaSequenciaMostrada = true;
-
-                metasDeSequenciaParaNotificar.forEach(meta => {
-                    if (sequencia === meta) {
-                        const chaveMilestone = `${habit.text}_streak_${meta}`; 
-                        if (!milestonesAtingidosNotificados[chaveMilestone]) {
-                            const mensagemParabens = `Parabéns! Você atingiu uma sequência de <strong>${meta} dias</strong> para o hábito "<strong>${habit.text}</strong>"! Continue assim!`;
-                            novasNotificacoesParaExibir.push(mensagemParabens);
-                            milestonesAtingidosNotificados[chaveMilestone] = true; 
-                        }
-                    }
-                });
             });
-
             if (!algumaSequenciaMostrada && habitsListaDefinicoes.length > 0) {
                  listaSequenciaHabitosElDashboard.innerHTML = '<p class="empty-list-message">Complete seus hábitos para construir sequências!</p>';
-            }
-            
-            if (novasNotificacoesParaExibir.length > 0) {
-                salvarMilestonesNotificadosNoStorage(); 
-            }
-            if (typeof exibirNotificacoesDashboard === 'function') {
-                exibirNotificacoesDashboard(novasNotificacoesParaExibir);
             }
         }
     }
@@ -279,7 +234,20 @@ if (addHabitFormDashboard || calendarioContainerDashboard) {
         }
     }
     
-    // --- LÓGICA DE PROGRESSO - COMPARAÇÃO SEMANAL DE HÁBITOS ---
+    // --- LÓGICA DE PROGRESSO - COMPARAÇÃO SEMANAL E MENSAL DE HÁBITOS ---
+    function contarHabitosNoPeriodo(dataInicio, dataFim) { 
+        let contagemTotal = 0;
+        let dataCorrente = new Date(dataInicio);
+        while (dataCorrente <= dataFim) {
+            const dataFormatada = `${dataCorrente.getFullYear()}-${String(dataCorrente.getMonth() + 1).padStart(2, '0')}-${String(dataCorrente.getDate()).padStart(2, '0')}`;
+            if (historicoHabitos[dataFormatada]) {
+                contagemTotal += historicoHabitos[dataFormatada].length;
+            }
+            dataCorrente.setDate(dataCorrente.getDate() + 1); 
+        }
+        return contagemTotal;
+    }
+
     if (comparacaoSemanalContainerElDashboard) {
         const habitosEstaSemanaEl = document.getElementById('habitos-esta-semana');
         const habitosSemanaPassadaEl = document.getElementById('habitos-semana-passada');
@@ -297,27 +265,14 @@ if (addHabitFormDashboard || calendarioContainerDashboard) {
             return { inicio: inicioSemana, fim: fimSemana };
         }
 
-        function contarHabitosNoPeriodo(dataInicio, dataFim) {
-            let contagemTotal = 0;
-            let dataCorrente = new Date(dataInicio);
-            while (dataCorrente <= dataFim) {
-                const dataFormatada = `${dataCorrente.getFullYear()}-${String(dataCorrente.getMonth() + 1).padStart(2, '0')}-${String(dataCorrente.getDate()).padStart(2, '0')}`;
-                if (historicoHabitos[dataFormatada]) {
-                    contagemTotal += historicoHabitos[dataFormatada].length;
-                }
-                dataCorrente.setDate(dataCorrente.getDate() + 1); 
-            }
-            return contagemTotal;
-        }
-
         renderizarComparacaoSemanal = function() { 
             if (!habitosEstaSemanaEl || !habitosSemanaPassadaEl || !diferencaSemanalEl) return;
             const hoje = new Date();
             const semanaAtual = getInicioFimDaSemana(hoje);
             const contagemSemanaAtual = contarHabitosNoPeriodo(semanaAtual.inicio, semanaAtual.fim);
-            const dataSemanaPassada = new Date(hoje);
-            dataSemanaPassada.setDate(hoje.getDate() - 7); 
-            const semanaPassada = getInicioFimDaSemana(dataSemanaPassada);
+            const dataSemanaPassadaRef = new Date(hoje);
+            dataSemanaPassadaRef.setDate(hoje.getDate() - 7); 
+            const semanaPassada = getInicioFimDaSemana(dataSemanaPassadaRef);
             const contagemSemanaPassada = contarHabitosNoPeriodo(semanaPassada.inicio, semanaPassada.fim);
 
             habitosEstaSemanaEl.textContent = contagemSemanaAtual;
@@ -335,6 +290,45 @@ if (addHabitFormDashboard || calendarioContainerDashboard) {
         }
     }
 
+    if (comparacaoMensalContainerElDashboard) { 
+        const habitosEsteMesEl = document.getElementById('habitos-este-mes');
+        const habitosMesPassadoEl = document.getElementById('habitos-mes-passado');
+        const diferencaMensalEl = document.getElementById('diferenca-mensal');
+
+        function getInicioFimDoMes(data) { 
+            const ano = data.getFullYear();
+            const mes = data.getMonth(); 
+            const inicioMes = new Date(ano, mes, 1);
+            inicioMes.setHours(0, 0, 0, 0);
+            const fimMes = new Date(ano, mes + 1, 0); 
+            fimMes.setHours(23, 59, 59, 999);
+            return { inicio: inicioMes, fim: fimMes };
+        }
+
+        renderizarComparacaoMensal = function() {
+            if (!habitosEsteMesEl || !habitosMesPassadoEl || !diferencaMensalEl) return;
+            const hoje = new Date();
+            const mesAtualPeriodo = getInicioFimDoMes(hoje);
+            const contagemMesAtual = contarHabitosNoPeriodo(mesAtualPeriodo.inicio, mesAtualPeriodo.fim);
+            const dataMesPassadoRef = new Date(hoje.getFullYear(), hoje.getMonth() - 1, 1); 
+            const mesPassadoPeriodo = getInicioFimDoMes(dataMesPassadoRef);
+            const contagemMesPassado = contarHabitosNoPeriodo(mesPassadoPeriodo.inicio, mesPassadoPeriodo.fim);
+
+            habitosEsteMesEl.textContent = contagemMesAtual;
+            habitosMesPassadoEl.textContent = contagemMesPassado;
+            const diferenca = contagemMesAtual - contagemMesPassado;
+            diferencaMensalEl.textContent = `${diferenca > 0 ? '+' : ''}${diferenca}`;
+            diferencaMensalEl.classList.remove('positivo', 'negativo', 'neutro');
+            if (diferenca > 0) {
+                diferencaMensalEl.classList.add('positivo');
+            } else if (diferenca < 0) {
+                diferencaMensalEl.classList.add('negativo');
+            } else {
+                diferencaMensalEl.classList.add('neutro');
+            }
+        }
+    }
+    
     // --- FUNÇÃO CENTRAL PARA ATUALIZAR HISTÓRICO E UI DO DASHBOARD ---
     window.atualizarHistoricoHabitoEUIDashboard = function(textoDoHabito, foiConcluido) {
         const dataDeHoje = getDataAtualFormatadaParaHistorico();
@@ -357,43 +351,176 @@ if (addHabitFormDashboard || calendarioContainerDashboard) {
         if (typeof renderizarGraficoUltimos7DiasNaTela === 'function') {
             renderizarGraficoUltimos7DiasNaTela();
         }
-        if (typeof renderizarComparacaoSemanal === 'function') { // Chama a nova função
+        if (typeof renderizarComparacaoSemanal === 'function') { 
             renderizarComparacaoSemanal();
+        }
+        if (typeof renderizarComparacaoMensal === 'function') { 
+            renderizarComparacaoMensal();
         }
     }
 
-    // --- LÓGICA DA CHECKLIST DE HÁBITOS (INTERAÇÕES) ---
+    // --- LÓGICA DA CHECKLIST DE HÁBITOS (INTERAÇÕES E ORDENAÇÃO) ---
     if (addHabitFormDashboard) { 
         const newHabitInputDashboard = document.getElementById('new-habit-input');
         const dailyChecklistDashboard = document.getElementById('daily-checklist');
         const addHabitErrorElDashboard = document.getElementById('add-habit-error'); 
+        const sortHabitosSelectEl = document.getElementById('sort-habitos-select');
 
-        function renderizarHabitosNaChecklist() { 
+        if (sortHabitosSelectEl) {
+            const savedSortOrder = localStorage.getItem(localStorageKeySortHabitos);
+            if (savedSortOrder) {
+                currentHabitSortOrder = savedSortOrder;
+                sortHabitosSelectEl.value = currentHabitSortOrder;
+            }
+            sortHabitosSelectEl.addEventListener('change', (evento) => {
+                currentHabitSortOrder = evento.target.value;
+                localStorage.setItem(localStorageKeySortHabitos, currentHabitSortOrder); 
+                if (typeof renderizarHabitosNaChecklist === 'function') renderizarHabitosNaChecklist(); 
+            });
+        }
+        
+        // NOVA FUNÇÃO PARA ENTRAR NO MODO DE EDIÇÃO DE HÁBITO
+        entrarModoEdicaoHabito = function(itemListaEl, habit, originalIndex) {
+            const labelEl = itemListaEl.querySelector('label');
+            const editButtonEl = itemListaEl.querySelector('.btn-edit-habit');
+            const removeButtonEl = itemListaEl.querySelector('.btn-remove-habit');
+            const checkboxEl = itemListaEl.querySelector('input[type="checkbox"]');
+
+            if (!labelEl || !editButtonEl || !removeButtonEl || !checkboxEl) return; 
+
+            const textoOriginalHabito = habit.text;
+            const estavaCompletoHoje = checkboxEl.checked;
+
+            labelEl.style.display = 'none';
+            editButtonEl.style.display = 'none';
+            removeButtonEl.style.display = 'none';
+            checkboxEl.style.display = 'none'; 
+
+            const inputEdicao = document.createElement('input');
+            inputEdicao.type = 'text';
+            inputEdicao.value = textoOriginalHabito;
+            inputEdicao.classList.add('futuristic-input', 'edit-habit-input');
+            inputEdicao.style.flexGrow = '1'; 
+
+            const btnSalvar = document.createElement('button');
+            btnSalvar.textContent = 'Salvar';
+            btnSalvar.classList.add('btn', 'btn-primary', 'btn-secondary-inline'); 
+            btnSalvar.style.fontSize = '0.8rem'; 
+            btnSalvar.addEventListener('click', () => {
+                const novoTexto = inputEdicao.value.trim();
+                if (!novoTexto) {
+                    alert("O nome do hábito não pode ficar vazio!");
+                    return; 
+                }
+                const habitoDuplicado = habitsListaDefinicoes.some((h, i) => 
+                    i !== originalIndex && h.text.toLowerCase() === novoTexto.toLowerCase()
+                );
+                if (habitoDuplicado) {
+                    alert("Erro: Já existe outro hábito com este nome.");
+                    return;
+                }
+
+                if (novoTexto !== textoOriginalHabito) {
+                    const dataDeHoje = getDataAtualFormatadaParaHistorico();
+                    if (estavaCompletoHoje && historicoHabitos[dataDeHoje] && historicoHabitos[dataDeHoje].includes(textoOriginalHabito)) {
+                        const indiceNoHistorico = historicoHabitos[dataDeHoje].indexOf(textoOriginalHabito);
+                        if (indiceNoHistorico > -1) {
+                            historicoHabitos[dataDeHoje][indiceNoHistorico] = novoTexto; 
+                        }
+                        salvarHistoricoHabitosNoStorage(); 
+                    }
+                    habitsListaDefinicoes[originalIndex].text = novoTexto;
+                    salvarDefinicoesHabitosNoStorage();
+                }
+                
+                renderizarHabitosNaChecklist(); 
+                if(typeof window.atualizarHistoricoHabitoEUIDashboard === 'function') {
+                    // Simula uma atualização para forçar o re-render dos componentes de progresso
+                    // que dependem do texto do hábito que pode ter mudado.
+                    // Usamos o estado de conclusão que o checkbox tinha ANTES da edição.
+                    window.atualizarHistoricoHabitoEUIDashboard(novoTexto || textoOriginalHabito, estavaCompletoHoje);
+                }
+            });
+
+            const btnCancelar = document.createElement('button');
+            btnCancelar.textContent = 'Cancelar';
+            btnCancelar.classList.add('btn', 'btn-secondary-inline'); 
+            btnCancelar.style.fontSize = '0.8rem';
+            btnCancelar.addEventListener('click', () => {
+                renderizarHabitosNaChecklist(); 
+            });
+
+            const actionsDivEdicao = document.createElement('div'); 
+            actionsDivEdicao.classList.add('edit-actions');
+            actionsDivEdicao.appendChild(btnSalvar);
+            actionsDivEdicao.appendChild(btnCancelar);
+
+            if (checkboxEl.parentNode === itemListaEl) { 
+                itemListaEl.insertBefore(inputEdicao, checkboxEl.nextSibling);
+            } else { 
+                itemListaEl.appendChild(inputEdicao);
+            }
+            itemListaEl.appendChild(actionsDivEdicao); 
+            inputEdicao.focus();
+            inputEdicao.select(); 
+        }
+
+
+        renderizarHabitosNaChecklist = function() { 
             if (!dailyChecklistDashboard) return; 
+            let habitosParaRenderizar = [...habitsListaDefinicoes]; 
+            if (currentHabitSortOrder === 'nome-az') {
+                habitosParaRenderizar.sort((a, b) => a.text.localeCompare(b.text));
+            } else if (currentHabitSortOrder === 'nome-za') {
+                habitosParaRenderizar.sort((a, b) => b.text.localeCompare(a.text));
+            }
+
             dailyChecklistDashboard.innerHTML = '';
             const dataDeHoje = getDataAtualFormatadaParaHistorico();
             const habitosConcluidosHoje = historicoHabitos[dataDeHoje] || [];
-            if (habitsListaDefinicoes.length === 0) {
+            
+            if (habitsListaDefinicoes.length === 0) { 
                 dailyChecklistDashboard.innerHTML = '<p class="empty-list-message">Você ainda não adicionou nenhum hábito...</p>';
+                if(sortHabitosSelectEl) sortHabitosSelectEl.style.display = 'none'; 
                 return;
+            } else {
+                 if(sortHabitosSelectEl) sortHabitosSelectEl.style.display = 'flex'; 
             }
-            habitsListaDefinicoes.forEach((habit, index) => {
+
+            habitosParaRenderizar.forEach((habit) => { 
+                const originalIndex = habitsListaDefinicoes.findIndex(h => h.text === habit.text); 
+                // Se IDs únicos fossem usados para hábitos, seria: findIndex(h => h.id === habit.id)
+                const displayIndex = habitosParaRenderizar.indexOf(habit);
+
                 const itemLista = document.createElement('li');
                 itemLista.classList.add('checklist-item', 'animate-fadeInUp');
-                itemLista.style.animationDelay = `${index * 0.05}s`;
+                itemLista.style.animationDelay = `${displayIndex * 0.05}s`;
                 const isCompletedToday = habitosConcluidosHoje.includes(habit.text);
                 if (isCompletedToday) { itemLista.classList.add('completed'); }
+                
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.checked = isCompletedToday;
-                checkbox.id = `habit-${index}`;
+                checkbox.id = `habit-${originalIndex}`; 
                 checkbox.addEventListener('change', () => {
                     window.atualizarHistoricoHabitoEUIDashboard(habit.text, checkbox.checked); 
                     renderizarHabitosNaChecklist(); 
                 });
+
                 const label = document.createElement('label');
-                label.htmlFor = `habit-${index}`;
+                label.htmlFor = `habit-${originalIndex}`;
                 label.textContent = habit.text;
+
+                const editButton = document.createElement('button'); 
+                editButton.classList.add('btn-edit-habit', 'btn-secondary-inline');
+                editButton.textContent = 'Editar';
+                editButton.setAttribute('aria-label', 'Editar Hábito');
+                editButton.addEventListener('click', () => {
+                    if (typeof entrarModoEdicaoHabito === 'function') {
+                        entrarModoEdicaoHabito(itemLista, habit, originalIndex);
+                    }
+                });
+
                 const removeButton = document.createElement('button');
                 removeButton.classList.add('btn-remove-habit');
                 removeButton.textContent = 'X';
@@ -402,12 +529,15 @@ if (addHabitFormDashboard || calendarioContainerDashboard) {
                     if (habitosConcluidosHoje.includes(habit.text)) {
                         window.atualizarHistoricoHabitoEUIDashboard(habit.text, false); 
                     }
-                    habitsListaDefinicoes.splice(index, 1); 
-                    salvarDefinicoesHabitosNoStorage();         
-                    renderizarHabitosNaChecklist();  
+                    if (originalIndex > -1) { 
+                        habitsListaDefinicoes.splice(originalIndex, 1); 
+                        salvarDefinicoesHabitosNoStorage();         
+                        renderizarHabitosNaChecklist();  
+                    }
                 });
                 itemLista.appendChild(checkbox);
                 itemLista.appendChild(label);
+                itemLista.appendChild(editButton);
                 itemLista.appendChild(removeButton);
                 dailyChecklistDashboard.appendChild(itemLista);
             });
@@ -419,14 +549,14 @@ if (addHabitFormDashboard || calendarioContainerDashboard) {
             if (addHabitErrorElDashboard) addHabitErrorElDashboard.style.display = 'none'; 
 
             if (textoDoHabito) {
-                if (habitsListaDefinicoes.some(h => h.text === textoDoHabito)) {
+                if (habitsListaDefinicoes.some(h => h.text.toLowerCase() === textoDoHabito.toLowerCase())) { // Verificação case-insensitive
                     if (addHabitErrorElDashboard) { 
                         addHabitErrorElDashboard.textContent = "Este hábito já existe na sua lista!";
                         addHabitErrorElDashboard.style.display = 'block';
                     }
                     return;
                 }
-                const novoHabito = { text: textoDoHabito };
+                const novoHabito = { text: textoDoHabito }; // No futuro, adicionar id: Date.now() aqui
                 habitsListaDefinicoes.push(novoHabito);
                 newHabitInputDashboard.value = '';
                 salvarDefinicoesHabitosNoStorage(); 
@@ -434,6 +564,7 @@ if (addHabitFormDashboard || calendarioContainerDashboard) {
                 if (typeof renderizarSequenciasDeHabitos === 'function') { renderizarSequenciasDeHabitos(); } 
                 if (typeof renderizarGraficoUltimos7DiasNaTela === 'function') { renderizarGraficoUltimos7DiasNaTela(); }
                 if (typeof renderizarComparacaoSemanal === 'function') { renderizarComparacaoSemanal(); }
+                if (typeof renderizarComparacaoMensal === 'function') { renderizarComparacaoMensal(); }
             } else {
                 if (addHabitErrorElDashboard) { 
                     addHabitErrorElDashboard.textContent = "Por favor, escreva um hábito antes de adicionar!";
@@ -450,10 +581,10 @@ if (addHabitFormDashboard || calendarioContainerDashboard) {
                 }
             });
         }
-        if (typeof renderizarHabitosNaChecklist === 'function') renderizarHabitosNaChecklist(); 
     }
 
     // --- CHAMADAS DE RENDERIZAÇÃO INICIAIS PARA O DASHBOARD ---
+    if (typeof renderizarHabitosNaChecklist === 'function') renderizarHabitosNaChecklist(); 
     if (typeof renderizarCalendarioNaTela === 'function') {
         renderizarCalendarioNaTela(dataAtualExibidaNoCalendario.getFullYear(), dataAtualExibidaNoCalendario.getMonth());
     }
@@ -463,16 +594,14 @@ if (addHabitFormDashboard || calendarioContainerDashboard) {
     if (typeof renderizarGraficoUltimos7DiasNaTela === 'function') {
         renderizarGraficoUltimos7DiasNaTela();
     }
-    if (typeof renderizarComparacaoSemanal === 'function') { // Chamada inicial para a comparação semanal
+    if (typeof renderizarComparacaoSemanal === 'function') { 
         renderizarComparacaoSemanal();
+    }
+    if (typeof renderizarComparacaoMensal === 'function') { 
+        renderizarComparacaoMensal();
     }
     if (typeof exibirNomeDoPerfilNoTituloDashboard === 'function') {
         exibirNomeDoPerfilNoTituloDashboard(); 
-    }
-    if (typeof exibirNotificacoesDashboard === 'function' && (!milestonesAtingidosNotificados || Object.keys(milestonesAtingidosNotificados).length === 0)) {
-        // Se não houver milestones já notificados, garante que a área de notificação comece com a mensagem padrão.
-        // A renderizarSequencias já chama exibirNotificacoes, então essa chamada aqui pode ser redundante ou para garantir o estado inicial.
-        // exibirNotificacoesDashboard([]); // Já é chamada no início do bloco if (notificationsPlaceholderElGlobal)
     }
 } 
 // --- FIM DA LÓGICA DO DASHBOARD ---

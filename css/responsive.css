@@ -102,13 +102,4 @@
         font-size: 0.7rem; 
     }
     
-    /* --- Responsividade das Notificações --- */
-    .notification-item {
-        font-size: 0.85rem; 
-    }
-
-    .notifications-module {
-        margin-top: 0; /* Exemplo: remove a margem negativa no mobile */
-        /* ou margin-top: -0.5rem; /* Um valor diferente para mobile */
-    }
 }
