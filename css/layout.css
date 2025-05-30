@@ -1,0 +1,80 @@
+/* css/layout.css - Estilos para Navbar e Footer */
+
+/* Estilos do Header e Navegação */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--cor-fundo-secundario);
+    border-bottom: 2px solid var(--cor-borda-neon);
+    box-shadow: var(--sombra-suave);
+    position: relative; 
+    z-index: 1000; 
+}
+
+.navbar .logo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.8rem;
+    color: var(--cor-destaque-vermelho);
+    text-shadow: 0 0 10px var(--cor-destaque-vermelho); 
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: var(--cor-texto-principal);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    font-family: var(--fonte-titulo); 
+    text-transform: uppercase; 
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+    color: var(--cor-fundo-principal);
+    background-color: var(--cor-destaque-vermelho);
+    box-shadow: 0 0 15px var(--cor-destaque-vermelho); 
+}
+
+/* Estilos para o menu hamburguer (Mobile) - parte do layout da navbar */
+.menu-toggle {
+    display: none; 
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--cor-texto-principal);
+    margin: 4px 0;
+    transition: 0.3s;
+}
+.menu-toggle.open .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.open .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--cor-fundo-secundario);
+    border-top: 1px solid var(--cor-borda-neon);
+    margin-top: 2rem; 
+    font-size: 0.9rem;
+}

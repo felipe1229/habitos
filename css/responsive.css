@@ -1,0 +1,114 @@
+/* css/responsive.css - Todos os estilos para telas menores (max-width: 768px) */
+
+@media (max-width: 768px) {
+    /* --- Responsividade da Navegação (Menu Hambúrguer) --- */
+    .nav-links {
+        display: none; 
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%; /* Para aparecer abaixo do header */
+        left: 0;
+        background-color: var(--cor-fundo-secundario);
+        border-top: 1px solid var(--cor-borda-neon);
+        z-index: 999; /* Abaixo do header, mas acima do conteúdo */
+    }
+
+    .nav-links.active {
+        display: flex; 
+    }
+
+    .nav-links li {
+        margin: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 1rem;
+        border-bottom: 1px solid rgba(255, 0, 60, 0.1);
+    }
+    .nav-links li:last-child a {
+        border-bottom: none; 
+    }
+
+    .menu-toggle { /* Faz o ícone do menu hambúrguer aparecer */
+        display: flex; 
+    }
+
+    /* --- Responsividade Geral de Páginas e Títulos --- */
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .dashboard-title, .page-title {
+        font-size: 2rem; 
+    }
+ 
+    /* --- Responsividade do Formulário de Adicionar Hábito --- */
+    #add-habit-form .input-wrapper { 
+        flex-basis: 100%; 
+        margin-bottom: 10px; 
+    }
+    /* O input e o botão dentro do wrapper já devem se ajustar bem com flex-grow e flex-shrink */
+    
+    #add-habit-form .error-message { 
+        margin-left: 0; 
+        margin-right: 0;
+        margin-top: 0; /* O margin-bottom do .input-wrapper já deve dar espaço */
+    }
+
+    /* --- Responsividade do Calendário --- */
+    .calendario-header h3 {
+        font-size: 1.2rem;
+    }
+    .calendario-header .btn-secondary {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.9rem;
+    }
+    .calendario-grid-dias-semana div {
+        font-size: 0.7rem; 
+    }
+    .calendario-grid-dias .dia-do-calendario {
+        padding: 0.5rem 0.2rem;
+        min-height: 45px; 
+        font-size: 0.8rem;
+    }
+    .calendario-grid-dias .dia-com-atividade::after { 
+        width: 4px;
+        height: 4px;
+        bottom: 3px;
+    }
+
+    /* --- Responsividade da Lista de Progresso (Sequências) --- */
+    .lista-progresso li {
+        font-size: 0.9rem; 
+    }
+    .lista-progresso .streak-count {
+        margin-left: 0.5rem; 
+    }
+
+    /* --- Responsividade do Gráfico de Barras --- */
+    .grafico-barras-simples .barra {
+        width: 25px; 
+    }
+    .grafico-legendas-dias .legenda-dia {
+        width: 25px;
+        font-size: 0.7rem; 
+    }
+    
+    /* --- Responsividade das Notificações --- */
+    .notification-item {
+        font-size: 0.85rem; 
+    }
+
+    .notifications-module {
+        margin-top: 0; /* Exemplo: remove a margem negativa no mobile */
+        /* ou margin-top: -0.5rem; /* Um valor diferente para mobile */
+    }
+}

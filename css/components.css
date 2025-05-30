@@ -1,0 +1,544 @@
+/* css/components.css - Estilos para Componentes Reutilizáveis e Complexos */
+
+/* Estilo Base para Módulos/Cards do Dashboard (usado em várias seções) */
+.dashboard-module { 
+    background-color: var(--cor-fundo-secundario);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--cor-borda-neon);
+    box-shadow: 0 0 10px rgba(255, 0, 60, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-module:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-suave);
+}
+
+/* Título dentro de um .dashboard-module */
+.dashboard-module h2 {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--cor-borda-neon);
+    padding-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+/* --- Estilos Comuns de Formulário --- */
+.form-group { 
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--cor-texto-principal);
+    font-family: var(--fonte-titulo);
+}
+
+.futuristic-input { 
+    background-color: rgba(26, 26, 26, 0.8); 
+    color: var(--cor-texto-principal);
+    border: 1px solid var(--cor-borda-neon);
+    padding: 0.8rem 1rem; 
+    border-radius: 4px;
+    font-family: var(--fonte-principal);
+    font-size: 1rem;
+    width: 100%; 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.futuristic-input:focus { 
+    outline: none;
+    border-color: var(--cor-destaque-vermelho-hover); 
+    box-shadow: 0 0 15px var(--cor-destaque-vermelho), 
+                0 0 25px rgba(255, 0, 60, 0.5), 
+                inset 0 0 5px rgba(255, 0, 60, 0.3); 
+}
+
+.futuristic-input[type="date"],
+select.futuristic-input {
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FF003C%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); 
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 0.8em;
+    padding-right: 2.5rem; 
+}
+.futuristic-input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(320deg); 
+    cursor: pointer;
+}
+
+textarea.futuristic-input { 
+    min-height: 100px;
+    resize: vertical; 
+}
+
+.error-message {
+    display: block; 
+    width: 100%;    
+    color: var(--cor-destaque-vermelho);
+    background-color: rgba(255, 0, 60, 0.1); 
+    border: 1px solid var(--cor-destaque-vermelho);
+    border-radius: 4px;
+    padding: 0.5rem 0.8rem;
+    margin-top: 10px; 
+    font-size: 0.85rem;
+    text-align: center; 
+    flex-basis: 100%; 
+    order: 3; 
+}
+
+/* --- Componentes Específicos do Dashboard --- */
+
+/* Checklist Diário */
+#add-habit-form { 
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: stretch; 
+    margin-bottom: 1rem;
+}
+
+#add-habit-form .input-wrapper { 
+    display: flex;
+    flex-grow: 1; 
+    align-items: stretch; 
+    margin-bottom: 10px; 
+}
+
+#add-habit-form .futuristic-input { 
+    flex-grow: 1; 
+    margin-right: 10px; 
+    min-width: 0; 
+}
+
+.btn-add-habit { 
+    width: 40px;
+    min-width: 40px; 
+    font-size: 1.2rem; 
+    background-color: var(--cor-destaque-vermelho);
+    color: var(--cor-fundo-principal);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    line-height: 1; 
+}
+#add-habit-form .btn-add-habit { 
+    flex-shrink: 0; 
+    padding: 0.8rem; 
+}
+.btn-add-habit:hover {
+    background-color: var(--cor-destaque-vermelho-hover);
+}
+
+.checklist {
+    list-style: none;
+    padding: 0;
+}
+.checklist-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 0.5rem;
+    background-color: rgba(0,0,0,0.2);
+    border-bottom: 1px solid var(--cor-borda-neon);
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.checklist-item:hover {
+    background-color: rgba(255, 0, 60, 0.1);
+}
+.checklist-item input[type="checkbox"] {
+    margin-right: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: var(--cor-fundo-principal);
+    border: 1px solid var(--cor-destaque-vermelho);
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+    margin-top: 2px; 
+    flex-shrink: 0; 
+}
+.checklist-item input[type="checkbox"]:checked {
+    background-color: var(--cor-destaque-vermelho);
+    box-shadow: 0 0 5px var(--cor-destaque-vermelho);
+}
+.checklist-item input[type="checkbox"]:checked::after {
+    content: '✓'; 
+    color: var(--cor-fundo-principal);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+}
+.checklist-item label {
+    flex-grow: 1;
+    cursor: pointer;
+    word-break: break-word; 
+}
+.checklist-item.completed label {
+    text-decoration: line-through;
+    color: #777; 
+}
+.btn-remove-habit { 
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+.btn-remove-habit:hover {
+    color: var(--cor-destaque-vermelho);
+    background-color: rgba(255,0,60,0.1);
+}
+
+/* Calendário no Dashboard */
+#calendario-container {
+    padding: 1rem 0;
+}
+.calendario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.calendario-header h3 { 
+    font-family: var(--fonte-titulo);
+    color: var(--cor-destaque-vermelho);
+    margin: 0; 
+    font-size: 1.4rem;
+}
+.calendario-header .btn-secondary { 
+    padding: 0.4rem 0.8rem; 
+    font-size: 1rem;
+}
+.calendario-grid-dias-semana,
+.calendario-grid-dias {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 5px; 
+    text-align: center;
+}
+.calendario-grid-dias-semana div {
+    font-family: var(--fonte-titulo);
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+    color: var(--cor-destaque-vermelho-hover);
+    font-size: 0.9rem;
+}
+.calendario-grid-dias .dia-do-calendario {
+    background-color: rgba(255, 255, 255, 0.05); 
+    border: 1px solid var(--cor-borda-neon);
+    padding: 0.8rem 0.5rem;
+    min-height: 60px; 
+    border-radius: 3px;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    transition: background-color 0.3s ease;
+    cursor: pointer; 
+}
+.calendario-grid-dias .dia-do-calendario:hover {
+    background-color: rgba(255, 0, 60, 0.1);
+}
+.calendario-grid-dias .dia-vazio { 
+    background-color: transparent;
+    border: 1px solid transparent;
+    cursor: default; 
+}
+.calendario-grid-dias .dia-vazio:hover {
+    background-color: transparent; 
+}
+.calendario-grid-dias .dia-atual { 
+    background-color: var(--cor-destaque-vermelho);
+    color: var(--cor-fundo-principal);
+    font-weight: bold;
+    box-shadow: 0 0 10px var(--cor-destaque-vermelho);
+}
+.calendario-grid-dias .dia-atual:hover {
+    background-color: var(--cor-destaque-vermelho-hover);
+}
+.calendario-grid-dias .dia-com-atividade {
+    position: relative;
+}
+.calendario-grid-dias .dia-com-atividade::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: var(--cor-destaque-vermelho-hover); 
+    border-radius: 50%;
+    box-shadow: 0 0 5px var(--cor-destaque-vermelho-hover);
+}
+.calendario-grid-dias .dia-atual.dia-com-atividade::after {
+    background-color: var(--cor-fundo-principal);
+    box-shadow: none;
+}
+
+/* Módulo de Progresso (Dashboard) */
+#progresso-container h4 { 
+    font-family: var(--fonte-titulo);
+    color: var(--cor-texto-principal); 
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    border-bottom: 1px dashed var(--cor-borda-neon); 
+    padding-bottom: 0.5rem;
+}
+.titulo-secao-progresso { 
+    font-family: var(--fonte-titulo);
+    color: var(--cor-texto-principal);
+    margin-top: 2rem; 
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    border-bottom: 1px dashed var(--cor-borda-neon);
+    padding-bottom: 0.5rem;
+}
+.lista-progresso { 
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem; 
+}
+.lista-progresso li {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0.6rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    border-left: 3px solid var(--cor-destaque-vermelho);
+    font-size: 0.95rem;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    flex-wrap: wrap; 
+}
+.habit-info-principal { 
+    margin-right: 10px; 
+    flex-grow: 1; 
+    flex-basis: 70%; 
+}
+.habit-completion-rate { 
+    font-size: 0.8em; 
+    color: #aaa; 
+    margin-left: 8px;
+    font-style: italic;
+    white-space: nowrap;
+}
+.lista-progresso .streak-count {
+    font-weight: bold;
+    color: var(--cor-destaque-vermelho-hover);
+    white-space: nowrap; 
+    flex-shrink: 0; 
+}
+
+.grafico-barras-simples-container { 
+    margin-top: 1rem;
+    background-color: rgba(0,0,0,0.2); 
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid var(--cor-borda-neon);
+    min-height: 180px; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+}
+.grafico-barras-simples { 
+    display: flex;
+    justify-content: space-around; 
+    align-items: flex-end; 
+    height: 150px; 
+    border-bottom: 1px solid var(--cor-borda-neon); 
+    padding-bottom: 5px; 
+    position: relative; 
+}
+.grafico-barras-simples .empty-list-message { 
+    align-self: center; 
+    width: 100%;
+}
+.grafico-barras-simples .barra {
+    width: 30px; 
+    background-color: var(--cor-destaque-vermelho);
+    border-radius: 3px 3px 0 0; 
+    transition: height 0.5s ease-out; 
+    box-shadow: 0 0 8px rgba(255, 0, 60, 0.5);
+    position: relative; 
+}
+.grafico-barras-simples .barra:hover {
+    background-color: var(--cor-destaque-vermelho-hover);
+}
+.grafico-barras-simples .barra .contagem-tooltip {
+    position: absolute;
+    top: -25px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--cor-fundo-secundario);
+    color: var(--cor-texto-principal);
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0; 
+    transition: opacity 0.2s ease;
+    pointer-events: none; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+.grafico-barras-simples .barra:hover .contagem-tooltip {
+    opacity: 1; 
+}
+.grafico-legendas-dias { 
+    display: flex;
+    justify-content: space-around;
+    margin-top: 0.5rem;
+}
+.grafico-legendas-dias .legenda-dia {
+    width: 30px; 
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--cor-texto-principal);
+    font-family: var(--fonte-principal);
+}
+
+/* Notificações no Dashboard */
+.notifications-module { 
+    margin-top: -8rem; 
+}
+.notification-item {
+    background-color: rgba(0, 255, 106, 0.1); 
+    border-left: 4px solid var(--cor-sucesso-verde); 
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--cor-texto-principal);
+}
+.notification-item:last-child {
+    margin-bottom: 0; 
+}
+.notification-item strong { 
+    color: var(--cor-sucesso-verde);
+    font-family: var(--fonte-titulo);
+}
+   
+/* --- Componentes da Página de Metas --- */
+.metas-grid { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 1.5rem;
+}
+.meta-card { 
+    padding: 1.5rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+.meta-card h3 {
+    font-size: 1.4rem;
+    color: var(--cor-destaque-vermelho);
+    margin-bottom: 0.8rem;
+    word-break: break-word;
+}
+.meta-card .meta-field { 
+    font-size: 0.9em;
+    color: var(--cor-texto-principal);
+    margin-bottom: 0.5rem;
+    opacity: 0.8; 
+}
+.meta-card .meta-field strong {
+    font-family: var(--fonte-titulo);
+    color: var(--cor-destaque-vermelho-hover);
+}
+.meta-card p { 
+    font-size: 1rem;
+    line-height: 1.7; 
+    color: var(--cor-texto-principal);
+    margin-bottom: 1rem;
+    flex-grow: 1; 
+    white-space: pre-wrap; 
+    word-break: break-word;
+}
+.meta-card .meta-status {
+    font-size: 0.85em;
+    font-style: italic;
+    color: #aaa;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem; 
+    text-align: right;
+}
+.meta-card.completed-meta h3,
+.meta-card.completed-meta p,
+.meta-card.completed-meta .meta-field { 
+    text-decoration: line-through;
+    color: #777 !important; 
+    opacity: 0.6;
+}
+.meta-card.completed-meta .meta-field strong {
+    color: #777 !important; 
+}
+.meta-card.completed-meta {
+    border-left: 5px solid var(--cor-sucesso-verde); 
+    box-shadow: 0 0 15px rgba(0, 255, 106, 0.3);
+}
+.meta-actions { 
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem; 
+    justify-content: flex-end; 
+}
+.meta-actions .btn-remove { 
+    background-color: #444;
+    color: var(--cor-texto-principal);
+    border: 1px solid #555;
+}
+.meta-actions .btn-remove:hover {
+    background-color: #555;
+    color: var(--cor-destaque-vermelho);
+    border-color: var(--cor-destaque-vermelho);
+}
+
+/* --- NOVOS ESTILOS PARA O SELETOR DE COR (Página de Configurações) --- */
+.color-picker-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+
+#color-picker-destaque { /* Input do tipo color */
+    width: 50px; 
+    height: 35px;
+    padding: 0; 
+    border: 1px solid var(--cor-borda-neon); 
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: transparent; 
+}
+
+#color-picker-value { /* Span para mostrar o valor hexadecimal */
+    font-family: var(--fonte-titulo);
+    font-size: 0.9rem;
+    color: var(--cor-texto-principal);
+    background-color: rgba(255,255,255,0.1);
+    padding: 0.3rem 0.6rem;
+    border-radius: 3px;
+}
+
+#reset-color-button { 
+    margin-top: 0.5rem; 
+}

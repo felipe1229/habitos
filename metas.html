@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Metas - Hábitos</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Hábitos</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="metas.html" class="active">Metas</a></li>
+                <li><a href="configuracoes.html">Configurações</a></li>
+                <li><a href="login.html" class="btn btn-primary">Perfil</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="metas-container">
+        <h1 class="page-title">Defina e Conquiste Suas Metas</h1>
+
+        <section class="add-meta-section dashboard-module">
+            <h2>Nova Meta</h2>
+            <form id="add-meta-form">
+                <div class="form-group">
+                    <label for="meta-title-input">Título da Meta:</label>
+                    <input type="text" id="meta-title-input" class="futuristic-input" placeholder="Ex: Ler 12 livros este ano" required>
+                </div>
+                <div class="form-group">
+                    <label for="meta-description-input">Descrição (opcional):</label>
+                    <textarea id="meta-description-input" class="futuristic-input" placeholder="Detalhes sobre como alcançar, motivações, etc."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="meta-target-date-input">Data Limite (opcional):</label>
+                    <input type="date" id="meta-target-date-input" class="futuristic-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="meta-priority-input">Prioridade:</label>
+                    <select id="meta-priority-input" class="futuristic-input">
+                        <option value="Baixa">Baixa</option>
+                        <option value="Média" selected>Média</option> {/* Média como padrão */}
+                        <option value="Alta">Alta</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Adicionar Meta</button>
+            </form>
+        </section>
+
+        <section class="view-metas-section">
+            <h2>Minhas Metas Atuais</h2>
+            <div id="metas-list" class="metas-grid">
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Felipe Vitorino. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/metas.js"></script>
+</body>
+</html>
