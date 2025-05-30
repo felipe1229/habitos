@@ -7,11 +7,11 @@
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 100%; /* Para aparecer abaixo do header */
+        top: 100%; 
         left: 0;
         background-color: var(--cor-fundo-secundario);
         border-top: 1px solid var(--cor-borda-neon);
-        z-index: 999; /* Abaixo do header, mas acima do conteúdo */
+        z-index: 999; 
     }
 
     .nav-links.active {
@@ -33,7 +33,7 @@
         border-bottom: none; 
     }
 
-    .menu-toggle { /* Faz o ícone do menu hambúrguer aparecer */
+    .menu-toggle { 
         display: flex; 
     }
 
@@ -55,12 +55,23 @@
         flex-basis: 100%; 
         margin-bottom: 10px; 
     }
-    /* O input e o botão dentro do wrapper já devem se ajustar bem com flex-grow e flex-shrink */
-    
     #add-habit-form .error-message { 
         margin-left: 0; 
         margin-right: 0;
-        margin-top: 0; /* O margin-bottom do .input-wrapper já deve dar espaço */
+        margin-top: 0; 
+    }
+
+    /* --- Responsividade dos Controles de Ordenação de Hábitos (Dashboard) --- */
+    .sort-controls-habitos {
+        flex-direction: column; /* Empilha o label e o select verticalmente */
+        align-items: flex-start; /* Alinha os itens à esquerda no layout de coluna */
+        gap: 5px; /* Espaço menor entre label e select quando empilhados */
+    }
+
+    #sort-habitos-select {
+        width: 100%; /* Faz o select ocupar toda a largura disponível */
+        min-width: 0; /* Remove qualquer min-width que possa estar atrapalhando */
+        font-size: 0.9rem; 
     }
 
     /* --- Responsividade do Calendário --- */
@@ -102,4 +113,28 @@
         font-size: 0.7rem; 
     }
     
+    /* --- Responsividade das Notificações (Estilos removidos, mas se voltarem, ajustar aqui) --- */
+    /* .notification-item {
+        font-size: 0.85rem; 
+    }
+    */
+
+    /* --- Responsividade dos Botões de Ação nas Metas --- */
+    .meta-actions {
+        /* Para empilhar os botões em telas pequenas, descomente as linhas abaixo: */
+        /* flex-direction: column; */
+        /* align-items: flex-end; */ /* Ou flex-start, ou stretch se quiserem largura total */
+        /* gap: 8px; */ /* Ajusta o espaço vertical entre botões se empilhados */
+    }
+
+    .meta-actions .btn { /* Aplica a todos os botões dentro de .meta-actions */
+        font-size: 0.75rem; /* Diminui um pouco a fonte dos botões */
+        padding: 0.4rem 0.7rem; /* Diminui um pouco o padding (ajustei o horizontal) */
+        
+        /* Se optar por empilhar e quiser que ocupem a largura: */
+        /* width: 100%; */
+        /* margin-bottom: 5px; */ /* Adiciona espaço abaixo de cada botão se empilhados */
+    }
+    /* Se empilhar, pode querer remover a margem do último: */
+    /* .meta-actions .btn:last-child { margin-bottom: 0; } */
 }
