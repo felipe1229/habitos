@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Hábitos</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/responsive.css"> 
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Hábitos</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="metas.html">Metas</a></li>
+                <li><a href="configuracoes.html">Configurações</a></li>
+                <li><a href="login.html" class="btn btn-primary">Perfil</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        <h1 class="dashboard-title">Seu Painel de Controle Futurista</h1>
+
+        <div class="dashboard-grid">
+            
+            <section class="dashboard-module calendar-module">
+                <h2>Calendário de Atividades</h2>
+                <div id="calendario-container">
+                    <div class="calendario-header">
+                        <button id="btn-mes-anterior" class="btn btn-secondary">&lt;</button>
+                        <h3 id="mes-ano-atual">Maio 2025</h3> 
+                        <button id="btn-proximo-mes" class="btn btn-secondary">&gt;</button>
+                    </div>
+                    <div class="calendario-grid-dias-semana">
+                        <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
+                    </div>
+                    <div id="calendario-grid-dias" class="calendario-grid-dias">
+                        </div>
+                </div>
+
+                <div id="reminder-form-container" class="reminder-form-module" style="display: none;">
+                    <h4 id="reminder-form-title">Adicionar Lembrete</h4>
+                    <form id="calendar-reminder-form">
+                        <input type="hidden" id="reminder-selected-date" name="selected-date">
+                        <input type="hidden" id="reminder-editing-id" name="editing-id">
+                        <div class="form-group">
+                            <label for="reminder-text">Lembrete:</label>
+                            <textarea id="reminder-text" class="futuristic-input" rows="3" required></textarea>
+                        </div>
+                        <div class="reminder-form-actions">
+                            <button type="submit" id="btn-save-reminder" class="btn btn-primary">Salvar Lembrete</button>
+                            <button type="button" id="btn-cancel-reminder" class="btn btn-secondary">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="view-reminders-container" class="view-reminders-module" style="display: none;">
+                    <h4 id="view-details-title">Detalhes para DD/MM/AAAA</h4>
+                    
+                    <div id="reminders-section" style="display: none;">
+                        <h5>Lembretes:</h5>
+                        <ul id="view-reminders-list" class="lista-progresso">
+                            </ul>
+                    </div>
+
+                    <div id="habits-section" style="display: none;">
+                        <h5>Hábitos Concluídos:</h5>
+                        <ul id="view-habits-list" class="lista-progresso">
+                            </ul>
+                    </div>
+                    
+                    <p id="view-empty-message" class="empty-list-message" style="display: none;">Nenhum item para esta data.</p>
+
+                    <div class="view-reminders-actions">
+                        <button type="button" id="btn-add-another-reminder" class="btn btn-primary">Adicionar Lembrete</button>
+                        <button type="button" id="btn-close-view-reminders" class="btn btn-secondary">Fechar</button>
+                    </div>
+                </div>
+            </section>
+            <section class="dashboard-module checklist-module">
+                <h2>Checklist Diário</h2>
+                <form id="add-habit-form">
+                    <div class="input-wrapper">
+                        <input type="text" id="new-habit-input" placeholder="Adicionar novo hábito..." class="futuristic-input" aria-describedby="add-habit-error">
+                        <button type="submit" class="btn btn-add-habit">+</button>
+                    </div>
+                    <span id="add-habit-error" class="error-message" style="display: none;" role="alert"></span> 
+                </form>
+
+                <div class="sort-controls-habitos">
+                    <label for="sort-habitos-select">Ordenar por:</label>
+                    <select id="sort-habitos-select" class="futuristic-input">
+                        <option value="padrao">Padrão (Ordem de Adição)</option>
+                        <option value="nome-az">Nome (A-Z)</option>
+                        <option value="nome-za">Nome (Z-A)</option>
+                    </select>
+                </div>
+
+                <ul id="daily-checklist" class="checklist">
+                    </ul>
+            </section>
+            <section class="dashboard-module progress-module">
+                <h2>Progresso</h2>
+                <div id="progresso-container"> 
+                    <h4>Sequência Atual dos Hábitos:</h4>
+                    <ul id="lista-sequencia-habitos" class="lista-progresso">
+                        <p class="empty-list-message">Ainda não há dados de sequência para mostrar.</p>
+                    </ul>
+
+                    <h4 class="titulo-secao-progresso">Hábitos Concluídos (Últimos 7 dias):</h4>
+                    <div id="grafico-ultimos-7dias-wrapper" class="grafico-barras-simples-container">
+                        <div class="grafico-barras-simples">
+                            </div>
+                        <div class="grafico-legendas-dias">
+                            </div>
+                    </div>
+
+                    <h4 class="titulo-secao-progresso">Resumo Semanal de Hábitos:</h4>
+                    <div id="comparacao-semanal-container" class="comparacao-container">
+                        <p>Hábitos concluídos esta semana: <strong id="habitos-esta-semana" class="dado-comparacao">0</strong></p>
+                        <p>Hábitos concluídos semana passada: <strong id="habitos-semana-passada" class="dado-comparacao">0</strong></p>
+                        <p>Diferença: <strong id="diferenca-semanal" class="dado-comparacao neutro">--</strong></p>
+                    </div>
+
+                    <h4 class="titulo-secao-progresso">Resumo Mensal de Hábitos:</h4>
+                    <div id="comparacao-mensal-container" class="comparacao-container"> 
+                        <p>Hábitos concluídos este mês: <strong id="habitos-este-mes" class="dado-comparacao">0</strong></p>
+                        <p>Hábitos concluídos mês passado: <strong id="habitos-mes-passado" class="dado-comparacao">0</strong></p>
+                        <p>Diferença: <strong id="diferenca-mensal" class="dado-comparacao neutro">--</strong></p>
+                    </div>
+                </div>
+            </section>
+            </div> </main>
+
+    <footer>
+        <p>&copy; 2025 Felipe Vitorino. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

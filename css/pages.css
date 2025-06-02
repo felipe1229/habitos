@@ -1,0 +1,120 @@
+/* css/pages.css - Estilos Específicos de Layout de Página e Seções de Página */
+
+/* Estilo comum para títulos de página (Dashboard, Metas, Config, Perfil) */
+.page-title,
+.dashboard-title { /* .dashboard-title é usado como .page-title no dashboard.html */
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem; /* Será ajustado em responsive.css */
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px var(--cor-destaque-vermelho);
+}
+
+/* --- Contêineres Principais de Página --- */
+/* Aplicado aos <main class="...-container"> nas diversas páginas */
+.dashboard-container,
+.metas-container,
+.configuracoes-container,
+.perfil-container {
+    padding: 2rem; 
+    max-width: 1400px; /* Largura máxima do conteúdo principal */
+    margin-left: auto;   
+    margin-right: auto;  
+    width: 100%; /* Garante que se adapte a telas menores que max-width */
+}
+
+/* --- Grid Principal do Dashboard --- */
+.dashboard-grid { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 2rem;
+    align-items: start; /* Impede que os módulos estiquem para a altura do maior da linha */
+}
+
+/* --- Página Home --- */
+.hero { /* A seção hero em si ocupa a largura total para o fundo */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    min-height: 70vh; 
+    text-align: center;
+    padding: 2rem 0; /* Padding vertical; horizontal virá do .hero-content */
+    background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.9)), url('caminho/para/sua/imagem-fundo-cyberpunk.jpg') no-repeat center center/cover;
+    /* Lembre-se de substituir 'caminho/para/sua/imagem-fundo-cyberpunk.jpg' se for usar uma imagem de fundo */
+}
+
+.hero-content { /* Conteúdo dentro do hero é limitado e centralizado */
+    width: 100%;
+    max-width: 1200px; /* Um pouco menos que o container principal, ou o mesmo, ajuste a gosto */
+    padding: 0 2rem; /* Padding lateral para o conteúdo não colar nas bordas em telas menores */
+}
+
+.hero h1 { 
+    font-size: 3rem; /* Será ajustado em responsive.css */
+}
+
+.hero p {
+    font-size: 1.2rem; /* Será ajustado em responsive.css */
+    max-width: 600px; /* Para o parágrafo não ficar muito largo dentro do hero-content */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+}
+
+
+/* --- Seções Específicas da Página de Metas --- */
+.add-meta-section { 
+    margin-bottom: 2rem;
+}
+
+.add-meta-section h2, .view-metas-section h2 { /* Títulos dentro das seções de metas */
+    margin-bottom: 1.5rem; 
+    border-bottom: 1px solid var(--cor-borda-neon);
+    padding-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+/* --- Seções Específicas da Página de Configurações --- */
+.config-section { 
+    margin-bottom: 2rem;
+}
+
+.config-section h2 {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--cor-borda-neon);
+    padding-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+/* Mensagem de confirmação (usada em Configurações e Perfil) */
+.save-confirmation-message { 
+    margin-top: 1rem;
+    color: var(--cor-sucesso-verde); 
+    text-shadow: 0 0 8px rgba(0, 255, 106, 0.7);
+    font-weight: bold;
+}
+
+/* --- Seções Específicas da Página de Perfil (login.html) --- */
+.perfil-section { 
+    margin-bottom: 2rem;
+}
+
+.perfil-section h2 {
+    margin-bottom: 1rem; 
+    border-bottom: 1px solid var(--cor-borda-neon);
+    padding-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.subtle-text { /* Texto explicativo na página de perfil */
+    font-size: 0.9rem;
+    color: #aaa; 
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+/* Placeholder para seções do dashboard (se necessário) */
+.notifications-placeholder { 
+    /* Estilos específicos para este placeholder se não for um .dashboard-module padrão */
+}

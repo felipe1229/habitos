@@ -1,0 +1,173 @@
+/* css/responsive.css - Estilos para telas menores (max-width: 768px) */
+
+@media (max-width: 768px) { /* Aplica estilos quando a tela for 768px ou menor */
+    
+    /* --- Responsividade da Navegação (Menu Hambúrguer) --- */
+    .nav-links { /* Lista de links da navbar */
+        display: none; /* Esconde os links por padrão em telas menores */
+        flex-direction: column; /* Links empilhados verticalmente no menu dropdown */
+        width: 100%; /* Ocupa toda a largura */
+        position: absolute; /* Posicionamento absoluto para o dropdown */
+        top: 100%; /* Aparece abaixo da navbar */
+        left: 0;
+        background-color: var(--cor-fundo-secundario);
+        border-top: 1px solid var(--cor-borda-neon);
+        z-index: 999; /* Garante que fique sobre outros elementos, mas abaixo da navbar */
+    }
+
+    .nav-links.active { /* Quando o menu hambúrguer está ativo/aberto */
+        display: flex; /* Mostra os links */
+    }
+
+    .nav-links li { /* Itens da lista de links */
+        margin: 0; /* Remove margens laterais */
+        text-align: center; /* Centraliza o texto dos links */
+        width: 100%;
+    }
+
+    .nav-links a { /* Links individuais */
+        display: block; /* Faz o link ocupar toda a largura do <li> */
+        padding: 1rem; /* Aumenta área de clique */
+        border-bottom: 1px solid rgba(255, 0, 60, 0.1); /* Linha sutil entre links */
+    }
+    .nav-links li:last-child a { /* Remove a borda do último link */
+        border-bottom: none; 
+    }
+
+    .menu-toggle {  /* Ícone do menu hambúrguer */
+        display: flex; /* Mostra o ícone em telas menores */
+    }
+
+    /* --- Responsividade Geral de Páginas e Títulos --- */
+    .hero h1 { /* Título principal da Home */
+        font-size: 2.2rem; /* Reduz tamanho da fonte */
+    }
+
+    .hero p { /* Subtítulo da Home */
+        font-size: 1rem; /* Reduz tamanho da fonte */
+    }
+
+    .dashboard-title, .page-title { /* Títulos H1 das páginas */
+        font-size: 2rem; /* Reduz tamanho da fonte */
+    }
+ 
+    /* --- Responsividade do Formulário de Adicionar Hábito (Dashboard) --- */
+    #add-habit-form .input-wrapper { /* Container do input e botão "+" */
+        flex-basis: 100%; /* Input e botão ocupam 100% da largura, quebrando linha */
+        margin-bottom: 10px; 
+    }
+    #add-habit-form .error-message { /* Mensagem de erro do formulário */
+        margin-left: 0; 
+        margin-right: 0;
+        margin-top: 0; 
+    }
+
+    /* --- Responsividade dos Controles de Ordenação de Hábitos (Dashboard) --- */
+    #sort-habitos-select { /* Select de ordenação */
+         min-width: 150px; /* Largura mínima menor para telas pequenas */
+    }
+
+    /* --- Responsividade do Calendário --- */
+    .calendario-header h3 { /* Título do mês/ano no calendário */
+        font-size: 1.2rem;
+    }
+    .calendario-header .btn-secondary { /* Botões de navegação de mês */
+        padding: 0.3rem 0.6rem;
+        font-size: 0.9rem;
+    }
+    .calendario-grid-dias-semana div { /* Nomes dos dias da semana */
+        font-size: 0.7rem; 
+    }
+    .calendario-grid-dias .dia-do-calendario { /* Células dos dias */
+        padding: 0.5rem 0.2rem; /* Reduz padding */
+        min-height: 45px; /* Reduz altura mínima */
+        font-size: 0.8rem; /* Reduz fonte do número do dia */
+    }
+    /* Ajusta tamanho e posição das bolinhas indicadoras no calendário */
+    .dia-com-atividade::before, /* Bolinha de atividade */
+    .dia-com-lembretes::after { /* Bolinha de lembrete */
+        width: 4px;
+        height: 4px;
+        bottom: 2px; /* Ajusta posição vertical */
+    }
+    .dia-com-lembretes::after {
+        left: calc(50% - 5px); /* Ajusta posição horizontal para lembrete */
+    }
+    .dia-com-atividade::before {
+        left: calc(50% + 5px); /* Ajusta posição horizontal para atividade */
+    }
+
+
+    /* --- Responsividade da Lista de Progresso (Sequências) --- */
+    .lista-progresso li { /* Itens da lista de sequências */
+        font-size: 0.9rem; 
+        /* flex-wrap: wrap; já está no estilo base, o que é bom para responsividade */
+    }
+     
+    /* --- Responsividade do Gráfico de Barras --- */
+    .grafico-barras-simples .barra { /* Barras do gráfico */
+        width: 20px; /* Barras mais finas */
+    }
+    .grafico-legendas-dias .legenda-dia { /* Legendas dos dias do gráfico */
+        width: 20px; 
+        font-size: 0.65rem; 
+    }
+    
+    /* --- Responsividade dos Botões de Ação nos Cards de Metas --- */
+    .meta-actions .btn { /* Botões nos cards de metas (Editar, Concluir, Remover) */
+        font-size: 0.75rem; 
+        padding: 0.4rem 0.7rem; 
+    }
+    /* Se os botões ainda ficarem ruins, pode-se adicionar:
+       .meta-actions { flex-wrap: wrap; justify-content: flex-end; }
+       para permitir que quebrem linha mas continuem à direita. */
+    
+    /* --- Responsividade dos Botões NO MODAL de Edição de Metas --- */
+    .modal-content { /* Conteúdo do modal */
+        padding: 1.5rem; /* Reduz padding interno do modal */
+    }
+    .modal-content h2 { /* Título do modal */
+        font-size: 1.5rem; 
+    }
+
+    .modal-actions { /* Container dos botões Salvar/Cancelar no modal */
+        flex-direction: column; /* Empilha os botões verticalmente */
+        align-items: stretch;   /* Faz os botões esticarem para ocupar a largura */
+        gap: 10px;              /* Espaço vertical entre os botões empilhados */
+    }
+
+    .modal-actions .btn { /* Botões dentro do modal */
+        width: 100%;         /* Botões ocupam 100% da largura */
+        margin-left: 0;      
+        margin-right: 0;     
+        font-size: 0.9rem;   
+        padding: 0.7rem 1rem;
+    }
+
+    /* --- Responsividade da Área de Visualização de Detalhes do Dia (Calendário) --- */
+    .view-reminders-module h4 { /* Título: Detalhes para DD/MM/AAAA */
+        font-size: 1.1rem;
+    }
+    .view-reminders-module h5 { /* Títulos das seções: Lembretes, Hábitos Concluídos */
+        font-size: 0.9rem;
+    }
+    #view-reminders-list li, 
+    #view-habits-list li { /* Itens das listas de lembretes/hábitos */
+        flex-direction: column; /* Empilha texto e botões (para lembretes) */
+        align-items: flex-start; /* Alinha no início */
+    }
+    #view-reminders-list .reminder-actions { /* Botões de Editar/Excluir lembrete */
+        margin-top: 0.5rem;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end; /* Mantém botões à direita */
+    }
+    .view-reminders-actions { /* Botões gerais: Adicionar Lembrete, Fechar */
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .view-reminders-actions .btn {
+        width: 100%;
+    }
+
+}

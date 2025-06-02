@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - Hábitos</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css"> <link rel="stylesheet" href="css/pages.css">    <link rel="stylesheet" href="css/responsive.css"> 
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Hábitos</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="metas.html">Metas</a></li>
+                <li><a href="configuracoes.html" class="active">Configurações</a></li> <li><a href="login.html" class="btn btn-primary">Perfil</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="configuracoes-container">
+        <h1 class="page-title">Ajustes e Preferências</h1>
+
+        <section class="config-section dashboard-module"> <h2>Perfil do Usuário</h2>
+            <form id="config-profile-form">
+                <div class="form-group">
+                    <label for="profile-name-input">Seu Nome de Perfil:</label>
+                    <input type="text" id="profile-name-input" class="futuristic-input" placeholder="Digite seu nome ou apelido">
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar Nome</button>
+                <p id="save-confirmation" class="save-confirmation-message" style="display: none;">Nome salvo com sucesso!</p>
+            </form>
+        </section>
+
+        <section class="config-section dashboard-module">
+            <h2>Preferências de Aparência</h2>
+            <form id="config-color-form">
+                <div class="form-group">
+                    <label for="color-picker-destaque">Cor de Destaque Principal:</label>
+                    <div class="color-picker-wrapper">
+                        <input type="color" id="color-picker-destaque" value="#ff003c"> 
+                        <span id="color-picker-value">#FF003C</span> 
+                    </div>
+                </div>
+                <button type="button" id="reset-color-button" class="btn btn-secondary">Restaurar Cor Padrão</button>
+                <p class="subtle-text" style="margin-top:1rem;">A mudança de cor é aplicada instantaneamente em todo o site.</p>
+            </form>
+        </section>
+
+        </main>
+
+    <footer>
+        <p>&copy; 2025 Felipe Vitorino. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/main.js"></script> <script src="js/configuracoes.js"></script> </body>
+</html>

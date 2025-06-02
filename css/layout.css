@@ -1,0 +1,90 @@
+/* ------------------------------------ */
+/* --- ESTILOS DO HEADER E NAVEGAÇÃO --- */
+/* ------------------------------------ */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Logo à esquerda, links e botão à direita */
+    align-items: center; /* Alinha verticalmente os itens */
+    padding: 1rem 2rem; /* Espaçamento interno */
+    background-color: var(--cor-fundo-secundario); /* Cor de fundo da navbar */
+    border-bottom: 2px solid var(--cor-borda-neon); /* Borda neon na parte inferior */
+    box-shadow: var(--sombra-suave); /* Sombra suave abaixo da navbar */
+    position: relative; /* Necessário para o menu dropdown em telas menores */
+    z-index: 1000; /* Garante que a navbar fique sobre outros elementos */
+}
+
+/* Logo na Navbar */
+.navbar .logo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.8rem;
+    color: var(--cor-destaque-vermelho);
+    text-shadow: 0 0 10px var(--cor-destaque-vermelho); /* Efeito de brilho no logo */
+}
+
+/* Lista de Links de Navegação */
+.nav-links {
+    list-style: none; /* Remove marcadores da lista */
+    display: flex; /* Alinha os links horizontalmente */
+}
+
+.nav-links li {
+    margin-left: 20px; /* Espaçamento entre os itens da lista (links) */
+}
+
+/* Links de Navegação Individuais */
+.nav-links a {
+    color: var(--cor-texto-principal);
+    padding: 0.5rem 1rem; /* Espaçamento interno para área de clique maior */
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+    font-family: var(--fonte-titulo); 
+    text-transform: uppercase; /* Texto em maiúsculas */
+}
+
+/* Estilo para o link ativo ou ao passar o mouse */
+.nav-links a.active,
+.nav-links a:hover {
+    color: var(--cor-fundo-principal); /* Cor do texto invertida */
+    background-color: var(--cor-destaque-vermelho); /* Fundo com cor de destaque */
+    box-shadow: 0 0 15px var(--cor-destaque-vermelho); /* Efeito de brilho */
+}
+
+/* --------------------------------------------- */
+/* --- MENU HAMBÚRGUER (PARA TELAS MENORES) --- */
+/* --------------------------------------------- */
+.menu-toggle { /* Ícone do menu hambúrguer */
+    display: none; /* Inicialmente oculto em telas maiores */
+    flex-direction: column; /* Barras empilhadas verticalmente */
+    cursor: pointer;
+}
+
+.menu-toggle .bar { /* Barras individuais do ícone */
+    width: 25px;
+    height: 3px;
+    background-color: var(--cor-texto-principal);
+    margin: 4px 0; /* Espaçamento entre as barras */
+    transition: 0.3s; /* Animação para transformação em "X" */
+}
+
+/* Animação do menu hambúrguer para "X" quando aberto */
+.menu-toggle.open .bar:nth-child(1) { /* Primeira barra */
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.menu-toggle.open .bar:nth-child(2) { /* Segunda barra (do meio) */
+    opacity: 0; /* Desaparece */
+}
+.menu-toggle.open .bar:nth-child(3) { /* Terceira barra */
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* -----------------------------------*/
+/* --- ESTILOS DO FOOTER (RODAPÉ) --- */
+/* ---------------------------------- */
+footer {
+    text-align: center; /* Centraliza o texto do rodapé */
+    padding: 1.5rem; /* Espaçamento interno */
+    background-color: var(--cor-fundo-secundario); /* Cor de fundo */
+    border-top: 1px solid var(--cor-borda-neon); /* Borda neon na parte superior */
+    margin-top: 2rem; /* Espaço acima do rodapé */
+    font-size: 0.9rem; /* Tamanho de fonte menor */
+}

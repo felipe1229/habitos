@@ -1,0 +1,169 @@
+/* ------------------------- */
+/* --- VARIÁVEIS GLOBAIS --- */
+/* ------------------------- */
+:root {
+    /* --- Cores Principais --- */
+    --cor-fundo-principal: #0a0a0a; 
+    --cor-fundo-secundario: #1a1a1a; 
+    --cor-fundo-secundario-rgb: 26, 26, 26; /* Componentes RGB de --cor-fundo-secundario */
+    
+    --cor-texto-principal: #e0e0e0; 
+    
+    --cor-destaque-vermelho: #ff003c; 
+    --cor-destaque-vermelho-rgb: 255, 0, 60; /* Componentes RGB de --cor-destaque-vermelho */
+    --cor-destaque-vermelho-hover: #ff4d6a;
+    
+    --cor-sucesso-verde: #00ff6a; 
+
+    /* --- Bordas e Sombras --- */
+    --cor-borda-neon: rgba(255, 0, 60, 0.5); 
+    --cor-borda-neon-rgb: 255, 0, 60; /* Componentes RGB da cor base da borda neon */
+    --sombra-suave: 0 0 15px rgba(255, 0, 60, 0.3);
+
+    /* --- Fontes --- */
+    --fonte-principal: 'Rajdhani', sans-serif;
+    --fonte-titulo: 'Orbitron', sans-serif;
+}
+
+/* ------------------- */
+/* --- RESET BÁSICO --- */
+/* ------------------- */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+/* ------------------------------------ */
+/* --- ESTILOS GERAIS PARA O CORPO --- */
+/* ------------------------------------ */
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo-principal);
+    /* Efeito sutil de scanlines no fundo */
+    background-image: linear-gradient(rgba(20, 20, 20, 0.6) 1px, transparent 1px);
+    background-size: 100% 3px; 
+    color: var(--cor-texto-principal);
+    line-height: 1.6;
+    overflow-x: hidden; /* Evita scroll horizontal indesejado */
+}
+
+/* --------------------------------------- */
+/* --- ESTILOS BASE PARA TÍTULOS (H1-H6) --- */
+/* --------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--fonte-titulo);
+    color: var(--cor-destaque-vermelho);
+    margin-bottom: 0.8rem;
+    text-transform: uppercase; 
+}
+/* H4 não precisa ser uppercase por padrão */
+h4 { 
+    text-transform: none; 
+}
+
+/* ------------------------------------ */
+/* --- ESTILOS BASE PARA PARÁGRAFOS --- */
+/* ------------------------------------ */
+p { 
+    margin-bottom: 1rem; 
+}
+
+/* ------------------------------ */
+/* --- ESTILOS BASE PARA LINKS --- */
+/* ------------------------------ */
+a { 
+    color: var(--cor-destaque-vermelho); 
+    text-decoration: none; 
+    transition: color 0.3s ease; 
+}
+a:hover { 
+    color: var(--cor-destaque-vermelho-hover); 
+}
+
+/* ------------------------------- */
+/* --- ESTILOS BASE PARA IMAGENS --- */
+/* ------------------------------- */
+img { 
+    max-width: 100%; 
+    height: auto; 
+}
+
+/* ----------------------------- */
+/* --- ESTILOS BASE DE BOTÕES --- */
+/* ----------------------------- */
+.btn { 
+    display: inline-block; 
+    padding: 0.8rem 1.5rem; 
+    border-radius: 4px; 
+    font-family: var(--fonte-titulo); 
+    font-size: 1rem; 
+    text-transform: uppercase; 
+    text-align: center; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease; 
+    border: 1px solid transparent; 
+}
+
+/* Botão Primário (destaque principal) */
+.btn-primary { 
+    background-color: var(--cor-destaque-vermelho); 
+    color: var(--cor-fundo-principal); 
+    border-color: var(--cor-destaque-vermelho); 
+}
+.btn-primary:hover { 
+    background-color: var(--cor-destaque-vermelho-hover); 
+    color: var(--cor-fundo-principal); 
+    box-shadow: 0 0 20px var(--cor-destaque-vermelho-hover); 
+    transform: translateY(-2px); 
+}
+
+/* Botão de Chamada para Ação (Call to Action - CTA) */
+.btn-cta { 
+    background-color: var(--cor-destaque-vermelho); 
+    color: var(--cor-fundo-principal); 
+    border: 2px solid var(--cor-destaque-vermelho); 
+    padding: 1rem 2rem; 
+    font-size: 1.2rem; 
+    box-shadow: 0 0 10px var(--cor-destaque-vermelho); 
+}
+.btn-cta:hover { 
+    background-color: var(--cor-fundo-principal); 
+    color: var(--cor-destaque-vermelho); 
+    box-shadow: 0 0 25px var(--cor-destaque-vermelho); 
+    transform: scale(1.05); 
+}
+
+/* Botão Secundário (alternativo, contorno) */
+.btn-secondary { 
+    background-color: transparent; 
+    color: var(--cor-destaque-vermelho); 
+    border: 1px solid var(--cor-destaque-vermelho); 
+}
+.btn-secondary:hover { 
+    background-color: var(--cor-destaque-vermelho-hover); 
+    color: var(--cor-fundo-principal); 
+    box-shadow: 0 0 10px var(--cor-destaque-vermelho-hover); 
+}
+
+/* ----------------------------------------- */
+/* --- CLASSE UTILITÁRIA PARA LISTAS VAZIAS --- */
+/* ----------------------------------------- */
+.empty-list-message { 
+    color: #777; 
+    text-align: center; 
+    padding: 1rem; 
+    font-style: italic; 
+}
+
+/* ----------------------- */
+/* --- ANIMAÇÕES GLOBAIS --- */
+/* ----------------------- */
+/* Animação de entrada suave (aparecer deslizando para cima) */
+@keyframes fadeInSlideUp { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+.animate-fadeInUp { 
+    animation: fadeInSlideUp 0.5s ease-out forwards; 
+}
