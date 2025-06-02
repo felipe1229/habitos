@@ -1,173 +1,385 @@
 /* css/responsive.css - Estilos para telas menores (max-width: 768px) */
 
-@media (max-width: 768px) { /* Aplica estilos quando a tela for 768px ou menor */
+/* Media Query Principal: aplica estes estilos quando a largura da tela for 768 pixels ou menor */
+@media (max-width: 768px) {
     
-    /* --- Responsividade da Navegação (Menu Hambúrguer) --- */
-    .nav-links { /* Lista de links da navbar */
-        display: none; /* Esconde os links por padrão em telas menores */
+    /* ====================================================== */
+    /* === RESPONSIVIDADE DA NAVEGAÇÃO (MENU HAMBÚRGUER) === */
+    /* ====================================================== */
+    
+    /* Esconde os links da navbar por padrão em telas menores, para serem exibidos via menu hambúrguer */
+    .nav-links {
+        display: none; 
         flex-direction: column; /* Links empilhados verticalmente no menu dropdown */
-        width: 100%; /* Ocupa toda a largura */
-        position: absolute; /* Posicionamento absoluto para o dropdown */
-        top: 100%; /* Aparece abaixo da navbar */
-        left: 0;
-        background-color: var(--cor-fundo-secundario);
-        border-top: 1px solid var(--cor-borda-neon);
-        z-index: 999; /* Garante que fique sobre outros elementos, mas abaixo da navbar */
+        width: 100%; /* Ocupa toda a largura da navbar */
+        position: absolute; /* Posicionamento absoluto para o menu dropdown */
+        top: 100%; /* Aparece logo abaixo da navbar */
+        left: 0; /* Alinha à esquerda */
+        background-color: var(--cor-fundo-secundario); /* Mesmo fundo da navbar */
+        border-top: 1px solid var(--cor-borda-neon); /* Linha separadora no topo do dropdown */
+        z-index: 999; /* Garante que fique sobre outros elementos, mas abaixo da navbar (se z-index da navbar for maior) */
     }
 
-    .nav-links.active { /* Quando o menu hambúrguer está ativo/aberto */
+    /* Estilo para quando o menu hambúrguer está ativo/aberto (classe .active é adicionada via JS) */
+    .nav-links.active {
         display: flex; /* Mostra os links */
     }
 
-    .nav-links li { /* Itens da lista de links */
+    /* Itens da lista de links no menu dropdown */
+    .nav-links li {
         margin: 0; /* Remove margens laterais */
         text-align: center; /* Centraliza o texto dos links */
-        width: 100%;
+        width: 100%; /* Cada item ocupa toda a largura */
     }
 
-    .nav-links a { /* Links individuais */
-        display: block; /* Faz o link ocupar toda a largura do <li> */
-        padding: 1rem; /* Aumenta área de clique */
-        border-bottom: 1px solid rgba(255, 0, 60, 0.1); /* Linha sutil entre links */
+    /* Links individuais no menu dropdown */
+    .nav-links a {
+        display: block; /* Faz o link ocupar toda a largura do <li>, facilitando o toque */
+        padding: 1rem; /* Aumenta a área de clique/toque */
+        border-bottom: 1px solid rgba(255, 0, 60, 0.1); /* Linha sutil entre os links */
     }
-    .nav-links li:last-child a { /* Remove a borda do último link */
+
+    /* Remove a borda inferior do último link no dropdown */
+    .nav-links li:last-child a {
         border-bottom: none; 
     }
 
-    .menu-toggle {  /* Ícone do menu hambúrguer */
-        display: flex; /* Mostra o ícone em telas menores */
+    /* Torna o ícone do menu hambúrguer visível em telas menores */
+    .menu-toggle { 
+        display: flex; 
     }
 
-    /* --- Responsividade Geral de Páginas e Títulos --- */
-    .hero h1 { /* Título principal da Home */
-        font-size: 2.2rem; /* Reduz tamanho da fonte */
+    /* ==================================================== */
+    /* === RESPONSIVIDADE GERAL DE PÁGINAS E TÍTULOS === */
+    /* ==================================================== */
+    
+    /* Título principal da seção Hero na página Home */
+    .hero h1 {
+        font-size: 2.2rem; /* Reduz o tamanho da fonte */
     }
 
-    .hero p { /* Subtítulo da Home */
-        font-size: 1rem; /* Reduz tamanho da fonte */
+    /* Parágrafo de subtítulo na seção Hero */
+    .hero p {
+        font-size: 1rem; /* Reduz o tamanho da fonte */
     }
 
-    .dashboard-title, .page-title { /* Títulos H1 das páginas */
-        font-size: 2rem; /* Reduz tamanho da fonte */
+    /* Títulos H1 principais das páginas (Dashboard, Metas, etc.) */
+    .dashboard-title, 
+    .page-title {
+        font-size: 2rem; /* Reduz o tamanho da fonte */
     }
  
-    /* --- Responsividade do Formulário de Adicionar Hábito (Dashboard) --- */
-    #add-habit-form .input-wrapper { /* Container do input e botão "+" */
-        flex-basis: 100%; /* Input e botão ocupam 100% da largura, quebrando linha */
-        margin-bottom: 10px; 
+    /* ====================================================================== */
+    /* === RESPONSIVIDADE DO FORMULÁRIO DE ADICIONAR HÁBITO (DASHBOARD) === */
+    /* ====================================================================== */
+    
+    /* Wrapper do input e botão "+" no formulário de adicionar hábito */
+    #add-habit-form .input-wrapper { 
+        flex-basis: 100%; /* Input e botão ocupam 100% da largura, causando quebra de linha */
+        margin-bottom: 10px; /* Espaço abaixo do input antes do botão (se quebrar) */
     }
-    #add-habit-form .error-message { /* Mensagem de erro do formulário */
-        margin-left: 0; 
+
+    /* Mensagem de erro do formulário de adicionar hábito */
+    #add-habit-form .error-message { 
+        margin-left: 0; /* Remove margens laterais se houver */
         margin-right: 0;
-        margin-top: 0; 
+        margin-top: 0; /* Pode ser ajustado pela classe base, mas garante reset aqui */
     }
 
-    /* --- Responsividade dos Controles de Ordenação de Hábitos (Dashboard) --- */
-    #sort-habitos-select { /* Select de ordenação */
-         min-width: 150px; /* Largura mínima menor para telas pequenas */
+    /* ========================================================================== */
+    /* === RESPONSIVIDADE DOS CONTROLES DE ORDENAÇÃO DE HÁBITOS (DASHBOARD) === */
+    /* ========================================================================== */
+    
+    /* Select de ordenação de hábitos */
+    #sort-habitos-select {
+         min-width: 150px; /* Largura mínima menor para ajudar em telas pequenas */
+         /* Se ficar muito largo, pode-se adicionar width: auto; ou um max-width específico */
     }
 
-    /* --- Responsividade do Calendário --- */
-    .calendario-header h3 { /* Título do mês/ano no calendário */
+    /* ============================================== */
+    /* === RESPONSIVIDADE DO CALENDÁRIO (DASHBOARD) === */
+    /* ============================================== */
+    
+    /* Título do mês/ano no cabeçalho do calendário */
+    .calendario-header h3 {
         font-size: 1.2rem;
     }
-    .calendario-header .btn-secondary { /* Botões de navegação de mês */
-        padding: 0.3rem 0.6rem;
-        font-size: 0.9rem;
+
+    /* Botões de navegação de mês ("<", ">") no calendário */
+    .calendario-header .btn-secondary {
+        padding: 0.3rem 0.6rem; /* Padding menor */
+        font-size: 0.9rem; /* Fonte menor */
     }
-    .calendario-grid-dias-semana div { /* Nomes dos dias da semana */
+
+    /* Nomes dos dias da semana (Dom, Seg, etc.) */
+    .calendario-grid-dias-semana div {
         font-size: 0.7rem; 
     }
-    .calendario-grid-dias .dia-do-calendario { /* Células dos dias */
-        padding: 0.5rem 0.2rem; /* Reduz padding */
-        min-height: 45px; /* Reduz altura mínima */
-        font-size: 0.8rem; /* Reduz fonte do número do dia */
+
+    /* Células dos dias no grid do calendário */
+    .calendario-grid-dias .dia-do-calendario {
+        padding: 0.5rem 0.2rem; /* Padding interno menor */
+        min-height: 45px; /* Altura mínima menor para as células */
+        font-size: 0.8rem; /* Tamanho da fonte do número do dia */
     }
-    /* Ajusta tamanho e posição das bolinhas indicadoras no calendário */
-    .dia-com-atividade::before, /* Bolinha de atividade */
-    .dia-com-lembretes::after { /* Bolinha de lembrete */
-        width: 4px;
+
+    /* Ajusta tamanho e posição das bolinhas indicadoras (atividade e lembrete) no calendário */
+    .dia-com-atividade::before, 
+    .dia-com-lembretes::after { 
+        width: 4px; /* Bolinhas menores */
         height: 4px;
-        bottom: 2px; /* Ajusta posição vertical */
+        bottom: 2px; /* Posição vertical ajustada para células menores */
     }
-    .dia-com-lembretes::after {
-        left: calc(50% - 5px); /* Ajusta posição horizontal para lembrete */
+
+    .dia-com-lembretes::after { /* Bolinha verde de lembrete */
+        left: calc(50% - 5px); /* Ajuste de posição horizontal */
     }
-    .dia-com-atividade::before {
-        left: calc(50% + 5px); /* Ajusta posição horizontal para atividade */
+
+    .dia-com-atividade::before { /* Bolinha vermelha de atividade */
+        left: calc(50% + 5px); /* Ajuste de posição horizontal */
     }
 
 
-    /* --- Responsividade da Lista de Progresso (Sequências) --- */
-    .lista-progresso li { /* Itens da lista de sequências */
-        font-size: 0.9rem; 
-        /* flex-wrap: wrap; já está no estilo base, o que é bom para responsividade */
+    /* ==================================================================== */
+    /* === RESPONSIVIDADE DA LISTA DE PROGRESSO (SEQUÊNCIAS - DASHBOARD) === */
+    /* ==================================================================== */
+    
+    /* Itens da lista de sequências de hábitos */
+    .lista-progresso li { 
+        font-size: 0.9rem; /* Fonte um pouco menor */
+        /* flex-wrap: wrap; já está no estilo base do .lista-progresso li, o que é bom */
     }
-     
-    /* --- Responsividade do Gráfico de Barras --- */
-    .grafico-barras-simples .barra { /* Barras do gráfico */
-        width: 20px; /* Barras mais finas */
+
+    /* ====================================================== */
+    /* === RESPONSIVIDADE DO GRÁFICO DE BARRAS (DASHBOARD) === */
+    /* ====================================================== */
+    
+    /* Barras individuais do gráfico */
+    .grafico-barras-simples .barra { 
+        width: 20px; /* Barras mais finas para caber mais informação ou evitar aperto */
     }
-    .grafico-legendas-dias .legenda-dia { /* Legendas dos dias do gráfico */
-        width: 20px; 
-        font-size: 0.65rem; 
+
+    /* Legendas dos dias abaixo do gráfico */
+    .grafico-legendas-dias .legenda-dia { 
+        width: 20px; /* Alinha com a nova largura das barras */
+        font-size: 0.65rem; /* Fonte menor para as legendas */
     }
     
-    /* --- Responsividade dos Botões de Ação nos Cards de Metas --- */
-    .meta-actions .btn { /* Botões nos cards de metas (Editar, Concluir, Remover) */
-        font-size: 0.75rem; 
-        padding: 0.4rem 0.7rem; 
+    /* ======================================================================= */
+    /* === RESPONSIVIDADE DOS BOTÕES DE AÇÃO NOS CARDS DE METAS (PÁGINA METAS) === */
+    /* ======================================================================= */
+    
+    /* Botões nos cards de metas (Editar, Concluir, Remover) */
+    .meta-actions .btn { 
+        font-size: 0.75rem; /* Fonte menor */
+        padding: 0.4rem 0.7rem; /* Padding menor */
     }
-    /* Se os botões ainda ficarem ruins, pode-se adicionar:
+    /* Se os botões ainda ficarem ruins em telas muito estreitas, pode-se adicionar:
        .meta-actions { flex-wrap: wrap; justify-content: flex-end; }
-       para permitir que quebrem linha mas continuem à direita. */
+       para permitir que os botões quebrem linha, mantendo-os à direita. */
     
-    /* --- Responsividade dos Botões NO MODAL de Edição de Metas --- */
-    .modal-content { /* Conteúdo do modal */
-        padding: 1.5rem; /* Reduz padding interno do modal */
-    }
-    .modal-content h2 { /* Título do modal */
-        font-size: 1.5rem; 
+    /* ================================================================== */
+    /* === RESPONSIVIDADE DOS BOTÕES NO MODAL DE EDIÇÃO DE METAS === */
+    /* ================================================================== */
+    
+    /* Conteúdo interno do modal */
+    .modal-content { 
+        padding: 1.5rem; /* Reduz o padding interno do modal */
     }
 
-    .modal-actions { /* Container dos botões Salvar/Cancelar no modal */
+    /* Título do modal */
+    .modal-content h2 { 
+        font-size: 1.5rem; /* Fonte menor para o título */
+    }
+
+    /* Container dos botões Salvar/Cancelar dentro do modal */
+    .modal-actions { 
         flex-direction: column; /* Empilha os botões verticalmente */
-        align-items: stretch;   /* Faz os botões esticarem para ocupar a largura */
+        align-items: stretch;   /* Faz os botões esticarem para ocupar a largura disponível */
         gap: 10px;              /* Espaço vertical entre os botões empilhados */
     }
 
-    .modal-actions .btn { /* Botões dentro do modal */
-        width: 100%;         /* Botões ocupam 100% da largura */
-        margin-left: 0;      
+    /* Botões individuais dentro do modal */
+    .modal-actions .btn {
+        width: 100%; /* Botões ocupam 100% da largura do container .modal-actions */
+        margin-left: 0; /* Remove qualquer margem lateral que possa ter sido herdada */
         margin-right: 0;     
-        font-size: 0.9rem;   
-        padding: 0.7rem 1rem;
+        font-size: 0.9rem; /* Tamanho de fonte para os botões do modal */
+        padding: 0.7rem 1rem; /* Padding para os botões do modal */
     }
 
-    /* --- Responsividade da Área de Visualização de Detalhes do Dia (Calendário) --- */
-    .view-reminders-module h4 { /* Título: Detalhes para DD/MM/AAAA */
+    /* ================================================================================ */
+    /* === RESPONSIVIDADE DO FORMULÁRIO DE LEMBRETES DO CALENDÁRIO (DASHBOARD) === */
+    /* ================================================================================ */
+    
+    /* Container do formulário de adicionar/editar lembrete */
+    .reminder-form-module {
+        padding: 0.8rem; /* Padding interno menor */
+    }
+
+    /* Título do formulário de lembrete */
+    .reminder-form-module h4 { 
         font-size: 1.1rem;
     }
-    .view-reminders-module h5 { /* Títulos das seções: Lembretes, Hábitos Concluídos */
+
+    /* Container dos botões "Salvar Lembrete" e "Cancelar" */
+    .reminder-form-actions {
+        flex-direction: column; 
+        align-items: stretch;   
+        gap: 10px;              
+    }
+
+    .reminder-form-actions .btn {
+        width: 100%;         
+        margin-left: 0;      
+        margin-right: 0;
+    }
+    
+    /* ==================================================================================== */
+    /* === RESPONSIVIDADE DA ÁREA DE VISUALIZAÇÃO DE DETALHES DO DIA (CALENDÁRIO - DASHBOARD) === */
+    /* ==================================================================================== */
+    
+    /* Título principal da área de visualização (Ex: "Detalhes para DD/MM/AAAA") */
+    .view-reminders-module h4 { /* ID #view-details-title */
+        font-size: 1.1rem;
+    }
+
+    /* Títulos das seções internas (Ex: "Lembretes:", "Hábitos Concluídos:") */
+    .view-reminders-module h5 { 
         font-size: 0.9rem;
     }
+
+    /* Itens das listas de lembretes e hábitos concluídos */
     #view-reminders-list li, 
-    #view-habits-list li { /* Itens das listas de lembretes/hábitos */
-        flex-direction: column; /* Empilha texto e botões (para lembretes) */
-        align-items: flex-start; /* Alinha no início */
+    #view-habits-list li { 
+        flex-direction: column; /* Empilha conteúdo interno do item da lista */
+        align-items: flex-start; /* Alinha no início (esquerda) */
     }
-    #view-reminders-list .reminder-actions { /* Botões de Editar/Excluir lembrete */
-        margin-top: 0.5rem;
-        width: 100%;
+
+    /* Container dos botões "Editar" e "Excluir" para cada lembrete */
+    #view-reminders-list .reminder-actions { 
+        margin-top: 0.5rem; /* Espaço acima dos botões se o item quebrar */
+        width: 100%; /* Ocupa toda a largura do item */
         display: flex;
         justify-content: flex-end; /* Mantém botões à direita */
     }
-    .view-reminders-actions { /* Botões gerais: Adicionar Lembrete, Fechar */
+
+    /* Container dos botões gerais "Adicionar Lembrete" e "Fechar" */
+    .view-reminders-actions { 
         flex-direction: column;
         align-items: stretch;
     }
+
     .view-reminders-actions .btn {
         width: 100%;
+    }
+
+    /* ================================================= */
+    /* === RESPONSIVIDADE DA PÁGINA FINANCEIRO === */
+    /* ================================================= */
+    
+    /* Módulos dentro da página financeira */
+    .financeiro-container .dashboard-module {
+        padding: 1rem; /* Padding interno menor */
+    }
+
+    /* Controles de filtro (Tipo de Transação) na página Financeiro */
+    .filter-controls {
+        flex-direction: column; /* Empilha label e select */
+        align-items: flex-start; /* Alinha à esquerda */
+        gap: 5px; /* Espaço menor entre label e select */
+    }
+
+    .filter-controls label {
+        margin-bottom: 5px; /* Pequeno espaço abaixo da label */
+    }
+
+    .filter-controls .futuristic-input { /* Select do filtro */
+        width: 100%; /* Ocupa toda a largura disponível */
+        min-width: 0; /* Remove largura mínima para permitir encolhimento total */
+    }
+
+    /* Controles de navegação do resumo mensal (Botões Ant/Próx e Mês/Ano) */
+    .resumo-mensal-controles {
+        flex-wrap: wrap; /* Permite quebra de linha se necessário */
+        gap: 10px; /* Espaçamento entre os elementos quando quebram */
+    }
+
+    .resumo-mensal-controles h4 { /* Display "Mês/Ano" do resumo */
+        font-size: 1.1em;
+        text-align: center;
+        width: 100%; /* Ocupa toda a largura para centralizar melhor se quebrar */
+        order: -1; /* Coloca o Mês/Ano primeiro na ordem visual se quebrar linha */
+        margin-bottom: 10px; /* Espaço se os botões ficarem abaixo */
+    }
+
+    .resumo-mensal-controles .btn-sm, /* Botões "Ant" e "Próx" com texto */
+    .resumo-mensal-controles .btn-nav-mes { /* Se estiver usando a classe .btn-nav-mes */
+        flex-grow: 1; /* Faz os botões ocuparem espaço horizontal disponível se estiverem na mesma linha */
+        min-width: 80px; /* Garante um tamanho mínimo clicável */
+        text-align: center; /* Centraliza o texto/ícone se o botão esticar */
+    }
+    
+    /* Para o caso de botões com ícones SVG, se usados */
+    .resumo-mensal-controles .btn-nav-icon svg {
+        margin: 0 auto; /* Centraliza o SVG se o botão esticar */
+    }
+
+
+    /* Itens da lista de transações financeiras */
+    #transactions-list li {
+        padding: 0.6rem 0.8rem; /* Padding um pouco menor nos itens */
+    }
+
+    /* .transaction-item-row {
+        Pode precisar de flex-direction: column aqui também se o conteúdo interno
+        (descrição e valor, ou data/tipo/categoria) for muito largo e não quebrar bem.
+        Mas o .transaction-details já está sendo ajustado abaixo.
+    } */
+
+    .transaction-description { /* Descrição da transação */
+        font-size: 0.9rem;
+    }
+
+    .transaction-amount { /* Valor da transação */
+        font-size: 0.95rem;
+    }
+
+    /* Detalhes da transação (Data, Tipo, Categoria) */
+    .transaction-details {
+        font-size: 0.75em; /* Fonte menor para os detalhes */
+        flex-direction: column; /* Empilha os detalhes verticalmente */
+        align-items: flex-start; /* Alinha à esquerda */
+        gap: 3px; /* Pequeno espaço entre os detalhes empilhados */
+    }
+
+    .transaction-details span {
+        margin-right: 0; /* Remove margem lateral, já que estão empilhados */
+    }
+
+    /* Botões de ação (Editar/Excluir) para cada transação */
+    .transaction-actions {
+        justify-content: space-around; /* Espalha os botões se houver espaço, ou flex-end */
+        /* Se ficarem muito pequenos, pode-se fazer com que ocupem 50% da largura cada:
+           .transaction-actions .btn { flex-basis: calc(50% - 5px); text-align: center; }
+        */
+    }
+
+    #transactions-list .btn-edit-transaction,
+    #transactions-list .btn-delete-transaction {
+        padding: 0.3rem 0.5rem !important; /* Botões ainda menores */
+        font-size: 0.75rem !important;
+    }
+
+    /* Saldo container (global) e itens do resumo mensal */
+    .saldo-container,
+    .resumo-mensal-valores .resumo-item {
+        font-size: 0.9rem; /* Reduz um pouco a fonte base dos itens de resumo */
+    }
+
+    .saldo-container .valor-saldo,
+    .resumo-mensal-valores .resumo-item strong {
+        font-size: 1.3rem; /* Reduz o tamanho dos valores em destaque */
     }
 
 }

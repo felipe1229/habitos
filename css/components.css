@@ -1,102 +1,99 @@
+/* css/components.css - Estilos para Componentes Reutilizáveis e Complexos */
+
 /* ------------------------------------------------- */
 /* --- ESTILO BASE PARA MÓDULOS/CARDS DO DASHBOARD --- */
 /* ------------------------------------------------- */
 .dashboard-module {
-    background-color: var(--cor-fundo-secundario);
     padding: 1.5rem;
-    border-radius: 8px;
+    background-color: var(--cor-fundo-secundario);
     border: 1px solid var(--cor-borda-neon);
-    box-shadow: 0 0 10px rgba(255, 0, 60, 0.2); /* Sombra Vermelha Sutil */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave para hover */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 0, 60, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .dashboard-module:hover {
-    transform: translateY(-5px); /* Efeito de flutuar no hover */
-    box-shadow: var(--sombra-suave); /* Sombra mais pronunciada no hover */
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-suave);
 }
 
-.dashboard-module h2 { /* Título principal de cada módulo */
+.dashboard-module h2 {
     margin-bottom: 1rem;
-    border-bottom: 1px solid var(--cor-borda-neon);
     padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--cor-borda-neon);
     font-size: 1.5rem;
 }
 
 /* ------------------------------------ */
 /* --- ESTILOS COMUNS DE FORMULÁRIOS --- */
 /* ------------------------------------ */
-.form-group { /* Agrupador de label e input */
+.form-group {
     margin-bottom: 1.5rem;
 }
 
-.form-group label { /* Rótulo do campo */
+.form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--cor-texto-principal);
     font-family: var(--fonte-titulo);
+    color: var(--cor-texto-principal);
 }
 
-/* Input com estilo futurista */
 .futuristic-input {
-    background-color: rgba(26, 26, 26, 0.8); /* Fundo semi-transparente escuro */
+    display: block;
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background-color: rgba(26, 26, 26, 0.8);
     color: var(--cor-texto-principal);
     border: 1px solid var(--cor-borda-neon);
-    padding: 0.8rem 1rem;
     border-radius: 4px;
     font-family: var(--fonte-principal);
     font-size: 1rem;
-    width: 100%;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.futuristic-input:focus { /* Efeito de foco brilhante */
+.futuristic-input:focus {
     outline: none;
     border-color: var(--cor-destaque-vermelho-hover);
-    box-shadow: 0 0 15px var(--cor-destaque-vermelho), /* Brilho externo */
-        0 0 25px rgba(255, 0, 60, 0.5),        /* Brilho externo maior */
-        inset 0 0 5px rgba(255, 0, 60, 0.3); /* Brilho interno sutil */
+    box-shadow: 0 0 15px var(--cor-destaque-vermelho),
+        0 0 25px rgba(255, 0, 60, 0.5),
+        inset 0 0 5px rgba(255, 0, 60, 0.3);
 }
 
-/* Estilização customizada para input de data e select */
 .futuristic-input[type="date"],
 select.futuristic-input {
-    appearance: none; /* Remove aparência padrão do navegador */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    /* Ícone de seta customizado (SVG embutido) */
+    padding-right: 2.5rem; /* Espaço para o ícone da seta */
     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FF003C%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 0.8em;
-    padding-right: 2.5rem; /* Espaço para o ícone */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
-/* Estilização do ícone do calendário no input de data (Chrome/Edge) */
 .futuristic-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1) sepia(1) saturate(5) hue-rotate(320deg); /* Deixa o ícone vermelho */
     cursor: pointer;
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(320deg); /* Deixa o ícone vermelho */
 }
 
-/* Textarea com estilo futurista */
 textarea.futuristic-input {
-    min-height: 100px; /* Altura mínima */
-    resize: vertical;  /* Permite redimensionamento vertical */
+    min-height: 100px;
+    resize: vertical;
 }
 
-/* Mensagem de erro para formulários */
 .error-message {
-    display: block;
+    display: block; 
     width: 100%;
+    margin-top: 10px; 
+    padding: 0.5rem 0.8rem;
+    background-color: rgba(255, 0, 60, 0.1); 
     color: var(--cor-destaque-vermelho);
-    background-color: rgba(255, 0, 60, 0.1); /* Fundo vermelho bem claro */
     border: 1px solid var(--cor-destaque-vermelho);
     border-radius: 4px;
-    padding: 0.5rem 0.8rem;
-    margin-top: 10px;
     font-size: 0.85rem;
     text-align: center;
-    flex-basis: 100%; /* Ocupa toda a largura se em flex container */
-    order: 3; /* Ordem no flex container, caso usado */
+    flex-basis: 100%; 
+    order: 3; 
 }
 
 /* ----------------------------------------------- */
@@ -104,591 +101,602 @@ textarea.futuristic-input {
 /* ----------------------------------------------- */
 
 /* --- Checklist Diário de Hábitos --- */
-/* Formulário para adicionar novo hábito */
 #add-habit-form {
     display: flex;
-    flex-wrap: wrap; /* Permite quebra de linha em telas menores */
-    align-items: stretch; /* Alinha itens para mesma altura */
+    flex-wrap: wrap;
+    align-items: stretch;
     margin-bottom: 1rem;
 }
 
-#add-habit-form .input-wrapper { /* Container do input e botão de adicionar */
+#add-habit-form .input-wrapper {
     display: flex;
-    flex-grow: 1; /* Input ocupa espaço disponível */
-    align-items: stretch;
-    margin-bottom: 10px; /* Espaçamento se quebrar linha */
-}
-
-#add-habit-form .futuristic-input { /* Input de novo hábito */
     flex-grow: 1;
-    margin-right: 10px; /* Espaço antes do botão de adicionar */
-    min-width: 0; /* Permite encolher corretamente em flex */
+    align-items: stretch;
+    margin-bottom: 10px;
 }
 
-/* Botão de adicionar hábito "+" */
+#add-habit-form .futuristic-input {
+    flex-grow: 1;
+    margin-right: 10px;
+    min-width: 0;
+}
+
 .btn-add-habit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 40px;
     min-width: 40px;
-    font-size: 1.2rem;
     background-color: var(--cor-destaque-vermelho);
     color: var(--cor-fundo-principal);
     border: none;
     border-radius: 4px;
+    font-size: 1.2rem;
+    line-height: 1;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1; /* Para alinhar o "+" verticalmente */
 }
 
-#add-habit-form .btn-add-habit { /* Especificidade para o botão no form */
-    flex-shrink: 0; /* Não encolhe */
-    padding: 0.8rem; /* Padding interno do botão */
+#add-habit-form .btn-add-habit {
+    flex-shrink: 0;
+    padding: 0.8rem;
 }
 
 .btn-add-habit:hover {
     background-color: var(--cor-destaque-vermelho-hover);
 }
 
-/* Controles de ordenação da checklist */
+/* Controles de Ordenação da Checklist */
 .sort-controls-habitos {
-    margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    gap: 10px; /* Espaço entre label e select */
+    gap: 10px;
+    margin-bottom: 1rem;
     padding: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.1); /* Fundo sutil */
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 4px;
 }
 
 .sort-controls-habitos label {
-    margin-bottom: 0; /* Remove margem padrão da label */
+    margin-bottom: 0;
     font-family: var(--fonte-titulo);
     color: var(--cor-texto-principal);
     font-size: 0.9rem;
     flex-shrink: 0;
 }
 
-#sort-habitos-select { /* Select de ordenação */
-    width: auto; /* Largura automática baseada no conteúdo */
-    min-width: 220px; /* Largura mínima */
-    font-size: 0.9rem;
-    padding-top: 0.5rem; /* Ajuste de padding vertical */
+#sort-habitos-select {
+    width: auto;
+    min-width: 220px;
+    padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    font-size: 0.9rem;
 }
 
-/* Lista da checklist */
+/* Lista de Hábitos (Checklist) */
 .checklist {
-    list-style: none;
     padding: 0;
+    list-style: none;
 }
 
-/* Item individual da checklist */
 .checklist-item {
     display: flex;
     align-items: center;
-    padding: 0.8rem 0.5rem;
-    background-color: rgba(0, 0, 0, 0.2); /* Fundo sutil para cada item */
-    border-bottom: 1px solid var(--cor-borda-neon);
     margin-bottom: 0.5rem;
+    padding: 0.8rem 0.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--cor-borda-neon);
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
 
 .checklist-item:hover {
-    background-color: rgba(255, 0, 60, 0.1); /* Destaque no hover */
+    background-color: rgba(255, 0, 60, 0.1);
 }
 
-/* Checkbox customizado */
 .checklist-item input[type="checkbox"] {
-    margin-right: 10px;
-    appearance: none; /* Remove aparência padrão */
-    -webkit-appearance: none;
+    position: relative;
+    flex-shrink: 0;
     width: 20px;
     height: 20px;
+    margin-top: 2px;
+    margin-right: 10px;
     background-color: var(--cor-fundo-principal);
     border: 1px solid var(--cor-destaque-vermelho);
     border-radius: 3px;
     cursor: pointer;
-    position: relative; /* Para posicionar o "check" */
-    margin-top: 2px; /* Alinhamento fino */
-    flex-shrink: 0;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
-.checklist-item input[type="checkbox"]:checked { /* Checkbox marcado */
+.checklist-item input[type="checkbox"]:checked {
     background-color: var(--cor-destaque-vermelho);
     box-shadow: 0 0 5px var(--cor-destaque-vermelho);
 }
 
-.checklist-item input[type="checkbox"]:checked::after { /* Símbolo de "check" */
+.checklist-item input[type="checkbox"]:checked::after {
     content: '✓';
-    color: var(--cor-fundo-principal);
     position: absolute;
-    left: 50%;
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
+    color: var(--cor-fundo-principal);
     font-size: 14px;
     font-weight: bold;
 }
 
-.checklist-item label { /* Texto do hábito */
-    flex-grow: 1; /* Ocupa espaço disponível */
+.checklist-item label {
+    flex-grow: 1;
+    word-break: break-word;
     cursor: pointer;
-    word-break: break-word; /* Quebra palavras longas */
 }
 
-.checklist-item.completed label { /* Hábito completado */
+.checklist-item.completed label {
+    color: #777;
     text-decoration: line-through;
-    color: #777; /* Cor mais apagada */
 }
 
-/* Botão de remover hábito "X" */
 .btn-remove-habit {
+    margin-left: 8px;
+    padding: 0.2rem 0.5rem;
     background: none;
     border: none;
-    color: #888; /* Cor sutil */
+    border-radius: 3px;
+    color: #888;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
     transition: color 0.3s ease, background-color 0.3s ease;
-    margin-left: 8px;
 }
 
 .btn-remove-habit:hover {
-    color: var(--cor-destaque-vermelho);
     background-color: rgba(255, 0, 60, 0.1);
+    color: var(--cor-destaque-vermelho);
 }
 
 /* Estilos para Edição Inline de Hábitos */
-.btn-edit-habit.btn-secondary-inline, /* Botão de editar hábito */
-.checklist-item .edit-actions .btn { /* Botões dentro da área de edição (Salvar, Cancelar) */
+.btn-edit-habit.btn-secondary-inline,
+.checklist-item .edit-actions .btn {
+    margin-left: 8px;
+    padding: 0.2rem 0.6rem;
     background-color: transparent;
     color: var(--cor-texto-principal);
-    border: 1px solid #555; /* Borda sutil */
-    padding: 0.2rem 0.6rem; /* Padding menor */
+    border: 1px solid #555;
     font-size: 0.8rem;
-    text-transform: none; /* Sem uppercase */
-    margin-left: 8px;
-    opacity: 0.8; /* Levemente transparente */
+    text-transform: none;
+    opacity: 0.8;
     transition: opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .btn-edit-habit.btn-secondary-inline:hover,
 .checklist-item .edit-actions .btn:hover {
-    opacity: 1;
     background-color: var(--cor-fundo-secundario);
     color: var(--cor-destaque-vermelho-hover);
     border-color: var(--cor-destaque-vermelho-hover);
+    opacity: 1;
 }
 
-.checklist-item .edit-actions .btn-primary { /* Botão Salvar na edição */
-    color: var(--cor-fundo-principal);
+.checklist-item .edit-actions .btn-primary {
     background-color: var(--cor-destaque-vermelho);
+    color: var(--cor-fundo-principal);
     border-color: var(--cor-destaque-vermelho);
     opacity: 1;
 }
+
 .checklist-item .edit-actions .btn-primary:hover {
     background-color: var(--cor-destaque-vermelho-hover);
     border-color: var(--cor-destaque-vermelho-hover);
 }
 
-/* Input para editar o nome do hábito */
 .checklist-item .edit-habit-input {
     flex-grow: 1;
-    padding: 0.4rem 0.6rem;
-    font-size: 0.95rem;
     margin-right: 8px;
-    border-color: var(--cor-destaque-vermelho-hover); /* Destaque no input de edição */
+    padding: 0.4rem 0.6rem;
+    border-color: var(--cor-destaque-vermelho-hover);
+    font-size: 0.95rem;
     box-shadow: 0 0 8px var(--cor-destaque-vermelho-hover);
 }
 
-/* Container para os botões Salvar/Cancelar na edição inline */
 .checklist-item .edit-actions {
     display: flex;
     align-items: center;
-    flex-shrink: 0; /* Não encolhe */
+    flex-shrink: 0;
 }
 
 
 /* --- Calendário no Dashboard --- */
 #calendario-container {
-    padding: 1rem 0; /* Padding vertical interno */
+    padding: 1rem 0;
 }
 
-/* Cabeçalho do calendário (botões de mês e título) */
 .calendario-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
 }
-.calendario-header h3 { /* Mês e Ano */
+
+.calendario-header h3 {
+    margin: 0;
     font-family: var(--fonte-titulo);
     color: var(--cor-destaque-vermelho);
-    margin: 0;
     font-size: 1.4rem;
 }
-.calendario-header .btn-secondary { /* Botões de navegação de mês */
+
+.calendario-header .btn-secondary {
     padding: 0.4rem 0.8rem;
     font-size: 1rem;
 }
 
-/* Grid para os nomes dos dias da semana e para os dias do mês */
 .calendario-grid-dias-semana,
 .calendario-grid-dias {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7 colunas iguais */
-    gap: 5px; /* Espaçamento entre as células */
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
     text-align: center;
 }
 
-/* Nomes dos dias da semana (Dom, Seg, Ter...) */
 .calendario-grid-dias-semana div {
+    padding-bottom: 0.5rem;
     font-family: var(--fonte-titulo);
     font-weight: bold;
-    padding-bottom: 0.5rem;
     color: var(--cor-destaque-vermelho-hover);
     font-size: 0.9rem;
 }
 
-/* Célula individual de um dia no calendário */
 .calendario-grid-dias .dia-do-calendario {
-    background-color: rgba(255, 255, 255, 0.05); /* Fundo sutil para cada dia */
-    border: 1px solid var(--cor-borda-neon);
-    padding: 0.8rem 0.5rem;
-    min-height: 60px; /* Altura mínima para cada célula de dia */
-    border-radius: 3px;
-    font-size: 0.9rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Alinha conteúdo (número, indicadores) no topo */
-    transition: background-color 0.3s ease;
+    justify-content: flex-start;
+    position: relative;
+    min-height: 60px;
+    padding: 0.8rem 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--cor-borda-neon);
+    border-radius: 3px;
+    font-size: 0.9rem;
     cursor: pointer;
-    position: relative; /* Para posicionamento dos indicadores (bolinhas) */
-}
-.calendario-grid-dias .dia-do-calendario:hover {
-    background-color: rgba(255, 0, 60, 0.1); /* Destaque no hover */
+    transition: background-color 0.3s ease;
 }
 
-/* Célula de dia vazio (antes do primeiro dia do mês) */
+.calendario-grid-dias .dia-do-calendario:hover {
+    background-color: rgba(255, 0, 60, 0.1);
+}
+
 .calendario-grid-dias .dia-vazio {
     background-color: transparent;
     border: 1px solid transparent;
-    cursor: default; /* Sem cursor de clique */
-}
-.calendario-grid-dias .dia-vazio:hover {
-    background-color: transparent; /* Sem efeito de hover */
+    cursor: default;
 }
 
-/* Dia atual no calendário */
+.calendario-grid-dias .dia-vazio:hover {
+    background-color: transparent;
+}
+
 .calendario-grid-dias .dia-atual {
     background-color: var(--cor-destaque-vermelho);
     color: var(--cor-fundo-principal);
     font-weight: bold;
     box-shadow: 0 0 10px var(--cor-destaque-vermelho);
 }
+
 .calendario-grid-dias .dia-atual:hover {
     background-color: var(--cor-destaque-vermelho-hover);
 }
 
-
-/* --- Estilos para Lembretes e Atividades Exibidos no Calendário --- */
-/* Número do dia dentro da célula */
-.dia-do-calendario .numero-dia { 
+/* Indicadores de Lembrete e Atividade no Calendário */
+.dia-do-calendario .numero-dia {
+    align-self: center;
     font-weight: bold;
-    z-index: 1; 
-    align-self: center; /* Centraliza o número do dia */
+    z-index: 1;
 }
 
-/* Indicador VERDE de Lembrete (bolinha ::after) */
-.dia-com-lembretes::after { 
+.dia-com-lembretes::after { /* Bolinha VERDE para Lembretes */
     content: '';
     position: absolute;
-    bottom: 3px; 
-    left: calc(50% - 7px); /* Posiciona à esquerda do centro, na parte inferior */
-    transform: translateX(-50%); /* Ajusta centralização horizontal */
-    width: 7px; 
-    height: 7px; 
-    background-color: var(--cor-sucesso-verde); 
+    bottom: 3px;
+    left: calc(50% - 7px); /* Desloca para a esquerda do centro */
+    width: 7px;
+    height: 7px;
+    background-color: var(--cor-sucesso-verde);
     border-radius: 50%;
     box-shadow: 0 0 5px var(--cor-sucesso-verde);
-    z-index: 0; /* Para ficar abaixo do número se houver sobreposição */
+    transform: translateX(-50%); /* Centraliza a bolinha em sua posição */
+    z-index: 0; /* Abaixo do número */
 }
-.dia-atual.dia-com-lembretes::after { /* Bolinha de lembrete no dia atual */
-    background-color: var(--cor-fundo-principal); 
+
+.dia-atual.dia-com-lembretes::after {
+    background-color: var(--cor-fundo-principal);
     box-shadow: 0 0 5px var(--cor-fundo-principal);
 }
 
-/* Indicador VERMELHO de Atividade/Hábito Concluído (bolinha ::before) */
-.dia-com-atividade::before { 
+.dia-com-atividade::before { /* Bolinha VERMELHA para Atividades */
     content: '';
     position: absolute;
-    bottom: 3px; 
-    left: calc(50% + 7px); /* Posiciona à direita do centro, na parte inferior */
-    transform: translateX(-50%); /* Ajusta centralização horizontal */
-    width: 7px; 
+    bottom: 3px;
+    left: calc(50% + 7px); /* Desloca para a direita do centro */
+    width: 7px;
     height: 7px;
-    background-color: var(--cor-destaque-vermelho); 
+    background-color: var(--cor-destaque-vermelho);
     border-radius: 50%;
     box-shadow: 0 0 5px var(--cor-destaque-vermelho);
-    z-index: 0; 
+    transform: translateX(-50%); /* Centraliza a bolinha em sua posição */
+    z-index: 0;
 }
-.dia-atual.dia-com-atividade::before { /* Bolinha de atividade no dia atual */
-    background-color: var(--cor-fundo-principal); 
+
+.dia-atual.dia-com-atividade::before {
+    background-color: var(--cor-fundo-principal);
     box-shadow: 0 0 5px var(--cor-fundo-principal);
 }
 
 
 /* --- Módulo de Progresso (Dashboard) --- */
-/* Títulos dentro do módulo de progresso */
 #progresso-container h4 {
-    font-family: var(--fonte-titulo);
-    color: var(--cor-texto-principal);
     margin-bottom: 0.8rem;
-    font-size: 1.1rem;
-    border-bottom: 1px dashed var(--cor-borda-neon); /* Linha tracejada abaixo do título */
     padding-bottom: 0.5rem;
-}
-/* Título de seção específico (usado para separar subseções de progresso) */
-.titulo-secao-progresso {
+    border-bottom: 1px dashed var(--cor-borda-neon);
     font-family: var(--fonte-titulo);
     color: var(--cor-texto-principal);
-    margin-top: 2rem; /* Mais espaço acima */
-    margin-bottom: 1rem;
     font-size: 1.1rem;
-    border-bottom: 1px dashed var(--cor-borda-neon);
-    padding-bottom: 0.5rem;
 }
 
-/* Lista de progresso (usada para sequências de hábitos e também na visualização de detalhes do dia) */
-.lista-progresso {
-    list-style: none;
-    padding: 0;
-    margin-top: 1rem;
+.titulo-secao-progresso {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed var(--cor-borda-neon);
+    font-family: var(--fonte-titulo);
+    color: var(--cor-texto-principal);
+    font-size: 1.1rem;
 }
-.lista-progresso li { /* Item da lista de progresso */
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 0.6rem 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 4px;
-    border-left: 3px solid var(--cor-destaque-vermelho); /* Destaque lateral */
-    font-size: 0.95rem;
+
+.lista-progresso {
+    margin-top: 1rem;
+    padding: 0;
+    list-style: none;
+}
+
+/* Estilo genérico para itens .lista-progresso */
+.lista-progresso li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Permite quebra de linha */
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+    padding: 0.6rem 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    /* A cor da borda esquerda é definida por classes mais específicas ou JS */
 }
 
-/* Informação principal do hábito na lista de sequências */
+#lista-sequencia-habitos li {
+    border-left: 3px solid var(--cor-destaque-vermelho);
+}
+
 .habit-info-principal {
-    margin-right: 10px;
     flex-grow: 1;
-    flex-basis: 70%; /* Ocupa mais espaço */
+    flex-basis: 70%;
+    margin-right: 10px;
 }
-/* Taxa de conclusão do hábito */
+
 .habit-completion-rate {
-    font-size: 0.8em;
-    color: #aaa;
     margin-left: 8px;
+    color: #aaa;
+    font-size: 0.8em;
     font-style: italic;
-    white-space: nowrap; /* Não quebra linha */
+    white-space: nowrap;
 }
-/* Contagem da sequência (streak) */
-.lista-progresso .streak-count {
+
+.lista-progresso .streak-count { /* Aplicado em sequências de hábitos */
+    flex-shrink: 0;
     font-weight: bold;
     color: var(--cor-destaque-vermelho-hover);
     white-space: nowrap;
-    flex-shrink: 0; /* Não encolhe */
 }
 
-/* Gráfico de Barras Simples (para últimos 7 dias) */
+/* Gráfico de Barras Simples */
 .grafico-barras-simples-container {
-    margin-top: 1rem;
-    background-color: rgba(0, 0, 0, 0.2); /* Fundo sutil para o container do gráfico */
-    padding: 1rem;
-    border-radius: 4px;
-    border: 1px solid var(--cor-borda-neon);
-    min-height: 180px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza conteúdo se for menor que min-height */
+    justify-content: center;
+    min-height: 180px;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--cor-borda-neon);
+    border-radius: 4px;
 }
-.grafico-barras-simples { /* Área das barras */
+
+.grafico-barras-simples {
     display: flex;
-    justify-content: space-around; /* Barras espaçadas igualmente */
-    align-items: flex-end; /* Barras crescem de baixo para cima */
-    height: 150px; /* Altura fixa para o gráfico */
-    border-bottom: 1px solid var(--cor-borda-neon); /* Linha base do gráfico */
+    justify-content: space-around;
+    align-items: flex-end;
+    position: relative;
+    height: 150px;
     padding-bottom: 5px;
-    position: relative; /* Para tooltip */
+    border-bottom: 1px solid var(--cor-borda-neon);
 }
-.grafico-barras-simples .empty-list-message { /* Mensagem se não houver dados */
-    align-self: center; /* Centraliza a mensagem verticalmente */
+
+.grafico-barras-simples .empty-list-message {
+    align-self: center;
     width: 100%;
 }
-.grafico-barras-simples .barra { /* Barra individual do gráfico */
+
+.grafico-barras-simples .barra {
+    position: relative;
     width: 30px;
     background-color: var(--cor-destaque-vermelho);
-    border-radius: 3px 3px 0 0; /* Cantos arredondados no topo */
-    transition: height 0.5s ease-out; /* Animação da altura */
+    border-radius: 3px 3px 0 0;
     box-shadow: 0 0 8px rgba(255, 0, 60, 0.5);
-    position: relative; /* Para tooltip */
+    transition: height 0.5s ease-out;
 }
+
 .grafico-barras-simples .barra:hover {
     background-color: var(--cor-destaque-vermelho-hover);
 }
-.grafico-barras-simples .barra .contagem-tooltip { /* Tooltip com a contagem */
+
+.grafico-barras-simples .barra .contagem-tooltip {
     position: absolute;
-    top: -25px; /* Acima da barra */
+    top: -25px;
     left: 50%;
-    transform: translateX(-50%);
+    padding: 3px 6px;
     background-color: var(--cor-fundo-secundario);
     color: var(--cor-texto-principal);
-    padding: 3px 6px;
     border-radius: 3px;
     font-size: 0.8rem;
     white-space: nowrap;
-    opacity: 0; /* Inicialmente invisível */
-    transition: opacity 0.2s ease;
-    pointer-events: none; /* Não interfere no clique */
+    opacity: 0;
+    transform: translateX(-50%);
+    pointer-events: none;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.2s ease;
 }
+
 .grafico-barras-simples .barra:hover .contagem-tooltip {
-    opacity: 1; /* Visível no hover da barra */
+    opacity: 1;
 }
-/* Legendas dos dias abaixo do gráfico */
+
 .grafico-legendas-dias {
     display: flex;
     justify-content: space-around;
     margin-top: 0.5rem;
 }
+
 .grafico-legendas-dias .legenda-dia {
-    width: 30px; /* Mesma largura da barra */
-    text-align: center;
-    font-size: 0.8rem;
+    width: 30px;
     color: var(--cor-texto-principal);
     font-family: var(--fonte-principal);
+    font-size: 0.8rem;
+    text-align: center;
 }
 
-/* Container para comparação semanal/mensal */
+/* Container de Comparação (Semanal/Mensal) */
 .comparacao-container {
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 1rem;
     margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid var(--cor-sucesso-verde);
     border-radius: 4px;
-    border-left: 3px solid var(--cor-sucesso-verde); /* Destaque lateral verde */
 }
+
 .comparacao-container p {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 0.5rem;
     font-size: 0.95rem;
-    display: flex;
-    justify-content: space-between; /* Label e valor em lados opostos */
 }
+
 .comparacao-container p:last-child {
     margin-bottom: 0;
 }
-.comparacao-container .dado-comparacao { /* Valor da comparação */
+
+.comparacao-container .dado-comparacao {
     font-family: var(--fonte-titulo);
     color: var(--cor-sucesso-verde);
     font-size: 1.1em;
 }
-/* Cores para a diferença (positivo, negativo, neutro) */
+
 #diferenca-semanal.positivo,
 #diferenca-mensal.positivo {
     color: var(--cor-sucesso-verde);
 }
+
 #diferenca-semanal.negativo,
 #diferenca-mensal.negativo {
     color: var(--cor-destaque-vermelho);
 }
+
 #diferenca-semanal.neutro,
 #diferenca-mensal.neutro {
     color: var(--cor-texto-principal);
 }
-   
+
 /* ------------------------------------- */
 /* --- COMPONENTES DA PÁGINA DE METAS --- */
 /* ------------------------------------- */
-.metas-grid { /* Grid para os cards de metas */
+.metas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsivo */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 1.5rem;
 }
 
-/* Card individual de meta */
 .meta-card {
-    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Espaça título, conteúdo e ações */
-    /* Herda .dashboard-module como base para borda, fundo, etc. */
+    justify-content: space-between;
+    padding: 1.5rem;
 }
-.meta-card h3 { /* Título da meta */
-    font-size: 1.4rem;
-    color: var(--cor-destaque-vermelho);
+
+.meta-card h3 {
     margin-bottom: 0.8rem;
+    color: var(--cor-destaque-vermelho);
+    font-size: 1.4rem;
     word-break: break-word;
 }
-.meta-card .meta-field { /* Campos como Prioridade, Data Limite */
-    font-size: 0.9em;
-    color: var(--cor-texto-principal);
+
+.meta-card .meta-field {
     margin-bottom: 0.5rem;
-    opacity: 0.8; /* Levemente apagado */
+    color: var(--cor-texto-principal);
+    font-size: 0.9em;
+    opacity: 0.8;
 }
-.meta-card .meta-field strong { /* Label do campo (ex: "Prioridade:") */
+
+.meta-card .meta-field strong {
     font-family: var(--fonte-titulo);
     color: var(--cor-destaque-vermelho-hover);
 }
-.meta-card p { /* Descrição principal da meta */
+
+.meta-card p {
+    flex-grow: 1;
+    margin-bottom: 1rem;
+    color: var(--cor-texto-principal);
     font-size: 1rem;
     line-height: 1.7;
-    color: var(--cor-texto-principal);
-    margin-bottom: 1rem;
-    flex-grow: 1; /* Ocupa espaço vertical disponível */
-    white-space: pre-wrap; /* Mantém quebras de linha da descrição */
+    white-space: pre-wrap;
     word-break: break-word;
 }
-.meta-card .meta-status { /* Status da meta (Concluída, Em Andamento) */
-    font-size: 0.85em;
-    font-style: italic;
-    color: #aaa;
+
+.meta-card .meta-status {
     margin-top: 0.8rem;
     margin-bottom: 0.8rem;
+    color: #aaa;
+    font-size: 0.85em;
+    font-style: italic;
     text-align: right;
 }
 
-/* Estilo para metas concluídas */
 .meta-card.completed-meta h3,
 .meta-card.completed-meta p,
 .meta-card.completed-meta .meta-field {
-    text-decoration: line-through; /* Riscado */
-    color: #777 !important; /* Cor apagada */
+    color: #777 !important;
     opacity: 0.6;
+    text-decoration: line-through;
 }
+
 .meta-card.completed-meta .meta-field strong {
     color: #777 !important;
 }
+
 .meta-card.completed-meta {
-    border-left: 5px solid var(--cor-sucesso-verde); /* Destaque lateral verde */
-    box-shadow: 0 0 15px rgba(0, 255, 106, 0.3); /* Sombra verde sutil */
+    border-left: 5px solid var(--cor-sucesso-verde);
+    box-shadow: 0 0 15px rgba(0, 255, 106, 0.3);
 }
 
-/* Container para os botões de ação da meta (Editar, Concluir, Remover) */
 .meta-actions {
-    margin-top: 1rem;
     display: flex;
+    justify-content: flex-end;
     gap: 0.5rem;
-    justify-content: flex-end; /* Botões à direita */
+    margin-top: 1rem;
 }
-.meta-actions .btn-remove { /* Botão de remover meta (estilo mais sutil) */
+
+.meta-actions .btn-remove {
     background-color: #444;
     color: var(--cor-texto-principal);
     border: 1px solid #555;
 }
+
 .meta-actions .btn-remove:hover {
     background-color: #555;
     color: var(--cor-destaque-vermelho);
@@ -698,257 +706,529 @@ textarea.futuristic-input {
 /* --------------------------------------------------------------- */
 /* --- ESTILOS PARA O SELETOR DE COR (PÁGINA DE CONFIGURAÇÕES) --- */
 /* --------------------------------------------------------------- */
-.color-picker-wrapper { /* Container do input de cor e do valor hexadecimal */
+.color-picker-wrapper {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-#color-picker-destaque { /* Input type="color" */
+
+#color-picker-destaque {
     width: 50px;
     height: 35px;
-    padding: 0; /* Remove padding padrão do input de cor */
+    padding: 0;
+    background-color: transparent;
     border: 1px solid var(--cor-borda-neon);
     border-radius: 4px;
     cursor: pointer;
-    background-color: transparent; /* Para o preview da cor funcionar bem */
 }
-#color-picker-value { /* Span que mostra o valor hexadecimal da cor */
+
+#color-picker-value {
+    padding: 0.3rem 0.6rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--cor-texto-principal);
+    border-radius: 3px;
     font-family: var(--fonte-titulo);
     font-size: 0.9rem;
-    color: var(--cor-texto-principal);
-    background-color: rgba(255, 255, 255, 0.1); /* Fundo sutil */
-    padding: 0.3rem 0.6rem;
-    border-radius: 3px;
 }
-#reset-color-button { /* Botão para resetar a cor */
+
+#reset-color-button {
     margin-top: 0.5rem;
 }
 
 /* ----------------------------------------------------------- */
 /* --- ESTILOS PARA MODAIS (USADO NA EDIÇÃO DE METAS, ETC.) --- */
 /* ----------------------------------------------------------- */
-.modal-overlay { /* Fundo escuro semi-transparente do modal */
-    position: fixed; /* Cobre a tela toda */
+.modal-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(10, 10, 10, 0.85); /* Preto com alta opacidade */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000; /* Fica sobre todo o conteúdo */
-    opacity: 0; /* Inicialmente invisível para animação */
-    pointer-events: none; /* Não interage quando invisível */
+    background-color: rgba(10, 10, 10, 0.85);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2000;
     transition: opacity 0.3s ease-out;
 }
-.modal-overlay.visible { /* Modal visível */
+
+.modal-overlay.visible {
     opacity: 1;
-    pointer-events: auto; /* Permite interação */
+    pointer-events: auto;
 }
 
-.modal-content { /* Conteúdo do modal (a "janela") */
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    padding: 2rem 2.5rem;
     background-color: var(--cor-fundo-secundario);
     color: var(--cor-texto-principal);
-    padding: 2rem 2.5rem;
-    border-radius: 8px;
     border: 1px solid var(--cor-borda-neon);
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.7), 0 0 25px var(--sombra-suave); /* Sombra dupla */
-    max-width: 500px; /* Largura máxima */
-    width: 90%; /* Responsivo em telas menores */
-    position: relative; /* Para posicionar o botão de fechar */
-    transform: scale(0.95); /* Efeito de zoom na entrada */
+    border-radius: 8px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.7), 0 0 25px var(--sombra-suave);
+    transform: scale(0.95);
     transition: transform 0.3s ease-out;
 }
+
 .modal-overlay.visible .modal-content {
-    transform: scale(1); /* Zoom para o tamanho normal ao aparecer */
+    transform: scale(1);
 }
 
-.modal-content h2 { /* Título do modal */
-    text-align: center;
-    font-size: 1.8rem;
+.modal-content h2 {
     margin-top: 0;
     margin-bottom: 1.5rem;
     color: var(--cor-destaque-vermelho);
+    font-size: 1.8rem;
+    text-align: center;
 }
 
-/* Botão de fechar o modal (o "X") */
 .modal-close-btn {
     position: absolute;
     top: 10px;
     right: 15px;
+    padding: 0.2rem 0.5rem;
     background: none;
     border: none;
     color: var(--cor-texto-principal);
     font-size: 2rem;
     font-weight: bold;
-    cursor: pointer;
-    padding: 0.2rem 0.5rem;
     line-height: 1;
+    cursor: pointer;
     opacity: 0.7;
     transition: opacity 0.2s ease, color 0.2s ease;
 }
+
 .modal-close-btn:hover {
-    opacity: 1;
     color: var(--cor-destaque-vermelho);
+    opacity: 1;
 }
 
-/* Container para os botões de ação do modal (Salvar, Cancelar) */
 .modal-actions {
-    margin-top: 1.5rem;
     display: flex;
-    justify-content: flex-end; /* Botões à direita */
+    justify-content: flex-end;
     gap: 10px;
+    margin-top: 1.5rem;
 }
 
-
-/* --- Estilos para o Formulário de Lembretes do Calendário --- */
+/* --- Formulário de Lembretes do Calendário (Dashboard) --- */
 .reminder-form-module {
-    background-color: rgba(var(--cor-fundo-secundario-rgb, 26, 26, 26), 0.5);
-    padding: 1rem;
     margin-top: 1.5rem;
-    border-radius: 6px;
+    padding: 1rem;
+    background-color: rgba(var(--cor-fundo-secundario-rgb, 26, 26, 26), 0.5);
     border: 1px solid var(--cor-borda-neon);
+    border-radius: 6px;
     box-shadow: 0 0 8px rgba(var(--cor-destaque-vermelho-rgb, 255, 0, 60), 0.15);
 }
 
-.reminder-form-module h4 { /* Título: Adicionar/Editar Lembrete */
-    font-size: 1.3rem;
-    color: var(--cor-destaque-vermelho);
+.reminder-form-module h4 {
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--cor-borda-neon);
+    color: var(--cor-destaque-vermelho);
+    font-size: 1.3rem;
     text-align: center;
 }
 
 #calendar-reminder-form .form-group {
-    margin-bottom: 1rem; /* Menor margem para formulário mais compacto */
+    margin-bottom: 1rem;
 }
 
-#calendar-reminder-form #reminder-text { /* Textarea do lembrete */
+#calendar-reminder-form #reminder-text {
     min-height: 60px;
     font-size: 0.95rem;
 }
 
-.reminder-form-actions { /* Botões Salvar/Cancelar do formulário de lembrete */
+.reminder-form-actions {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
     margin-top: 1rem;
 }
 
-.reminder-form-actions .btn { /* Tamanho dos botões no formulário de lembrete */
+.reminder-form-actions .btn {
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
 }
 
-/* --- Estilos para a Área de Visualização de Detalhes do Dia --- */
-.view-reminders-module { /* Container principal da área de visualização (antigo view-reminders-module) */
-    background-color: rgba(var(--cor-fundo-secundario-rgb, 26, 26, 26), 0.7);
-    padding: 1rem;
+/* --- Área de Visualização de Detalhes do Dia (Dashboard) --- */
+.view-reminders-module {
     margin-top: 1.5rem;
-    border-radius: 6px;
+    padding: 1rem;
+    background-color: rgba(var(--cor-fundo-secundario-rgb, 26, 26, 26), 0.7);
     border: 1px solid var(--cor-borda-neon);
+    border-radius: 6px;
     box-shadow: 0 0 8px rgba(var(--cor-destaque-vermelho-rgb, 255, 0, 60), 0.15);
 }
 
-/* Título principal da área de visualização (ex: "Detalhes para 02/06/2025") */
-#view-details-title { 
-    font-size: 1.3rem;
-    color: var(--cor-texto-principal); 
+#view-details-title {
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--cor-borda-neon);
+    color: var(--cor-texto-principal);
+    font-size: 1.3rem;
     text-align: center;
 }
 
-/* Títulos das seções internas (H5: Lembretes, Hábitos Concluídos) */
-.view-reminders-module h5 { 
+.view-reminders-module h5 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px dashed rgba(var(--cor-borda-neon-rgb, 255, 0, 60), 0.3);
     font-family: var(--fonte-titulo);
     color: var(--cor-texto-principal);
     font-size: 1rem;
-    margin-top: 1rem; /* Espaço acima de cada título de seção */
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.3rem;
-    border-bottom: 1px dashed rgba(var(--cor-borda-neon-rgb, 255, 0, 60), 0.3); 
-}
-.view-reminders-module h5:first-of-type { 
-    margin-top: 0; /* Remove margem do primeiro H5 */
 }
 
-/* Seções de Lembretes e Hábitos */
-#reminders-section, #habits-section {
+.view-reminders-module h5:first-of-type {
+    margin-top: 0;
+}
+
+#reminders-section,
+#habits-section {
     margin-bottom: 1rem;
 }
-#reminders-section:last-child, 
-#habits-section:last-child { /* Remove margem inferior se for a última seção visível antes dos botões gerais */
+
+#reminders-section:last-child,
+#habits-section:last-child {
     margin-bottom: 0;
 }
 
-
-/* Listas de lembretes e hábitos concluídos */
-#view-reminders-list, 
-#view-habits-list { 
-    list-style: none;
+#view-reminders-list,
+#view-habits-list {
+    margin-bottom: 1rem;
     padding: 0;
-    margin-bottom: 1rem; 
-}
-#view-reminders-list:last-of-type, /* Se a lista for o último elemento antes dos botões de ação gerais */
-#view-habits-list:last-of-type {
-    margin-bottom: 0; 
+    list-style: none;
 }
 
-/* Itens da lista de lembretes */
-#view-reminders-list li { 
-    background-color: rgba(var(--cor-fundo-principal-rgb, 10, 10, 10), 0.4); 
-    padding: 0.7rem 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 4px;
-    border-left: 3px solid var(--cor-sucesso-verde); /* Destaque verde para lembretes */
+#view-reminders-list:last-of-type,
+#view-habits-list:last-of-type {
+    margin-bottom: 0;
+}
+
+#view-reminders-list li {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-}
-
-/* Itens da lista de hábitos concluídos */
-#view-habits-list li { 
-    background-color: rgba(var(--cor-fundo-principal-rgb, 10, 10, 10), 0.3);
-    border-left: 3px solid var(--cor-destaque-vermelho); /* Destaque vermelho para hábitos */
-    font-size: 0.9rem;
-    color: #ccc; 
-    padding: 0.5rem 1rem;
     margin-bottom: 0.5rem;
+    padding: 0.7rem 1rem;
+    background-color: rgba(var(--cor-fundo-principal-rgb, 10, 10, 10), 0.4);
+    border-left: 3px solid var(--cor-sucesso-verde);
     border-radius: 4px;
 }
 
-/* Texto do lembrete na lista de visualização */
-#view-reminders-list .reminder-text-view {
-    flex-grow: 1;
-    word-break: break-word;
+#view-habits-list li {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(var(--cor-fundo-principal-rgb, 10, 10, 10), 0.3);
+    border-left: 3px solid var(--cor-destaque-vermelho);
+    border-radius: 4px;
+    color: #ccc;
     font-size: 0.9rem;
 }
 
-/* Botões de ação para cada lembrete (Editar, Excluir) */
-#view-reminders-list .reminder-actions button {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.6rem;
-    margin-left: 5px;
-}
-#view-reminders-list .reminder-actions .btn-edit-reminder { /* Botão Editar específico */
-    border-color: #777; 
-    color: #ccc;
-}
-#view-reminders-list .reminder-actions .btn-edit-reminder:hover {
-    border-color: var(--cor-destaque-vermelho-hover);
-    background-color: rgba(var(--cor-destaque-vermelho-rgb), 0.2);
-    color: var(--cor-destaque-vermelho-hover);
+#view-reminders-list .reminder-text-view {
+    flex-grow: 1;
+    font-size: 0.9rem;
+    word-break: break-word;
 }
 
-/* Container para os botões gerais da área de visualização (Adicionar Lembrete, Fechar) */
+#view-reminders-list .reminder-actions button {
+    margin-left: 5px;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+}
+
+#view-reminders-list .reminder-actions .btn-edit-reminder {
+    background-color: transparent;
+    color: #ccc;
+    border: 1px solid #777;
+}
+
+#view-reminders-list .reminder-actions .btn-edit-reminder:hover {
+    background-color: rgba(var(--cor-destaque-vermelho-rgb), 0.2);
+    color: var(--cor-destaque-vermelho-hover);
+    border-color: var(--cor-destaque-vermelho-hover);
+}
+
 .view-reminders-actions {
     display: flex;
-    justify-content: flex-end; 
-    gap: 10px; 
-    margin-top: 1.5rem; 
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+
+/* --- Estilos para a Seção Financeiro (Página financeiro.html) --- */
+.financeiro-container .dashboard-module {
+    margin-bottom: 2rem;
+}
+
+.financeiro-container .dashboard-module:last-child {
+    margin-bottom: 0;
+}
+
+/* Container do Saldo Atual */
+.saldo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background-color: rgba(var(--cor-fundo-principal-rgb, 10, 10, 10), 0.3);
+    border-left: 4px solid var(--cor-texto-principal);
+    border-radius: 4px;
+}
+
+.saldo-container span {
+    color: var(--cor-texto-principal);
+    font-size: 1.1rem;
+}
+
+.saldo-container .valor-saldo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.saldo-positivo {
+    color: var(--cor-sucesso-verde);
+    border-left-color: var(--cor-sucesso-verde) !important;
+}
+
+.saldo-positivo .valor-saldo {
+    color: var(--cor-sucesso-verde);
+}
+
+.saldo-negativo {
+    color: var(--cor-destaque-vermelho);
+    border-left-color: var(--cor-destaque-vermelho) !important;
+}
+
+.saldo-negativo .valor-saldo {
+    color: var(--cor-destaque-vermelho);
+}
+
+.saldo-neutro .valor-saldo {
+    color: var(--cor-texto-principal);
+}
+
+/* Controles de Filtro na Página Financeiro */
+.filter-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.filter-controls label {
+    margin-bottom: 0; 
+    flex-shrink: 0;
+}
+
+.filter-controls .futuristic-input {
+    width: auto;
+    min-width: 200px;
+}
+
+/* Estilos para Resumo Mensal na Página Financeiro */
+.resumo-mensal-controles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem; 
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: rgba(var(--cor-fundo-principal-rgb, 10, 10, 10), 0.2);
+    border-radius: 4px;
+}
+
+.resumo-mensal-controles h4 { 
+    margin: 0 0.5rem; 
+    font-family: var(--fonte-titulo);
+    font-size: 1.2em;
+    color: var(--cor-texto-principal);
+    flex-grow: 1; 
+    text-align: center;
+}
+
+.resumo-mensal-controles .btn-nav-mes {
+    padding: 0.4rem 0.8rem; 
+    font-family: var(--fonte-titulo); 
+    font-size: 0.9rem;    
+    line-height: 1.2;      
+    text-transform: uppercase; 
+    background-color: transparent;
+    color: var(--cor-texto-principal);
+    border: 1px solid var(--cor-borda-neon); 
+    border-radius: 4px; 
+    opacity: 0.8;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
+
+.resumo-mensal-controles .btn-nav-mes:hover {
+    background-color: rgba(var(--cor-destaque-vermelho-rgb, 255, 0, 60), 0.1);
+    color: var(--cor-destaque-vermelho);
+    border-color: var(--cor-destaque-vermelho);
+    opacity: 1;
+}
+
+.resumo-mensal-valores .resumo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0; 
+    border-bottom: 1px dashed rgba(var(--cor-borda-neon-rgb, 255, 0, 60), 0.2);
+    font-size: 1rem;
+}
+
+.resumo-mensal-valores .resumo-item:last-child {
+    border-bottom: none;
+}
+
+.resumo-mensal-valores .resumo-item span { 
+    color: #ccc; 
+}
+
+.resumo-mensal-valores .resumo-item strong { 
+    font-family: var(--fonte-titulo);
+    font-weight: bold;
+}
+
+#total-receitas-mes {
+    color: var(--cor-sucesso-verde);
+}
+
+#total-despesas-mes {
+    color: var(--cor-destaque-vermelho);
+}
+
+.saldo-mes-container {
+    padding: 0.6rem !important; 
+    margin-top: 0.5rem; 
+    border-radius: 4px;
+    border-left: 4px solid var(--cor-texto-principal); 
+}
+
+.saldo-mes-container.saldo-positivo {
+    border-left-color: var(--cor-sucesso-verde) !important;
+}
+
+.saldo-mes-container.saldo-positivo #saldo-mes-valor {
+    color: var(--cor-sucesso-verde);
+}
+
+.saldo-mes-container.saldo-negativo {
+    border-left-color: var(--cor-destaque-vermelho) !important;
+}
+
+.saldo-mes-container.saldo-negativo #saldo-mes-valor {
+    color: var(--cor-destaque-vermelho);
+}
+
+.saldo-mes-container.saldo-neutro #saldo-mes-valor {
+    color: var(--cor-texto-principal);
+}
+
+/* Lista de Transações (Página Financeiro) */
+#transactions-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 0.6rem;
+    padding: 0.8rem 1rem;
+    background-color: rgba(var(--cor-fundo-principal-rgb, 10, 10, 10), 0.4);
+    border-radius: 4px;
+    /* border-left-color é definido dinamicamente via JS */
+}
+
+.transaction-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.transaction-item-row:last-child {
+    margin-bottom: 0;
+}
+
+.transaction-description {
+    flex-grow: 1;
+    margin-right: 10px;
+    color: var(--cor-texto-principal);
+    font-size: 0.95rem;
+    font-weight: normal;
+}
+
+.transaction-amount {
+    font-size: 1rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.transaction-amount.receita {
+    color: var(--cor-sucesso-verde);
+}
+
+.transaction-amount.despesa {
+    color: var(--cor-destaque-vermelho);
+}
+
+.transaction-details {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: #aaa;
+    font-size: 0.8em;
+}
+
+.transaction-details span {
+    margin-right: 10px;
+}
+
+.transaction-details span:last-child {
+    margin-right: 0;
+}
+
+.transaction-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    width: 100%;
+}
+
+#transactions-list .btn-edit-transaction {
+    padding: 0.2rem 0.6rem !important; 
+    font-size: 0.8rem !important;
+    text-transform: none !important;
+    /* Herda de .btn e .btn-secondary-inline */
+}
+
+#transactions-list .btn-delete-transaction {
+    padding: 0.2rem 0.6rem !important;
+    background: none;
+    border: 1px solid #555;
+    border-radius: 3px;
+    color: #aaa;
+    font-size: 0.8rem !important;
+    font-weight: normal;
+    text-transform: none !important;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#transactions-list .btn-delete-transaction:hover {
+    background-color: rgba(var(--cor-destaque-vermelho-rgb), 0.15);
+    color: var(--cor-destaque-vermelho);
+    border-color: var(--cor-destaque-vermelho);
+}
+
+#transactions-empty-message {
+    margin-top: 1rem;
 }

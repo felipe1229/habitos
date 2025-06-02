@@ -1,120 +1,315 @@
 /* css/pages.css - Estilos Específicos de Layout de Página e Seções de Página */
 
-/* Estilo comum para títulos de página (Dashboard, Metas, Config, Perfil) */
+/* ================================================================= */
+/* === ESTILO COMUM PARA TÍTULOS DE PÁGINA (H1 PRINCIPAL) === */
+/* ================================================================= */
+/* Usado para o título principal em várias páginas (Dashboard, Metas, Config, Perfil) */
 .page-title,
-.dashboard-title { /* .dashboard-title é usado como .page-title no dashboard.html */
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2.5rem; /* Será ajustado em responsive.css */
-    letter-spacing: 2px;
-    text-shadow: 0 0 8px var(--cor-destaque-vermelho);
+.dashboard-title { /* .dashboard-title é uma classe específica usada no dashboard.html, mas com o mesmo estilo */
+    margin-bottom: 2rem; /* Espaço abaixo do título da página */
+    font-size: 2.5rem; /* Tamanho da fonte (será ajustado em responsive.css) */
+    text-align: center; /* Centraliza o título */
+    letter-spacing: 2px; /* Leve espaçamento entre as letras para um visual mais "clean" */
+    text-shadow: 0 0 8px var(--cor-destaque-vermelho); /* Efeito de brilho sutil */
 }
 
-/* --- Contêineres Principais de Página --- */
-/* Aplicado aos <main class="...-container"> nas diversas páginas */
+/* =============================================== */
+/* === CONTÊINERES PRINCIPAIS DE CADA PÁGINA === */
+/* =============================================== */
+/* Estilo base para os elementos <main> que contêm o conteúdo principal de cada página */
 .dashboard-container,
 .metas-container,
 .configuracoes-container,
 .perfil-container {
-    padding: 2rem; 
-    max-width: 1400px; /* Largura máxima do conteúdo principal */
-    margin-left: auto;   
-    margin-right: auto;  
-    width: 100%; /* Garante que se adapte a telas menores que max-width */
+    width: 100%; /* Ocupa toda a largura disponível */
+    max-width: 1400px; /* Define uma largura máxima para o conteúdo em telas grandes */
+    margin-left: auto; /* Centraliza o contêiner na página */
+    margin-right: auto;
+    padding: 2rem; /* Espaçamento interno para afastar o conteúdo das bordas da viewport */
 }
 
-/* --- Grid Principal do Dashboard --- */
+/* ====================================== */
+/* === GRID PRINCIPAL DO DASHBOARD === */
+/* ====================================== */
+/* Define o layout em grid para os módulos do dashboard */
 .dashboard-grid { 
     display: grid;
+    /* Cria colunas responsivas: cada coluna terá no mínimo 300px 
+       e se ajustará para preencher o espaço disponível (1fr). */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 2rem;
-    align-items: start; /* Impede que os módulos estiquem para a altura do maior da linha */
+    gap: 2rem; /* Espaçamento entre os módulos do grid */
+    align-items: start; /* Alinha os módulos no início de sua célula do grid,
+                           impedindo que estiquem verticalmente para a altura do maior item na linha. */
 }
 
-/* --- Página Home --- */
-.hero { /* A seção hero em si ocupa a largura total para o fundo */
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center;
-    min-height: 70vh; 
-    text-align: center;
-    padding: 2rem 0; /* Padding vertical; horizontal virá do .hero-content */
-    background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.9)), url('caminho/para/sua/imagem-fundo-cyberpunk.jpg') no-repeat center center/cover;
-    /* Lembre-se de substituir 'caminho/para/sua/imagem-fundo-cyberpunk.jpg' se for usar uma imagem de fundo */
+/* ================================= */
+/* === ESTILOS DA PÁGINA HOME === */
+/* ================================= */
+
+/* --- Seção Hero (Principal da Home) --- */
+/* A seção .hero ocupa a largura total para o fundo, o conteúdo interno é limitado */
+.hero { 
+    display: flex; /* Usa flexbox para centralizar o conteúdo */
+    flex-direction: column; /* Empilha o conteúdo verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    min-height: 70vh; /* Altura mínima de 70% da altura da viewport */
+    padding: 2rem 0; /* Espaçamento vertical interno; horizontal virá do .hero-content */
+    text-align: center; /* Centraliza o texto dentro do hero */
+    /* Imagem de fundo com gradiente escuro sobreposto para melhor contraste do texto */
+    background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.9)), 
+                url('caminho/para/sua/imagem-fundo-cyberpunk.jpg') no-repeat center center/cover;
+    /* ATENÇÃO: Substituir 'caminho/para/sua/imagem-fundo-cyberpunk.jpg' pela URL real da imagem! */
 }
 
-.hero-content { /* Conteúdo dentro do hero é limitado e centralizado */
+/* Contêiner para o conteúdo dentro da seção Hero (limita a largura) */
+.hero-content { 
     width: 100%;
-    max-width: 1200px; /* Um pouco menos que o container principal, ou o mesmo, ajuste a gosto */
-    padding: 0 2rem; /* Padding lateral para o conteúdo não colar nas bordas em telas menores */
+    max-width: 1200px; /* Largura máxima para o texto e botão no hero */
+    padding: 0 2rem; /* Espaçamento lateral para o conteúdo não colar nas bordas em telas menores */
 }
 
-.hero h1 { 
-    font-size: 3rem; /* Será ajustado em responsive.css */
+.hero h1 { /* Título principal do Hero */
+    font-size: 3rem; /* Tamanho da fonte (será ajustado em responsive.css) */
+    /* margin-bottom já definido globalmente para h1 */
 }
 
-.hero p {
-    font-size: 1.2rem; /* Será ajustado em responsive.css */
-    max-width: 600px; /* Para o parágrafo não ficar muito largo dentro do hero-content */
-    margin-left: auto;
+.hero p { /* Parágrafo de subtítulo do Hero */
+    max-width: 600px; /* Limita a largura do parágrafo para melhor legibilidade */
+    margin-left: auto; /* Centraliza o parágrafo se for menor que max-width */
     margin-right: auto;
-    margin-bottom: 2rem;
+    margin-bottom: 2rem; /* Espaço antes do botão CTA */
+    font-size: 1.2rem; /* Tamanho da fonte (será ajustado em responsive.css) */
 }
 
 
-/* --- Seções Específicas da Página de Metas --- */
+/* ================================================= */
+/* === SEÇÕES ESPECÍFICAS DA PÁGINA DE METAS === */
+/* ================================================= */
+/* Seção para adicionar nova meta */
 .add-meta-section { 
-    margin-bottom: 2rem;
+    margin-bottom: 2rem; /* Espaço abaixo desta seção */
 }
 
-.add-meta-section h2, .view-metas-section h2 { /* Títulos dentro das seções de metas */
+/* Títulos (H2) dentro das seções de Adicionar e Visualizar Metas */
+.add-meta-section h2, 
+.view-metas-section h2 { 
     margin-bottom: 1.5rem; 
-    border-bottom: 1px solid var(--cor-borda-neon);
-    padding-bottom: 0.5rem;
-    font-size: 1.8rem;
+    padding-bottom: 0.5rem; /* Espaço abaixo do texto do título, antes da borda */
+    border-bottom: 1px solid var(--cor-borda-neon); /* Linha neon decorativa */
+    font-size: 1.8rem; /* Tamanho de fonte para os títulos de seção */
 }
 
-/* --- Seções Específicas da Página de Configurações --- */
+/* ========================================================= */
+/* === SEÇÕES ESPECÍFICAS DA PÁGINA DE CONFIGURAÇÕES === */
+/* ========================================================= */
+/* Seção individual de configuração (ex: Perfil, Aparência) */
 .config-section { 
-    margin-bottom: 2rem;
+    margin-bottom: 2rem; /* Espaço abaixo de cada seção de configuração */
 }
 
-.config-section h2 {
+.config-section h2 { /* Título (H2) de cada seção de configuração */
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--cor-borda-neon);
     padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--cor-borda-neon);
     font-size: 1.8rem;
 }
 
-/* Mensagem de confirmação (usada em Configurações e Perfil) */
+/* Mensagem de confirmação usada em Configurações e Perfil após salvar dados */
 .save-confirmation-message { 
-    margin-top: 1rem;
-    color: var(--cor-sucesso-verde); 
-    text-shadow: 0 0 8px rgba(0, 255, 106, 0.7);
-    font-weight: bold;
+    margin-top: 1rem; /* Espaço acima da mensagem */
+    color: var(--cor-sucesso-verde); /* Cor verde para indicar sucesso */
+    font-weight: bold; /* Texto em negrito */
+    text-shadow: 0 0 8px rgba(0, 255, 106, 0.7); /* Efeito de brilho verde */
 }
 
-/* --- Seções Específicas da Página de Perfil (login.html) --- */
+/* ==================================================== */
+/* === SEÇÕES ESPECÍFICAS DA PÁGINA DE PERFIL (login.html) === */
+/* ==================================================== */
+/* Seção individual na página de perfil */
 .perfil-section { 
     margin-bottom: 2rem;
 }
 
-.perfil-section h2 {
+.perfil-section h2 { /* Título (H2) de cada seção de perfil */
     margin-bottom: 1rem; 
-    border-bottom: 1px solid var(--cor-borda-neon);
     padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--cor-borda-neon);
     font-size: 1.8rem;
 }
 
-.subtle-text { /* Texto explicativo na página de perfil */
-    font-size: 0.9rem;
-    color: #aaa; 
+/* Texto explicativo/sutil usado na página de perfil */
+.subtle-text { 
     margin-bottom: 1.5rem;
-    font-style: italic;
+    color: #aaa; /* Cor cinza claro para menor destaque */
+    font-size: 0.9rem; /* Fonte um pouco menor */
+    font-style: italic; /* Texto em itálico */
 }
 
-/* Placeholder para seções do dashboard (se necessário) */
-.notifications-placeholder { 
-    /* Estilos específicos para este placeholder se não for um .dashboard-module padrão */
+/* ========================================================= */
+/* === PLACEHOLDER PARA SEÇÕES NÃO UTILIZADAS (Exemplo) === */
+/* ========================================================= */
+/* --- Estilos para a Seção Financeiro (Página financeiro.html) --- */
+/* Herda de .dashboard-module aplicado individualmente nas sections de financeiro.html */
+.financeiro-container .dashboard-module {
+    margin-bottom: 2rem; /* Garante espaçamento entre os módulos financeiros */
+}
+
+.financeiro-container .dashboard-module:last-child {
+    margin-bottom: 0; /* Remove margem do último módulo */
+}
+
+/* Container do Saldo Atual (Global) */
+.saldo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem; /* Espaço acima do container do saldo */
+    padding: 1rem;
+    background-color: rgba(var(--cor-fundo-principal-rgb, 10, 10, 10), 0.3); /* Fundo sutil */
+    border-left: 4px solid var(--cor-texto-principal); /* Borda lateral neutra por padrão */
+    border-radius: 4px;
+}
+
+.saldo-container span { /* Label "Saldo Atual Global:" */
+    color: var(--cor-texto-principal);
+    font-size: 1.1rem;
+}
+
+.saldo-container .valor-saldo { /* O valor R$ 0.00 do saldo */
+    font-family: var(--fonte-titulo);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Modificadores de cor para o saldo global e do mês, baseados na classe aplicada via JS */
+.saldo-positivo {
+    color: var(--cor-sucesso-verde); /* Cor do texto da label, se o container tiver a classe */
+    border-left-color: var(--cor-sucesso-verde) !important; /* Força a cor da borda */
+}
+.saldo-positivo .valor-saldo { /* Cor do valor do saldo quando positivo */
+    color: var(--cor-sucesso-verde);
+}
+
+.saldo-negativo {
+    color: var(--cor-destaque-vermelho);
+    border-left-color: var(--cor-destaque-vermelho) !important;
+}
+.saldo-negativo .valor-saldo {
+    color: var(--cor-destaque-vermelho);
+}
+
+.saldo-neutro .valor-saldo { /* Para saldo zero */
+    color: var(--cor-texto-principal); /* Mantém a cor padrão do texto */
+}
+
+/* Controles de Filtro na Página Financeiro */
+.filter-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre label e select */
+    margin-bottom: 1.5rem; /* Herda do .form-group */
+}
+
+.filter-controls label {
+    margin-bottom: 0; /* Remove margem de .form-group label */
+    flex-shrink: 0; /* Label não encolhe */
+}
+
+.filter-controls .futuristic-input { /* Específico para o select de filtro */
+    width: auto; /* Largura baseada no conteúdo */
+    min-width: 200px; /* Garante uma largura mínima usável */
+}
+
+/* Controles de Navegação do Resumo Mensal (Página Financeiro) */
+.resumo-mensal-controles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem; /* Mais espaço acima */
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: rgba(var(--cor-fundo-principal-rgb, 10, 10, 10), 0.2); /* Fundo sutil */
+    border-radius: 4px;
+}
+
+.resumo-mensal-controles h4 { /* Display "Mês/Ano" */
+    margin: 0 0.5rem; /* Espaçamento lateral */
+    font-family: var(--fonte-titulo);
+    font-size: 1.2em;
+    color: var(--cor-texto-principal);
+    flex-grow: 1; /* Ocupa espaço central */
+    text-align: center;
+}
+
+.resumo-mensal-controles .btn-nav-mes { /* Botões "< Ant" e "Próx >" */
+    padding: 0.4rem 0.8rem;
+    font-family: var(--fonte-titulo);
+    font-size: 0.9rem;
+    line-height: 1.2; /* Melhor alinhamento vertical do texto */
+    text-transform: uppercase;
+    background-color: transparent;
+    color: var(--cor-texto-principal);
+    border: 1px solid var(--cor-borda-neon);
+    border-radius: 4px;
+    opacity: 0.8; /* Levemente transparente */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
+
+.resumo-mensal-controles .btn-nav-mes:hover {
+    background-color: rgba(var(--cor-destaque-vermelho-rgb, 255, 0, 60), 0.1);
+    color: var(--cor-destaque-vermelho);
+    border-color: var(--cor-destaque-vermelho);
+    opacity: 1;
+}
+
+/* Valores do Resumo Mensal (Receitas, Despesas, Saldo do Mês) */
+.resumo-mensal-valores .resumo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0; /* Menos padding vertical que o saldo global */
+    border-bottom: 1px dashed rgba(var(--cor-borda-neon-rgb, 255, 0, 60), 0.2); /* Linha sutil */
+    font-size: 1rem;
+}
+
+.resumo-mensal-valores .resumo-item:last-child {
+    border-bottom: none; /* Remove borda do último item */
+}
+
+.resumo-mensal-valores .resumo-item span { /* Label do item (ex: "Total Receitas do Mês:") */
+    color: #ccc; /* Cor um pouco mais clara para a label */
+}
+
+.resumo-mensal-valores .resumo-item strong { /* Valor do item (R$ XX,XX) */
+    font-family: var(--fonte-titulo);
+    font-weight: bold;
+}
+
+#total-receitas-mes { /* Valor total de receitas do mês */
+    color: var(--cor-sucesso-verde);
+}
+
+#total-despesas-mes { /* Valor total de despesas do mês */
+    color: var(--cor-destaque-vermelho);
+}
+
+.saldo-mes-container { /* Container específico para o saldo do mês, para aplicar borda e cor */
+    padding: 0.6rem !important; /* Sobrescreve padding do .resumo-item para ter espaço para a borda */
+    margin-top: 0.5rem; /* Espaço acima do saldo do mês */
+    border-radius: 4px;
+    border-left: 4px solid var(--cor-texto-principal); /* Borda neutra inicial */
+}
+
+/* As classes .saldo-positivo, .saldo-negativo, .saldo-neutro já definidas para o saldo global
+   serão reutilizadas aqui para o saldo do mês através do .saldo-mes-container */
+.saldo-mes-container.saldo-positivo #saldo-mes-valor {
+    color: var(--cor-sucesso-verde);
+}
+.saldo-mes-container.saldo-negativo #saldo-mes-valor {
+    color: var(--cor-destaque-vermelho);
+}
+.saldo-mes-container.saldo-neutro #saldo-mes-valor {
+    color: var(--cor-texto-principal);
 }

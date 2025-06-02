@@ -1,90 +1,102 @@
-/* ------------------------------------ */
-/* --- ESTILOS DO HEADER E NAVEGAÇÃO --- */
-/* ------------------------------------ */
+/* ==================================== */
+/* === ESTILOS DO HEADER E NAVEGAÇÃO === */
+/* ==================================== */
+
+/* --- Contêiner Principal da Navbar --- */
 .navbar {
-    display: flex;
-    justify-content: space-between; /* Logo à esquerda, links e botão à direita */
-    align-items: center; /* Alinha verticalmente os itens */
-    padding: 1rem 2rem; /* Espaçamento interno */
+    display: flex; /* Alinha logo e links/botões na mesma linha */
+    justify-content: space-between; /* Espaça o logo para a esquerda e o resto para a direita */
+    align-items: center; /* Alinha verticalmente os itens ao centro */
+    padding: 1rem 2rem; /* Espaçamento interno (vertical | horizontal) */
     background-color: var(--cor-fundo-secundario); /* Cor de fundo da navbar */
-    border-bottom: 2px solid var(--cor-borda-neon); /* Borda neon na parte inferior */
-    box-shadow: var(--sombra-suave); /* Sombra suave abaixo da navbar */
-    position: relative; /* Necessário para o menu dropdown em telas menores */
-    z-index: 1000; /* Garante que a navbar fique sobre outros elementos */
+    border-bottom: 2px solid var(--cor-borda-neon); /* Borda inferior com efeito neon */
+    box-shadow: var(--sombra-suave); /* Sombra suave para dar profundidade */
+    position: relative; /* Necessário para o posicionamento do menu dropdown em telas menores */
+    z-index: 1000; /* Garante que a navbar fique sobre outros elementos da página */
 }
 
-/* Logo na Navbar */
+/* --- Logo na Navbar --- */
 .navbar .logo {
-    font-family: var(--fonte-titulo);
-    font-size: 1.8rem;
-    color: var(--cor-destaque-vermelho);
+    font-family: var(--fonte-titulo); /* Fonte futurista para o logo */
+    font-size: 1.8rem; /* Tamanho da fonte do logo */
+    color: var(--cor-destaque-vermelho); /* Cor de destaque para o logo */
     text-shadow: 0 0 10px var(--cor-destaque-vermelho); /* Efeito de brilho no logo */
 }
 
-/* Lista de Links de Navegação */
+/* --- Lista de Links de Navegação (Desktop) --- */
 .nav-links {
-    list-style: none; /* Remove marcadores da lista */
     display: flex; /* Alinha os links horizontalmente */
+    list-style: none; /* Remove os marcadores padrão da lista (bolinhas) */
+    padding: 0; /* Remove padding padrão da ul */
+    margin: 0; /* Remove margin padrão da ul */
 }
 
 .nav-links li {
-    margin-left: 20px; /* Espaçamento entre os itens da lista (links) */
+    margin-left: 20px; /* Espaçamento à esquerda de cada item da lista (exceto o primeiro) */
 }
 
-/* Links de Navegação Individuais */
+/* --- Links de Navegação Individuais --- */
 .nav-links a {
-    color: var(--cor-texto-principal);
-    padding: 0.5rem 1rem; /* Espaçamento interno para área de clique maior */
-    border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
-    font-family: var(--fonte-titulo); 
-    text-transform: uppercase; /* Texto em maiúsculas */
+    padding: 0.5rem 1rem; /* Espaçamento interno para aumentar a área de clique */
+    border-radius: 4px; /* Cantos levemente arredondados */
+    font-family: var(--fonte-titulo); /* Fonte futurista para os links */
+    color: var(--cor-texto-principal); /* Cor do texto dos links */
+    text-transform: uppercase; /* Links em maiúsculas */
+    /* Transições suaves para os efeitos de hover */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Estilo para o link ativo ou ao passar o mouse */
+/* Estilo para o link da página ativa ou ao passar o mouse sobre um link */
 .nav-links a.active,
 .nav-links a:hover {
-    color: var(--cor-fundo-principal); /* Cor do texto invertida */
-    background-color: var(--cor-destaque-vermelho); /* Fundo com cor de destaque */
-    box-shadow: 0 0 15px var(--cor-destaque-vermelho); /* Efeito de brilho */
+    background-color: var(--cor-destaque-vermelho); /* Fundo com a cor de destaque */
+    color: var(--cor-fundo-principal); /* Cor do texto contrastante com o novo fundo */
+    box-shadow: 0 0 15px var(--cor-destaque-vermelho); /* Efeito de brilho ao redor do link */
 }
 
-/* --------------------------------------------- */
-/* --- MENU HAMBÚRGUER (PARA TELAS MENORES) --- */
-/* --------------------------------------------- */
-.menu-toggle { /* Ícone do menu hambúrguer */
-    display: none; /* Inicialmente oculto em telas maiores */
+/* ============================================= */
+/* === MENU HAMBÚRGUER (PARA TELAS MENORES) === */
+/* ============================================= */
+/* Oculto por padrão em telas maiores, ativado via media query em responsive.css */
+.menu-toggle {
+    display: none; 
     flex-direction: column; /* Barras empilhadas verticalmente */
-    cursor: pointer;
+    cursor: pointer; /* Cursor de mãozinha para indicar interatividade */
 }
 
-.menu-toggle .bar { /* Barras individuais do ícone */
-    width: 25px;
-    height: 3px;
-    background-color: var(--cor-texto-principal);
-    margin: 4px 0; /* Espaçamento entre as barras */
-    transition: 0.3s; /* Animação para transformação em "X" */
+/* Barras individuais do ícone do menu hambúrguer */
+.menu-toggle .bar {
+    width: 25px; /* Largura da barra */
+    height: 3px; /* Altura da barra */
+    margin: 4px 0; /* Espaçamento vertical entre as barras */
+    background-color: var(--cor-texto-principal); /* Cor das barras */
+    transition: 0.3s; /* Animação suave para a transformação em "X" */
 }
 
-/* Animação do menu hambúrguer para "X" quando aberto */
-.menu-toggle.open .bar:nth-child(1) { /* Primeira barra */
+/* Animação do menu hambúrguer para um "X" quando o menu está aberto (classe .open) */
+/* Primeira barra: rotaciona e translada para formar a parte superior do "X" */
+.menu-toggle.open .bar:nth-child(1) {
     transform: rotate(-45deg) translate(-5px, 6px);
 }
-.menu-toggle.open .bar:nth-child(2) { /* Segunda barra (do meio) */
-    opacity: 0; /* Desaparece */
+
+/* Segunda barra (do meio): desaparece */
+.menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
 }
-.menu-toggle.open .bar:nth-child(3) { /* Terceira barra */
+
+/* Terceira barra: rotaciona e translada para formar a parte inferior do "X" */
+.menu-toggle.open .bar:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
-/* -----------------------------------*/
-/* --- ESTILOS DO FOOTER (RODAPÉ) --- */
-/* ---------------------------------- */
+/* ============================ */
+/* === ESTILOS DO RODAPÉ (FOOTER) === */
+/* ============================ */
 footer {
-    text-align: center; /* Centraliza o texto do rodapé */
-    padding: 1.5rem; /* Espaçamento interno */
+    margin-top: 2rem; /* Espaçamento acima do rodapé */
+    padding: 1.5rem; /* Espaçamento interno do rodapé */
     background-color: var(--cor-fundo-secundario); /* Cor de fundo */
-    border-top: 1px solid var(--cor-borda-neon); /* Borda neon na parte superior */
-    margin-top: 2rem; /* Espaço acima do rodapé */
-    font-size: 0.9rem; /* Tamanho de fonte menor */
+    border-top: 1px solid var(--cor-borda-neon); /* Linha neon sutil no topo */
+    font-size: 0.9rem; /* Tamanho de fonte menor para o texto do rodapé */
+    text-align: center; /* Centraliza o conteúdo do rodapé */
 }

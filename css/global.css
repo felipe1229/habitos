@@ -1,169 +1,192 @@
-/* ------------------------- */
-/* --- VARIÁVEIS GLOBAIS --- */
-/* ------------------------- */
+/* ============================================= */
+/* === VARIÁVEIS GLOBAIS DE CORES E FONTES === */
+/* ============================================= */
 :root {
-    /* --- Cores Principais --- */
-    --cor-fundo-principal: #0a0a0a; 
-    --cor-fundo-secundario: #1a1a1a; 
-    --cor-fundo-secundario-rgb: 26, 26, 26; /* Componentes RGB de --cor-fundo-secundario */
+    /* Cores principais do tema Cyberpunk/Futurista */
+    --cor-fundo-principal: #0a0a0a; /* Preto quase absoluto para o fundo geral */
+    --cor-fundo-secundario: #1a1a1a; /* Um cinza bem escuro para elementos secundários, como cards */
+    --cor-fundo-secundario-rgb: 26, 26, 26; /* Componentes RGB de --cor-fundo-secundario para uso em rgba() */
     
-    --cor-texto-principal: #e0e0e0; 
+    --cor-texto-principal: #e0e0e0; /* Cinza claro para a maioria dos textos, bom contraste com fundos escuros */
     
-    --cor-destaque-vermelho: #ff003c; 
+    --cor-destaque-vermelho: #ff003c; /* Vermelho vibrante para destaques principais, botões, ícones */
     --cor-destaque-vermelho-rgb: 255, 0, 60; /* Componentes RGB de --cor-destaque-vermelho */
-    --cor-destaque-vermelho-hover: #ff4d6a;
+    --cor-destaque-vermelho-hover: #ff4d6a; /* Tom um pouco mais claro do vermelho para interações :hover */
     
-    --cor-sucesso-verde: #00ff6a; 
+    --cor-sucesso-verde: #00ff6a; /* Verde neon para feedback de sucesso, saldos positivos, etc. */
 
-    /* --- Bordas e Sombras --- */
-    --cor-borda-neon: rgba(255, 0, 60, 0.5); 
-    --cor-borda-neon-rgb: 255, 0, 60; /* Componentes RGB da cor base da borda neon */
-    --sombra-suave: 0 0 15px rgba(255, 0, 60, 0.3);
+    /* Bordas e Sombras com efeito Neon */
+    --cor-borda-neon: rgba(255, 0, 60, 0.5); /* Borda vermelha semi-transparente para efeito neon */
+    --cor-borda-neon-rgb: 255, 0, 60;       /* Componentes RGB da cor base da borda neon */
+    --sombra-suave: 0 0 15px rgba(255, 0, 60, 0.3); /* Sombra suave com a cor de destaque para "brilho" */
 
-    /* --- Fontes --- */
-    --fonte-principal: 'Rajdhani', sans-serif;
-    --fonte-titulo: 'Orbitron', sans-serif;
+    /* Definições de Famílias de Fonte */
+    --fonte-principal: 'Rajdhani', sans-serif; /* Fonte mais "comum" para corpo de texto, parágrafos */
+    --fonte-titulo: 'Orbitron', sans-serif;   /* Fonte futurista/tecnológica para títulos e logos */
 }
 
-/* ------------------- */
-/* --- RESET BÁSICO --- */
-/* ------------------- */
+/* ======================= */
+/* === RESET CSS BÁSICO === */
+/* ======================= */
+/* Remove margens e paddings padrão dos navegadores e define box-sizing */
 * { 
     margin: 0; 
     padding: 0; 
-    box-sizing: border-box; 
+    box-sizing: border-box; /* Garante que padding e borda não aumentem o tamanho total do elemento */
 }
 
-/* ------------------------------------ */
-/* --- ESTILOS GERAIS PARA O CORPO --- */
-/* ------------------------------------ */
+/* ======================================== */
+/* === ESTILOS GERAIS PARA O ELEMENTO BODY === */
+/* ======================================== */
 body {
-    font-family: var(--fonte-principal);
-    background-color: var(--cor-fundo-principal);
-    /* Efeito sutil de scanlines no fundo */
+    font-family: var(--fonte-principal); /* Define a fonte principal para todo o corpo */
+    background-color: var(--cor-fundo-principal); /* Cor de fundo geral da página */
+    /* Efeito sutil de "scanlines" ou grade no fundo */
     background-image: linear-gradient(rgba(20, 20, 20, 0.6) 1px, transparent 1px);
     background-size: 100% 3px; 
-    color: var(--cor-texto-principal);
-    line-height: 1.6;
-    overflow-x: hidden; /* Evita scroll horizontal indesejado */
+    color: var(--cor-texto-principal); /* Cor de texto padrão para a página */
+    line-height: 1.6; /* Altura de linha para melhor legibilidade */
+    overflow-x: hidden; /* Evita scroll horizontal indesejado em toda a página */
 }
 
-/* --------------------------------------- */
-/* --- ESTILOS BASE PARA TÍTULOS (H1-H6) --- */
-/* --------------------------------------- */
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--fonte-titulo);
-    color: var(--cor-destaque-vermelho);
-    margin-bottom: 0.8rem;
-    text-transform: uppercase; 
+/* =========================================== */
+/* === ESTILOS BASE PARA TÍTULOS (H1-H6) === */
+/* =========================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--fonte-titulo); /* Usa a fonte de título para todos os cabeçalhos */
+    color: var(--cor-destaque-vermelho); /* Cor de destaque para os títulos */
+    margin-bottom: 0.8rem; /* Espaçamento padrão abaixo dos títulos */
+    text-transform: uppercase; /* Títulos em maiúsculas por padrão */
 }
-/* H4 não precisa ser uppercase por padrão */
+
+/* H4 específico - sem transformação para maiúsculas, pode ser usado para subtítulos menores */
 h4 { 
     text-transform: none; 
 }
 
-/* ------------------------------------ */
-/* --- ESTILOS BASE PARA PARÁGRAFOS --- */
-/* ------------------------------------ */
+/* ======================================== */
+/* === ESTILOS BASE PARA PARÁGRAFOS (P) === */
+/* ======================================== */
 p { 
-    margin-bottom: 1rem; 
+    margin-bottom: 1rem; /* Espaçamento padrão abaixo dos parágrafos */
 }
 
-/* ------------------------------ */
-/* --- ESTILOS BASE PARA LINKS --- */
-/* ------------------------------ */
+/* =================================== */
+/* === ESTILOS BASE PARA LINKS (A) === */
+/* =================================== */
 a { 
-    color: var(--cor-destaque-vermelho); 
-    text-decoration: none; 
-    transition: color 0.3s ease; 
-}
-a:hover { 
-    color: var(--cor-destaque-vermelho-hover); 
+    color: var(--cor-destaque-vermelho); /* Cor padrão para links */
+    text-decoration: none; /* Remove sublinhado padrão dos links */
+    transition: color 0.3s ease; /* Transição suave da cor no hover */
 }
 
-/* ------------------------------- */
-/* --- ESTILOS BASE PARA IMAGENS --- */
-/* ------------------------------- */
+a:hover { 
+    color: var(--cor-destaque-vermelho-hover); /* Cor do link ao passar o mouse */
+}
+
+/* ===================================== */
+/* === ESTILOS BASE PARA IMAGENS (IMG) === */
+/* ===================================== */
+/* Garante que as imagens sejam responsivas e não quebrem o layout */
 img { 
     max-width: 100%; 
     height: auto; 
 }
 
-/* ----------------------------- */
-/* --- ESTILOS BASE DE BOTÕES --- */
-/* ----------------------------- */
+/* ================================= */
+/* === ESTILOS BASE PARA BOTÕES === */
+/* ================================= */
+/* Classe genérica .btn para todos os botões */
 .btn { 
-    display: inline-block; 
-    padding: 0.8rem 1.5rem; 
-    border-radius: 4px; 
-    font-family: var(--fonte-titulo); 
-    font-size: 1rem; 
-    text-transform: uppercase; 
-    text-align: center; 
-    cursor: pointer; 
+    display: inline-block; /* Permite definir padding, margin, etc. */
+    padding: 0.8rem 1.5rem; /* Espaçamento interno do botão */
+    border: 1px solid transparent; /* Borda base, pode ser sobrescrita */
+    border-radius: 4px; /* Cantos levemente arredondados */
+    font-family: var(--fonte-titulo); /* Fonte de título para botões */
+    font-size: 1rem; /* Tamanho da fonte */
+    text-align: center; /* Centraliza o texto do botão */
+    text-transform: uppercase; /* Texto do botão em maiúsculas */
+    cursor: pointer; /* Cursor de mãozinha para indicar interatividade */
+    /* Transições suaves para diversos estados */
     transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease; 
-    border: 1px solid transparent; 
 }
 
-/* Botão Primário (destaque principal) */
+/* Botão Primário - usado para ações principais */
 .btn-primary { 
     background-color: var(--cor-destaque-vermelho); 
-    color: var(--cor-fundo-principal); 
-    border-color: var(--cor-destaque-vermelho); 
+    color: var(--cor-fundo-principal); /* Texto contrastante com o fundo do botão */
+    border-color: var(--cor-destaque-vermelho); /* Borda da mesma cor do fundo */
 }
+
 .btn-primary:hover { 
     background-color: var(--cor-destaque-vermelho-hover); 
     color: var(--cor-fundo-principal); 
-    box-shadow: 0 0 20px var(--cor-destaque-vermelho-hover); 
-    transform: translateY(-2px); 
+    box-shadow: 0 0 20px var(--cor-destaque-vermelho-hover); /* Efeito de brilho no hover */
+    transform: translateY(-2px); /* Leve movimento para cima no hover */
 }
 
-/* Botão de Chamada para Ação (Call to Action - CTA) */
+/* Botão de Chamada para Ação (Call to Action - CTA) - mais destaque */
 .btn-cta { 
+    padding: 1rem 2rem; /* Maior padding para mais destaque */
     background-color: var(--cor-destaque-vermelho); 
     color: var(--cor-fundo-principal); 
     border: 2px solid var(--cor-destaque-vermelho); 
-    padding: 1rem 2rem; 
-    font-size: 1.2rem; 
-    box-shadow: 0 0 10px var(--cor-destaque-vermelho); 
-}
-.btn-cta:hover { 
-    background-color: var(--cor-fundo-principal); 
-    color: var(--cor-destaque-vermelho); 
-    box-shadow: 0 0 25px var(--cor-destaque-vermelho); 
-    transform: scale(1.05); 
+    font-size: 1.2rem; /* Fonte maior */
+    box-shadow: 0 0 10px var(--cor-destaque-vermelho); /* Brilho sutil */
 }
 
-/* Botão Secundário (alternativo, contorno) */
-.btn-secondary { 
-    background-color: transparent; 
+.btn-cta:hover { 
+    background-color: var(--cor-fundo-principal); /* Inverte cores no hover */
     color: var(--cor-destaque-vermelho); 
-    border: 1px solid var(--cor-destaque-vermelho); 
+    box-shadow: 0 0 25px var(--cor-destaque-vermelho); /* Brilho mais intenso */
+    transform: scale(1.05); /* Leve aumento de tamanho */
 }
+
+/* Botão Secundário - para ações alternativas, geralmente com contorno */
+.btn-secondary { 
+    background-color: transparent; /* Fundo transparente */
+    color: var(--cor-destaque-vermelho); 
+    border: 1px solid var(--cor-destaque-vermelho); /* Borda com cor de destaque */
+}
+
 .btn-secondary:hover { 
     background-color: var(--cor-destaque-vermelho-hover); 
     color: var(--cor-fundo-principal); 
-    box-shadow: 0 0 10px var(--cor-destaque-vermelho-hover); 
+    box-shadow: 0 0 10px var(--cor-destaque-vermelho-hover);
 }
 
-/* ----------------------------------------- */
-/* --- CLASSE UTILITÁRIA PARA LISTAS VAZIAS --- */
-/* ----------------------------------------- */
+/* ============================================= */
+/* === CLASSE UTILITÁRIA PARA LISTAS VAZIAS === */
+/* ============================================= */
+/* Usada para exibir uma mensagem quando uma lista (hábitos, metas, etc.) não tem itens */
 .empty-list-message { 
-    color: #777; 
-    text-align: center; 
-    padding: 1rem; 
-    font-style: italic; 
+    padding: 1rem;
+    color: #777; /* Cor de texto sutil */
+    font-style: italic; /* Texto em itálico */
+    text-align: center; /* Mensagem centralizada */
 }
 
-/* ----------------------- */
-/* --- ANIMAÇÕES GLOBAIS --- */
-/* ----------------------- */
-/* Animação de entrada suave (aparecer deslizando para cima) */
+/* =========================== */
+/* === ANIMAÇÕES GLOBAIS === */
+/* =========================== */
+/* Keyframes para uma animação de entrada suave, aparecendo de baixo para cima com fade-in */
 @keyframes fadeInSlideUp { 
-    from { opacity: 0; transform: translateY(20px); } 
-    to { opacity: 1; transform: translateY(0); } 
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); /* Começa 20px abaixo da posição final */
+    } 
+    to { 
+        opacity: 1; 
+        transform: translateY(0); /* Termina na posição original */
+    } 
 }
+
+/* Classe para aplicar a animação fadeInSlideUp */
 .animate-fadeInUp { 
-    animation: fadeInSlideUp 0.5s ease-out forwards; 
+    animation: fadeInSlideUp 0.5s ease-out forwards; /* 'forwards' mantém o estado final da animação */
 }
