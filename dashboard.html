@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/pages.css">
-    <link rel="stylesheet" href="css/responsive.css"> 
+    <link rel="stylesheet" href="css/responsive.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -21,6 +21,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="dashboard.html" class="active">Dashboard</a></li>
                 <li><a href="metas.html">Metas</a></li>
+                <li><a href="trabalho.html">Trabalho</a></li> 
                 <li><a href="financeiro.html">Financeiro</a></li>
                 <li><a href="configuracoes.html">Configurações</a></li>
                 <li><a href="login.html" class="btn btn-primary">Perfil</a></li>
@@ -37,13 +38,13 @@
         <h1 class="dashboard-title">Seu Painel de Controle Futurista</h1>
 
         <div class="dashboard-grid">
-            
+
             <section class="dashboard-module calendar-module">
                 <h2>Calendário de Atividades</h2>
                 <div id="calendario-container">
                     <div class="calendario-header">
                         <button id="btn-mes-anterior" class="btn btn-secondary">&lt;</button>
-                        <h3 id="mes-ano-atual">Maio 2025</h3> 
+                        <h3 id="mes-ano-atual">Maio 2025</h3>
                         <button id="btn-proximo-mes" class="btn btn-secondary">&gt;</button>
                     </div>
                     <div class="calendario-grid-dias-semana">
@@ -71,7 +72,7 @@
 
                 <div id="view-reminders-container" class="view-reminders-module" style="display: none;">
                     <h4 id="view-details-title">Detalhes para DD/MM/AAAA</h4>
-                    
+
                     <div id="reminders-section" style="display: none;">
                         <h5>Lembretes:</h5>
                         <ul id="view-reminders-list" class="lista-progresso">
@@ -83,7 +84,7 @@
                         <ul id="view-habits-list" class="lista-progresso">
                             </ul>
                     </div>
-                    
+
                     <p id="view-empty-message" class="empty-list-message" style="display: none;">Nenhum item para esta data.</p>
 
                     <div class="view-reminders-actions">
@@ -99,7 +100,7 @@
                         <input type="text" id="new-habit-input" placeholder="Adicionar novo hábito..." class="futuristic-input" aria-describedby="add-habit-error">
                         <button type="submit" class="btn btn-add-habit">+</button>
                     </div>
-                    <span id="add-habit-error" class="error-message" style="display: none;" role="alert"></span> 
+                    <span id="add-habit-error" class="error-message" style="display: none;" role="alert"></span>
                 </form>
 
                 <div class="sort-controls-habitos">
@@ -116,7 +117,7 @@
             </section>
             <section class="dashboard-module progress-module">
                 <h2>Progresso</h2>
-                <div id="progresso-container"> 
+                <div id="progresso-container">
                     <h4>Sequência Atual dos Hábitos:</h4>
                     <ul id="lista-sequencia-habitos" class="lista-progresso">
                         <p class="empty-list-message">Ainda não há dados de sequência para mostrar.</p>
@@ -138,7 +139,7 @@
                     </div>
 
                     <h4 class="titulo-secao-progresso">Resumo Mensal de Hábitos:</h4>
-                    <div id="comparacao-mensal-container" class="comparacao-container"> 
+                    <div id="comparacao-mensal-container" class="comparacao-container">
                         <p>Hábitos concluídos este mês: <strong id="habitos-este-mes" class="dado-comparacao">0</strong></p>
                         <p>Hábitos concluídos mês passado: <strong id="habitos-mes-passado" class="dado-comparacao">0</strong></p>
                         <p>Diferença: <strong id="diferenca-mensal" class="dado-comparacao neutro">--</strong></p>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabalho - Hábitos</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Hábitos</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="metas.html">Metas</a></li>
+                <li><a href="trabalho.html" class="active">Trabalho</a></li>
+                <li><a href="financeiro.html">Financeiro</a></li>
+                <li><a href="configuracoes.html">Configurações</a></li>
+                <li><a href="login.html" class="btn btn-primary">Perfil</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="trabalho-container">
+        <h1 class="page-title">Gestão de Trabalho</h1>
+
+        <div id="view-lista-projetos">
+            <section class="dashboard-module add-projeto-section">
+                <h2>Adicionar Novo Projeto</h2>
+                <form id="add-projeto-trabalho-form">
+                    <div class="form-group">
+                        <label for="projeto-nome-input">Nome do Projeto:</label>
+                        <input type="text" id="projeto-nome-input" class="futuristic-input" placeholder="Ex: Desenvolvimento do App X" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="projeto-descricao-input">Descrição do Projeto (opcional):</label>
+                        <textarea id="projeto-descricao-input" class="futuristic-input" placeholder="Detalhes sobre o escopo, objetivos, etc."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Adicionar Projeto</button>
+                    <p id="add-projeto-error" class="error-message" style="display: none; margin-top: 1rem;" role="alert"></p>
+                </form>
+            </section>
+
+            <section class="dashboard-module view-projetos-section">
+                <h2>Meus Projetos</h2>
+                <div id="lista-projetos-trabalho" class="projetos-grid">
+                    <p id="projetos-empty-message" class="empty-list-message" style="display: block;">Nenhum projeto adicionado ainda. Comece criando um novo projeto!</p>
+                </div>
+            </section>
+        </div>
+
+        <div id="view-detalhes-projeto" style="display: none;">
+            <section class="dashboard-module">
+                <button id="btn-voltar-para-projetos" class="btn btn-secondary" style="margin-bottom: 1rem;">&lt; Voltar para Projetos</button>
+                
+                <div style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--cor-borda-neon); margin-bottom:1.5rem;">
+                    <h2 id="detalhes-projeto-nome" style="margin-bottom: 0.2rem; font-size: 1.8rem;">Nome do Projeto</h2>
+                    <p id="detalhes-projeto-descricao" style="font-size: 0.9rem; color: #ccc; white-space: pre-wrap; margin-bottom: 0.5rem;">Descrição do projeto...</p>
+                </div>
+
+                <div class="add-tarefa-section" style="margin-bottom: 2rem; padding: 1rem; background-color: rgba(var(--cor-fundo-secundario-rgb), 0.5); border-radius: 6px;">
+                    <h3 style="margin-top:0; margin-bottom: 1rem; font-size: 1.3rem; color: var(--cor-destaque-vermelho);">Adicionar Nova Tarefa</h3>
+                    <form id="add-tarefa-form">
+                        <div class="form-group">
+                            <label for="tarefa-descricao-input">Descrição da Tarefa:</label>
+                            <input type="text" id="tarefa-descricao-input" class="futuristic-input" placeholder="Ex: Desenvolver tela de login" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tarefa-prazo-input">Prazo (opcional):</label>
+                            <input type="date" id="tarefa-prazo-input" class="futuristic-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="tarefa-prioridade-input">Prioridade:</label>
+                            <select id="tarefa-prioridade-input" class="futuristic-input">
+                                <option value="Baixa">Baixa</option>
+                                <option value="Média" selected>Média</option>
+                                <option value="Alta">Alta</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm">Adicionar Tarefa</button>
+                        <p id="add-tarefa-error" class="error-message" style="display: none; margin-top: 1rem;" role="alert"></p>
+                    </form>
+                </div>
+
+                <div class="lista-tarefas-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px;">
+                        <h3 style="font-size: 1.3rem; color: var(--cor-destaque-vermelho); margin-bottom: 0;">Tarefas do Projeto</h3>
+                        <div class="tarefa-controls" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="select-filtrar-status-tarefas" style="margin-bottom: 0.2rem; font-size: 0.85rem;">Filtrar por:</label>
+                                <select id="select-filtrar-status-tarefas" class="futuristic-input" style="padding: 0.4rem 0.8rem; font-size:0.9rem;">
+                                    <option value="todas">Todas</option>
+                                    <option value="pendentes">Pendentes</option>
+                                    <option value="concluidas">Concluídas</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="select-ordenar-tarefas" style="margin-bottom: 0.2rem; font-size: 0.85rem;">Ordenar por:</label>
+                                <select id="select-ordenar-tarefas" class="futuristic-input" style="padding: 0.4rem 0.8rem; font-size:0.9rem;">
+                                    <option value="padrao">Padrão</option>
+                                    <option value="prazo-asc">Prazo (Mais Próximo)</option>
+                                    <option value="prioridade-desc">Prioridade (Mais Alta)</option>
+                                    <option value="descricao-asc">Descrição (A-Z)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <ul id="lista-tarefas-do-projeto" class="checklist" style="padding-left: 0;">
+                    </ul>
+                    <p id="tarefas-empty-message" class="empty-list-message" style="display: block;">Nenhuma tarefa para os filtros selecionados.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="edit-projeto-trabalho-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button id="modal-close-btn-projeto" class="modal-close-btn" aria-label="Fechar Modal">&times;</button>
+            <h2>Editar Projeto</h2>
+            <form id="edit-projeto-trabalho-form-modal">
+                <input type="hidden" id="edit-projeto-id-modal">
+                <div class="form-group">
+                    <label for="edit-projeto-nome-modal">Nome do Projeto:</label>
+                    <input type="text" id="edit-projeto-nome-modal" class="futuristic-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-projeto-descricao-modal">Descrição do Projeto:</label>
+                    <textarea id="edit-projeto-descricao-modal" class="futuristic-input"></textarea>
+                </div>
+                <p id="edit-projeto-error-modal" class="error-message" style="display: none; margin-bottom: 1rem;" role="alert"></p>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                    <button type="button" id="modal-cancel-btn-projeto" class="btn btn-secondary">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="edit-tarefa-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button id="modal-close-btn-tarefa" class="modal-close-btn" aria-label="Fechar Modal">&times;</button>
+            <h2>Editar Tarefa</h2>
+            <form id="edit-tarefa-form-modal">
+                <input type="hidden" id="edit-tarefa-id-projeto-modal">
+                <input type="hidden" id="edit-tarefa-id-tarefa-modal">
+                <div class="form-group">
+                    <label for="edit-tarefa-descricao-modal">Descrição da Tarefa:</label>
+                    <input type="text" id="edit-tarefa-descricao-modal" class="futuristic-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-tarefa-prazo-modal">Prazo (opcional):</label>
+                    <input type="date" id="edit-tarefa-prazo-modal" class="futuristic-input">
+                </div>
+                <div class="form-group">
+                    <label for="edit-tarefa-prioridade-modal">Prioridade:</label>
+                    <select id="edit-tarefa-prioridade-modal" class="futuristic-input">
+                        <option value="Baixa">Baixa</option>
+                        <option value="Média">Média</option>
+                        <option value="Alta">Alta</option>
+                    </select>
+                </div>
+                <p id="edit-tarefa-error-modal" class="error-message" style="display: none; margin-bottom: 1rem;" role="alert"></p>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                    <button type="button" id="modal-cancel-btn-tarefa" class="btn btn-secondary">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Felipe Vitorino. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/trabalho.js"></script>
+</body>
+</html>

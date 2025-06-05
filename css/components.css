@@ -1232,3 +1232,53 @@ textarea.futuristic-input {
 #transactions-empty-message {
     margin-top: 1rem;
 }
+
+/* =========================================== */
+/* === ESTILOS PARA INDICADOR DE PRIORIDADE === */
+/* =========================================== */
+.tarefa-prioridade-tag {
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+    font-size: 0.75em;
+    font-weight: bold;
+    margin-left: 8px; /* Espaço após o texto da tarefa ou checkbox */
+    text-transform: uppercase;
+    /* Cor padrão de texto para contraste com fundos coloridos */
+    color: var(--cor-fundo-principal); 
+    /* Sombra sutil para destacar a tag */
+    text-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+
+.prioridade-tag-baixa {
+    background-color: var(--cor-sucesso-verde); /* Verde Neon */
+    box-shadow: 0 0 8px var(--cor-sucesso-verde);
+}
+
+.prioridade-tag-media {
+    background-color: #f0ad4e; /* Laranja - pode ser uma variável CSS se usar mais vezes */
+    /* Para um laranja neon, poderia ser algo como #ffae42 e um box-shadow correspondente */
+    box-shadow: 0 0 8px #f0ad4e;
+}
+
+.prioridade-tag-alta {
+    background-color: var(--cor-destaque-vermelho); /* Vermelho Neon */
+    box-shadow: 0 0 8px var(--cor-destaque-vermelho);
+}
+
+/* Ajuste para o container de info da tarefa para acomodar a tag de prioridade */
+.checklist-item .task-info-container {
+    margin-left: auto; /* Empurra para a direita */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre prazo, tag de prioridade e botões */
+}
+
+/* Se o prazo estiver dentro do task-info-container, ele já tem estilo.
+   A tag de prioridade pode ir antes ou depois do prazo, ou antes dos botões.
+   Vamos colocar a tag de prioridade antes dos botões de ação, e o prazo pode vir antes disso. */
+
+.checklist-item .task-prazo-display { /* Se você criar um span específico para o prazo */
+    font-size: 0.8em;
+    color: #aaa;
+    margin-right: 10px; /* Para separar do próximo elemento */
+}
